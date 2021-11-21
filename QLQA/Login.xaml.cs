@@ -32,7 +32,7 @@ namespace UI
 
         private void minimize_Click(object sender, RoutedEventArgs e)
         {
-            Thuvien.minimized();
+            this.WindowState = WindowState.Minimized;
         }
 
         private void nutLogin_Click(object sender, RoutedEventArgs e)
@@ -40,6 +40,14 @@ namespace UI
             maintable a = new maintable();
             this.Hide();
             a.ShowDialog();
+            this.Show();
+        }
+
+        private void btsignup_Click(object sender, RoutedEventArgs e)
+        {
+            signup lg = new signup();
+            this.Hide();
+            lg.ShowDialog();
             this.Show();
         }
     }

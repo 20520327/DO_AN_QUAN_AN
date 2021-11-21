@@ -24,5 +24,20 @@ namespace UI
         {
             InitializeComponent();
         }
+
+        private void btexit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
+
+        private void btMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btSignup_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+        }
     }
 }

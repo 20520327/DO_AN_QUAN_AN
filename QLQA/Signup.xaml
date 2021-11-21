@@ -28,37 +28,38 @@
                 <Grid Margin="35,60,35.4,0" Height="340" VerticalAlignment="Top">
                     <TextBlock Text="SIGNUP" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="90,20,90,0" FontSize="23" FontWeight="Medium" FontFamily="Gilroy" />
                     <StackPanel VerticalAlignment="Bottom" Margin="20,0,20,-5">
-                        <TextBox x:Name="Fullname" materialDesign:HintAssist.Hint="Fullname" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
-                        <TextBox x:Name="Username" materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
-                        <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0,10" CaretBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" FontSize="14"/>
-                        <TextBox x:Name="Phone" materialDesign:HintAssist.Hint="Phonenumber" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
+                        <TextBox x:Name="Fullname" materialDesign:HintAssist.Hint="Họ và tên" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
+                        <TextBox x:Name="Username" materialDesign:HintAssist.Hint="Tên tài khoản" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
+                        <PasswordBox x:Name="PasswordBox" materialDesign:HintAssist.Hint="Mật khẩu" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" Margin="0,10" CaretBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" FontSize="14"/>
+
+                        <TextBox x:Name="Phone" materialDesign:HintAssist.Hint="Số điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
                         <TextBox x:Name="Email" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="14"/>
                     </StackPanel>
                 </Grid>
-                <Button x:Name="nutLogin"
+                <Button x:Name="btSignup"
                 Style="{StaticResource MaterialDesignRaisedAccentButton}"
                 Width="150" Content="Đăng ký"
                 materialDesign:ButtonAssist.CornerRadius="9"
-                ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="100,423,100.4,45" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" FontSize="16" FontWeight="SemiBold">
-                        <Button.Effect>
-                            <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
+                ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="100,423,100,44" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btSignup_Click">
+                    <Button.Effect>
+                        <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
+                    </Button.Effect>
+                </Button>
+                <Button x:Name="btexit"
                  Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                  HorizontalAlignment="Right" VerticalAlignment="Top"
                  Margin="0,5,5,0"
-                 ToolTip="MaterialDesignFloatingActionMiniButton" Height="20" Width="20" Background="#FFEB4343" BorderBrush="#FFEB4343">
+                 ToolTip="MaterialDesignFloatingActionMiniButton" Height="20" Width="20" Background="#FFEB4343" BorderBrush="#FFEB4343" Click="btexit_Click">
                     <materialDesign:PackIcon
                  Kind="Close"
                  Height="12"
                  Width="12" VerticalAlignment="Center"/>
                 </Button>
-                <Button
+                <Button x:Name="btMinimize"
                  Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                  HorizontalAlignment="Right" VerticalAlignment="Top"
                  Margin="0,5,31.4,0"
-                 ToolTip="MaterialDesignFloatingActionMiniButton" Height="20" Width="20" Background="#FFF2CB05" BorderBrush="#FFF2CB05">
+                 ToolTip="MaterialDesignFloatingActionMiniButton" Height="20" Width="20" Background="#FFF2CB05" BorderBrush="#FFF2CB05" Click="btMinimize_Click">
                     <materialDesign:PackIcon
                  Kind="WindowMinimize"
                  Height="12"
@@ -67,5 +68,5 @@
             </Grid>
         </materialDesign:Card>
     </Grid>
-    
+
 </Window>
