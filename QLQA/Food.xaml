@@ -25,13 +25,13 @@
                                     Header="ID" />
                                 <GridViewColumn Width="150"
                                     DisplayMemberBinding="{Binding Name}"
-                                    Header="Name" />
-                                <GridViewColumn Width="120"
+                                    Header="Tên" />
+                                <GridViewColumn Width="150"
                                     DisplayMemberBinding="{Binding Group}"
-                                    Header="Group" />
+                                    Header="Danh mục" />
                                 <GridViewColumn Width="200"
                                     DisplayMemberBinding="{Binding Price}"
-                                    Header="Price"/>
+                                    Header="Giá"/>
                             </GridView>
                         </ListView.View>
                     </ListView>

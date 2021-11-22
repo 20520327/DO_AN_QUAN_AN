@@ -41,3 +41,5 @@ C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.csproj.GenerateResource.cache
 C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.csproj.CoreCompileInputs.cache
 C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.exe
 C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.pdb
+C:\visual studio\Quanliquanan\QLQA\obj\Debug\addTable.g.cs
+C:\visual studio\Quanliquanan\QLQA\obj\Debug\addTable.baml

@@ -22,13 +22,13 @@
                             <GridView>
                                 <GridViewColumn Width="200"
                                     DisplayMemberBinding="{Binding uname}"
-                                    Header="Username" />
+                                    Header="Tên tài khoản" />
                                 <GridViewColumn Width="200"
                                     DisplayMemberBinding="{Binding dname}"
-                                    Header="Displayname" />
-                                <GridViewColumn Width="120"
+                                    Header="Họ và tên" />
+                                <GridViewColumn Width="150"
                                     DisplayMemberBinding="{Binding type}"
-                                    Header="Type" />
+                                    Header="Trạng thái" />
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -113,13 +113,44 @@
                 <Grid Margin="730,50,0,0">
                     <materialDesign:PackIcon Kind="AccountMultiple" Height="28" Width="28" Margin="11,17,0,0" />
                     <TextBlock Text="Account" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
-                    <Rectangle Fill="White" HorizontalAlignment="Left" Height="260" 
+                    <Rectangle Fill="White" HorizontalAlignment="Left" Height="385" 
                                Margin="10,196,0,0" RadiusY="21.5" RadiusX="21.5" Stroke="#FF2AA9C6" VerticalAlignment="Top" 
                                Width="419"/>
                     <Grid Margin="10,196,24,70">
                         <StackPanel VerticalAlignment="Top" Margin="20,5,19.4,-0.6" Height="460">
-                            <TextBox x:Name="usernam" materialDesign:HintAssist.Hint="Username" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
-                            <TextBox x:Name="dpname" materialDesign:HintAssist.Hint="Displayname" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
+                            <TextBox x:Name="username" 
+                                     materialDesign:HintAssist.Hint="Tên tài khoản" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                     Margin="0,10" 
+                                     CaretBrush="#FF0DA0B8" 
+                                     BorderBrush="#FF0DA0B8" 
+                                     Foreground="#FF0DA0B8" 
+                                     SelectionBrush="#FF0DA0B8" 
+                                     FontSize="18" Height="60" FontFamily="Gilroy"/>
+                            <TextBox x:Name="dpname" 
+                                     materialDesign:HintAssist.Hint="Họ và Tên" 
+                                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                                     Margin="0,10" 
+                                     CaretBrush="#FF0DA0B8" 
+                                     BorderBrush="#FF0DA0B8" 
+                                     Foreground="#FF0DA0B8" 
+                                     SelectionBrush="#FF0DA0B8" 
+                                     FontSize="18" Height="60" FontFamily="Gilroy"/>
+                            <PasswordBox x:Name="PasswordBox" 
+                                         materialDesign:HintAssist.Hint="Mật khẩu" 
+                                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                                         Margin="0,10" CaretBrush="#FF0DA0B8" 
+                                         Foreground="#FF0DA0B8" 
+                                         SelectionBrush="#FF0DA0B8" 
+                                         BorderBrush="#FF0DA0B8" FontSize="18"/>
+                            <PasswordBox x:Name="PasswordBoxConfirm" 
+                                         materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
+                                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                                         Margin="0,10" CaretBrush="#FF0DA0B8" 
+                                         Foreground="#FF0DA0B8" 
+                                         SelectionBrush="#FF0DA0B8" 
+                                         BorderBrush="#FF0DA0B8" FontSize="18"/>
+
                             <Grid Height="60" Margin="0,0,0,0">
                                 <Grid.Resources>
                                     <Style x:Key="ComboboxStyle" TargetType="Border">
@@ -128,9 +159,9 @@
                                     </Style>
                                 </Grid.Resources>
                                 <TextBlock Text="Loại tài khoản" FontFamily="Gilroy" 
-                                 VerticalAlignment="Center"          FontSize="18" Foreground="#FF84D9E7"/>
+                                 VerticalAlignment="Center"          FontSize="18" Foreground="#FF72D9EA" Margin="0,21,0,10" Height="29" Background="White"/>
                                 <Border
-                                    Style="{StaticResource ComboboxStyle}">
+                                    Style="{StaticResource ComboboxStyle}" Margin="1,81,-1,-81">
 
                                     <ComboBox
                                     materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
@@ -140,7 +171,7 @@
                                     FontSize="22" Width="220" 
                                     BorderBrush="White" Background="#FFFFFBFB" 
                                     VerticalAlignment="Center" Opacity="0.8" 
-                                    Margin="0,10,9,9" Foreground="#FF12A6BD">
+                                    Margin="0,-66,24,84" Foreground="#FF12A6BD">
 
                                         <ComboBox.Effect>
                                             <DropShadowEffect Opacity="0.4"/>

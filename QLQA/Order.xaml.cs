@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QLQA;
 
 namespace UI
 {
@@ -37,6 +38,17 @@ namespace UI
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            for(int i = 1; i <= 15; i++)
+            {
+                var a = new addTable();
+                a.Margin = new Thickness(10,10,10,10);
+                a.Tablename.Text = "Bàn " + i;
+                this.enviroment.Children.Add(a);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Order" Height="800" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}" AllowsTransparency="True" 
-        Icon="image/bistro1.png">
+        Icon="image/bistro1.png" Loaded="Window_Loaded">
     <Grid>
         <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
             <Grid>
@@ -17,220 +17,25 @@
                     <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
                     <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
                 </Grid>
-                <Grid Margin="100,50,472,0" Background="White">
-                    <Image Source="image/bistro1.png" Opacity="0.3" Margin="2,0,9,0"/>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="45,34,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 1"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="185,34,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 2"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="325,34,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 3"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="465,34,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 4"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="45,174,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" 
-                        Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 5"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="185,174,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 6"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="325,174,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 7"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="465,174,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 8"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="45,314,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 9"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="185,314,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 10"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="325,314,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 11"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="465,314,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 12"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="45,454,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 13"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="185,454,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 14"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="325,454,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 15"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button
-                        FontFamily="Gilroy" 
-                        FontSize="20" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}"
-                        Width="100" Height="100"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="465,454,0,0" 
-                        Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" >
-                        <TextBlock Text="Bàn 16"/>
-                        <Button.Effect>
-                            <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
+                <Grid Margin="105,50,455,0">
+                    
+                        <Grid.Background>
+                            <ImageBrush
+                            Opacity="0.4" 
+                            ImageSource="image/bistro1.png" Stretch="UniformToFill"/>
+                        </Grid.Background>
+                        <ScrollViewer
+                        VerticalScrollBarVisibility="Visible">
+                        <WrapPanel x:Name="enviroment" 
+                               HorizontalAlignment="Left" 
+                               Height="730" Margin="0,0,0,0" 
+                               VerticalAlignment="Top" Width="620"
+                               Orientation="Horizontal"
+                               />
+                    </ScrollViewer>
                 </Grid>
 
-                <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
+                    <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#049DBF"/>
