@@ -38,9 +38,8 @@ namespace UI
         private void nutLogin_Click(object sender, RoutedEventArgs e)
         {
             maintable a = new maintable();
-            this.Hide();
-            a.ShowDialog();
-            this.Show();
+            a.Show();
+            this.Close();
         }
 
         private void btsignup_Click(object sender, RoutedEventArgs e)

@@ -21,10 +21,10 @@
                         </LinearGradientBrush>
                     </Rectangle.Fill>
                 </Rectangle>
-                <Button x:Name="exit"
+                <Button x:Name="Home"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                      HorizontalAlignment="Left"
-                     ToolTip="MaterialDesignFloatingActionMiniButton" Height="50" Margin="28,698,0,32" Width="50" Background="#FFF03A3B" BorderBrush="#FFF03A3B" Click="exit_Click">
+                     ToolTip="MaterialDesignFloatingActionMiniButton" Height="50" Margin="28,698,0,32" Width="50" Background="#FFF03A3B" BorderBrush="#FFF03A3B" Click="Home_Click">
                     <materialDesign:PackIcon
                         Kind="Logout"
                         Height="24"

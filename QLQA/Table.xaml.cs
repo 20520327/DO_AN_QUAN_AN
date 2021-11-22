@@ -27,7 +27,17 @@ namespace UI
 
         private void btHome_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

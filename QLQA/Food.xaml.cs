@@ -24,7 +24,7 @@ namespace UI
         {
             InitializeComponent();
         }
-
+        //Các nút thoát và minimize
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -32,12 +32,12 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }

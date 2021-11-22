@@ -27,7 +27,7 @@ namespace UI
 
         private void btexit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void btMinimize_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace UI
 
         private void btSignup_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }

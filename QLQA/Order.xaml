@@ -262,7 +262,7 @@
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     Margin="0,10,45,0"
-                    ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFF2CB05" BorderBrush="#FFF2CB05">
+                    ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFF2CB05" BorderBrush="#FFF2CB05" Click="Minimize_Click_1">
                     <materialDesign:PackIcon
                         Kind="WindowMinimize"
                         Height="15"
@@ -271,10 +271,16 @@
                 <Grid Margin="730,50,0,0">
                     <materialDesign:PackIcon Kind="ContentPaste" Height="28" Width="28" Margin="11,17,0,0" />
                     <TextBlock Text="ORDER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
-                    <ComboBox
+                    <ComboBox x:Name="cbAmout"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
-                        Margin="309,64,30,633" 
-                        FontFamily="Gilroy" FontSize="20" BorderBrush="Black" Background="White" VerticalAlignment="Center" Opacity="0.8">
+                        Margin="309,50,30,634" 
+                        FontFamily="Gilroy" FontSize="20" 
+                        BorderBrush="White" 
+                        Background="White" 
+                        VerticalAlignment="Center" Opacity="0.8"
+                        materialDesign:HintAssist.Hint="Số lượng"
+                        IsEditable="True"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="46">
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>
@@ -292,31 +298,41 @@
                         <ComboBoxItem Content=" 11"/>
                         <ComboBoxItem Content=" 12"/>
                     </ComboBox>
-                    <ComboBox
+                    <ComboBox x:Name="cbCategory"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
-                        Margin="2,63,0,632" 
+                        Margin="2,50,0,624" 
                         FontFamily="Gilroy" 
-                        HorizontalAlignment="Left" FontSize="22" Width="220" BorderBrush="Black" Background="White" VerticalAlignment="Center" Opacity="0.8">
+                        HorizontalAlignment="Left" FontSize="22" Width="220" 
+                        BorderBrush="White" 
+                        Background="White" 
+                        VerticalAlignment="Center" Opacity="0.8"
+                        materialDesign:HintAssist.Hint="Danh mục"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="55" IsReadOnly="True">
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>
-                        <ComboBoxItem
-                        IsSelected="True" Content=" Thịt và gia cầm"/>
+                        <ComboBoxItem IsSelected="True"
+                        Content=" Thịt và gia cầm"/>
                         <ComboBoxItem Content=" Cá và hải sản"/>
                         <ComboBoxItem Content=" Rau"/>
                         <ComboBoxItem Content=" Trái cây"/>
                         <ComboBoxItem Content=" Nước"/>
                     </ComboBox>
-                    <ComboBox
+                    <ComboBox x:Name="cbFood"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
-                        Margin="2,120,0,575" 
+                        Margin="2,120,0,554" 
                         FontFamily="Gilroy" 
-                        HorizontalAlignment="Left" FontSize="22" Width="221" BorderBrush="Black" Background="White" VerticalAlignment="Center" Opacity="0.8">
+                        HorizontalAlignment="Left" FontSize="22" Width="221" 
+                        BorderBrush="White" 
+                        Background="White" 
+                        VerticalAlignment="Center" Opacity="0.8"
+                        materialDesign:HintAssist.Hint="Món ăn"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="56" IsReadOnly="True">
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>
-                        <ComboBoxItem
-                            IsSelected="True" Content=" Món 1"/>
+                        <ComboBoxItem IsSelected="True"
+                        Content=" Món 1"/>
                         <ComboBoxItem Content=" Món 2"/>
                         <ComboBoxItem Content=" Món 3"/>
                         <ComboBoxItem Content=" Món 4"/>
@@ -348,11 +364,16 @@
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
                     </Button>
-                    <ComboBox
+                    <ComboBox x:Name="cbTable"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
-                        Margin="2,676,0,24" 
+                        Margin="3,663,0,20" 
                         FontFamily="Gilroy" 
-                        HorizontalAlignment="Left" FontSize="20" Width="94" BorderBrush="Black" Background="White" VerticalAlignment="Center" Opacity="0.8">
+                        HorizontalAlignment="Left" FontSize="20" Width="94" 
+                        BorderBrush="White" 
+                        Background="White" 
+                        VerticalAlignment="Center" Opacity="0.8"
+                        materialDesign:HintAssist.Hint="Số bàn"
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="47" IsReadOnly="True">
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>

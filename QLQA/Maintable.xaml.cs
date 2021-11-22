@@ -25,11 +25,6 @@ namespace UI
             InitializeComponent();
         }
 
-        private void exit_Click(object sender, RoutedEventArgs e)
-        {
-            this.Hide();
-        }
-
         private void Minimize_Click_1(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -97,6 +92,20 @@ namespace UI
             this.Hide();
             db.ShowDialog();
             this.Show();
+        }
+
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            if(MessageBox.Show("Bạn có thật sự muốn thoát ?","Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
+            {
+
+            }
+            else
+            {
+                login lg = new login();
+                this.Close();
+                lg.Show();
+            }
         }
     }
 }

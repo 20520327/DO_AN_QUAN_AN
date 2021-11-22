@@ -32,12 +32,12 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }

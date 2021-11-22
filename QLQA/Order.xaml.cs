@@ -25,18 +25,18 @@ namespace UI
             InitializeComponent();
         }
 
-        private void Minimize_Click(object sender, RoutedEventArgs e)
+        private void Minimize_Click_1(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }

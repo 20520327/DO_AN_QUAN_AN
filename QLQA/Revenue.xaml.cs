@@ -24,10 +24,10 @@ namespace UI
         {
             InitializeComponent();
         }
-
+        //Các nút thoát và minimize
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -37,7 +37,7 @@ namespace UI
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
     }
 }
