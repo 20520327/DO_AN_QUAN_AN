@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLQA.Model
 {
-    class Account
+    public class Account
     {
         protected string username;
         protected string password;

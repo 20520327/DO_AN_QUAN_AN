@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLQA.Model
 {
-    class Food
+    public class Food
     {
         private int id;
         public string name;
@@ -15,7 +15,7 @@ namespace QLQA.Model
         public int ID
         {
             get { return this.id; }
-            private set { this.id = value; }
+            set { this.id = value; }
         } 
         public string Name
         {

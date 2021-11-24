@@ -11,7 +11,7 @@
     <Grid>
         <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
             <Grid>
-                <Image Source="image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
+                <Image x:Name="Mainform" Source="image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45" Loaded="Mainform_Loaded"/>
                 <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

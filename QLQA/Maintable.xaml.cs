@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace UI
 {
@@ -106,6 +107,11 @@ namespace UI
                 this.Close();
                 lg.Show();
             }
+        }
+
+        private void Mainform_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

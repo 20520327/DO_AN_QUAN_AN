@@ -43,3 +43,16 @@ C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.exe
 C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.pdb
 C:\visual studio\Quanliquanan\QLQA\obj\Debug\addTable.g.cs
 C:\visual studio\Quanliquanan\QLQA\obj\Debug\addTable.baml
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\mongocrypt.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\DnsClient.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\MongoDB.Libmongocrypt.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\SharpCompress.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.Buffers.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.ValueTuple.dll
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\DnsClient.xml
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.Buffers.xml
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.ValueTuple.xml
+C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA_Content.g.cs
+C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.csproj.CopyComplete

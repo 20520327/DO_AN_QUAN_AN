@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLQA.Model
 {
-    class Table
+    public class Table
     {
         private int id;
         public string name;

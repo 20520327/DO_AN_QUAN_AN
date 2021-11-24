@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QLQA.Model
 {
-    class Employee
+    public class Employee
     {
         private int id;
         public string name;
