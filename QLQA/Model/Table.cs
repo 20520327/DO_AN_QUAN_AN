@@ -10,13 +10,24 @@ namespace QLQA.Model
     {
         private int id;
         public string name;
-        public bool status;
+        public string status;
 
         public int ID
         {
             get { return this.id; }
             set { this.id = value; }
         }
+
+        public string NAME
+        {
+            get { return this.name;}
+            set { this.name = value; }
+        }
         
+        public string STATUS
+        {
+            get { return this.status; }
+            set { this.status = value; }
+        } 
     }
 }

@@ -61,11 +61,11 @@ namespace UI
             }
             catch(Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi tìm kiếm món ăn", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi tìm kiếm món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public void ListviewInfo()
+        public void ListFoodviewInfo()
         {
             List<Food> a = new List<Food>();
             bool check = SQL.getListFood(ref a);
@@ -82,7 +82,7 @@ namespace UI
 
         private void lvFood_Loaded(object sender, RoutedEventArgs e)
         {
-            ListviewInfo();
+            ListFoodviewInfo();
         }
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
@@ -107,9 +107,9 @@ namespace UI
             }
             catch(Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi thêm món ăn", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi thêm món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            ListviewInfo();
+            ListFoodviewInfo();
         }
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
@@ -135,12 +135,12 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi xoá món ăn", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi xoá món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            ListviewInfo();
+            ListFoodviewInfo();
         }
 
-        private void btUpdate(object sender, RoutedEventArgs e)
+        private void BtUpdate(object sender, RoutedEventArgs e)
         {
             int tid = int.Parse(tbID.Text.ToString());
             string tname = tbFoodname.Text.ToString();
@@ -164,9 +164,9 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi cập nhật món ăn", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi cập nhật món ăn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            ListviewInfo();
+            ListFoodviewInfo();
         }
 
         private void btView_Click(object sender, RoutedEventArgs e)

@@ -23,14 +23,28 @@ create table EMPLOYEE
 	ADDRESS		nvarchar(max),
 	PHONE		nvarchar(40),
 	SEX			nvarchar(10),
-	EMAIL		nvarchar(300),
-	ROLEid		integer
-
-	FOREIGN KEY (ROLEid) REFERENCES ROLE(ID)
+	EMAIL		nvarchar(300)
 )
 go
 
+alter table EMPLOYEE add POSITION nvarchar(150)
+alter table EMPLOYEE drop column USERNAME,PASSWORD
+alter table EMPLOYEE drop column ROLEid
+
 alter table EMPLOYEE add constraint CHK_SEX CHECK (SEX in('Nam','Nữ'))
+
+create table ACCOUNT 
+(
+	EMPLOYEEid	integer	identity(1,1),
+	ROLEid		integer,
+	USERNAME	nvarchar(max), 
+	PASSWORD	nvarchar(max)
+	
+	PRIMARY KEY (EMPLOYEEid,ROLEid)
+	FOREIGN KEY (ROLEid) REFERENCES ROLE(ID),
+	FOREIGN KEY (EMPLOYEEid) REFERENCES EMPLOYEE(ID)*
+)
+go
 
 create table CATEGORY
 (

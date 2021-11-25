@@ -17,7 +17,7 @@
                     <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
                 </Grid>
                 <Grid Margin="100,50,472,120" Background="White">
-                    <ListView FontFamily="Gilroy" FontSize="16">
+                    <ListView x:Name="lvTable" FontFamily="Gilroy" FontSize="16" Loaded="lvTable_Loaded">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="100"
@@ -34,38 +34,38 @@
                     </ListView>
                 </Grid>
                 <Grid Margin="106,660,472,0">
-                    <Button x:Name="addTable"
+                    <Button x:Name="btAddTable"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="20,45,468,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5">
+                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5" Click="btAddTable_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="xoa"
+                    <Button x:Name="btDeleteTable"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xóa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="168,45,320,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5">
+                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5" Click="btDeleteTable_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="sua"
+                    <Button x:Name="btUpgradeTable"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Sửa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="318,45,170,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5">
+                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5" Click="btUpgradeTable_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="xem"
+                    <Button x:Name="btViewTable"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xem"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="469,45,19,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5">
+                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5" Click="btViewTable_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -118,12 +118,12 @@
                                Width="419"/>
                     <Grid Margin="10,196,24,70">
                         <StackPanel VerticalAlignment="Top" Margin="20,5,19.4,-0.6" Height="460">
-                            <TextBox x:Name="ID" materialDesign:HintAssist.Hint="ID Bàn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
-                            <TextBox x:Name="Nameban" materialDesign:HintAssist.Hint="Tên bàn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
+                            <TextBox x:Name="tbtID" materialDesign:HintAssist.Hint="ID Bàn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
+                            <TextBox x:Name="tbtName" materialDesign:HintAssist.Hint="Tên bàn" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Margin="0,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
                             <Grid Height="60" Margin="0,0,0,0">
                                 <TextBlock Text="Trạng thái" FontFamily="Gilroy" 
-                                 VerticalAlignment="Center"          FontSize="18" Foreground="#FF84D9E7"/>
-                                <ComboBox
+                                 VerticalAlignment="Center"          FontSize="18" Foreground="#FF58C6D8"/>
+                                <ComboBox x:Name="cbtStatus"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
                         Height="40" 
                         FontFamily="Gilroy" 

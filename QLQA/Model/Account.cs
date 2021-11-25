@@ -11,14 +11,16 @@ namespace QLQA.Model
         protected string username;
         protected string password;
         protected string name;
-        protected bool userrole;
+        protected int Employeeid;
+        protected int userrole;
 
         public string Username {
             get { return this.username; }
             private set { this.username = value; }
         }
-        public string Password { get => password; set => password = value; }
-        public string Name { get => name; set => name = value; }
-        public bool Userrole { get => userrole; set => userrole = value; }
+        public string PASSWORD { get => password; set => password = value; }
+        public string NAME { get => name; set => name = value; }
+        public int EMPLOYEEID { get => Employeeid; set => Employeeid = value; }
+        public int Userrole { get => userrole; set => userrole = value; }
     }
 }

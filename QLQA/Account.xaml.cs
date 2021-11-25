@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using QLQA;
+using QLQA.Model;
+using System.Data;
 
 namespace UI
 {
@@ -38,6 +42,31 @@ namespace UI
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btAddAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btDelAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btpdateAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btViewAccount_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lvAccount_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

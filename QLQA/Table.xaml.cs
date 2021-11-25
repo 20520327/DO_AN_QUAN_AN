@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using QLQA;
+using QLQA.Model;
+using System.Data;
 
 namespace UI
 {
@@ -38,6 +42,92 @@ namespace UI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void ListTableviewInfo()
+        {
+            List<QLQA.Model.Table> a = new List<QLQA.Model.Table>();
+            bool check = SQL.getListTable(ref a);
+            if (check)
+            {
+                lvTable.ItemsSource = a;
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvTable.ItemsSource);
+            }
+            else
+            {
+                MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        //Function các nút 
+        private void btAddTable_Click(object sender, RoutedEventArgs e)
+        {
+            int tid = int.Parse(tbtID.Text.ToString());
+            string tname = tbtName.Text.ToString();
+            string tstatus = cbtStatus.Text.ToString();
+            string saveTable = "INSERT INTO TABLEQA(ID,NAME,STATUS) VALUES ('" + tid + "', '" + tname + "', '" + tstatus + "');";
+            SqlCommand querySaveTable = new SqlCommand(saveTable);
+
+            try
+            {
+                querySaveTable.ExecuteNonQuery();
+                MessageBox.Show("Thêm bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch(Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi thêm bàn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            ListTableviewInfo();
+        }
+
+        private void lvTable_Loaded(object sender, RoutedEventArgs e)
+        {
+            ListTableviewInfo();
+        }
+
+        private void btDeleteTable_Click(object sender, RoutedEventArgs e)
+        {
+            int tid = int.Parse(tbtID.Text.ToString());
+            string tname = tbtName.Text.ToString();
+            string tstatus = cbtStatus.Text.ToString();
+            string DeleteTable = "DELETE FROM TABLEQA WHERE ID = '" + tid + "' OR NAME = '" + tname + "'";
+            SqlCommand queryDelTable = new SqlCommand(DeleteTable);
+            try
+            {
+                queryDelTable.ExecuteNonQuery();
+                MessageBox.Show("Xoá bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi xoá bàn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            ListTableviewInfo();
+        }
+
+        private void btUpgradeTable_Click(object sender, RoutedEventArgs e)
+        {
+            int tid = int.Parse(tbtID.Text.ToString());
+            string tname = tbtName.Text.ToString();
+            string tstatus = cbtStatus.Text.ToString();
+            string UpgradeTable =   "UPDATE TABLEQA " +
+                                    "SET ID = '" + tid + "', NAME = '" + tname + "'" + "', STATUS = '" + tstatus + "'" +
+                                    "WHERE ID = '" + tid + "' OR NAME = '" + tname + "'";
+            SqlCommand queryUpgradeTable = new SqlCommand(UpgradeTable);
+            try
+            {
+                queryUpgradeTable.ExecuteNonQuery();
+                MessageBox.Show("Cập nhật bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi cập nhật bàn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            ListTableviewInfo();
+        }
+
+        private void btViewTable_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
