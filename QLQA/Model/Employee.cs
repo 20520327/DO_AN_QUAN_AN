@@ -16,43 +16,43 @@ namespace QLQA.Model
         public string address;
         public string email;
 
-        public int ID
+        public int EID
         {
             get { return this.id; }
             set { this.id = value; }
         }
 
-        public string NAME
+        public string ENAME
         {
             get { return this.name; }
             set { this.name = value; }
         }
 
-        public string POSITION
+        public string EPOSITION
         {
             get { return this.position; }
             set { this.position = value; }
         }
 
-        public string SEX
+        public string ESEX
         {
             get { return this.sex; }
             set { this.sex = value; }
         }
 
-        public string PHONE
+        public string EPHONE
         {
             get { return this.phone; }
             set { this.phone = value; }
         }
 
-        public string ADDRESS
+        public string EADDRESS
         {
             get { return this.address; }
             set { this.address = value; }
         }
 
-        public string EMAIL
+        public string EEMAIL
         {
             get { return this.email; }
             set { this.email = value; }

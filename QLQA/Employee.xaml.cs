@@ -24,6 +24,7 @@ namespace UI
     /// </summary>
     public partial class employee : Window
     {
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
         public employee()
         {
             InitializeComponent();
@@ -46,6 +47,9 @@ namespace UI
         //Function
         private void btEadd_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
             int Eid = int.Parse(tbID.Text.ToString());
             string Ename = tbName.Text.ToString();
             string Eposition = tbPosition.Text.ToString();
@@ -54,8 +58,9 @@ namespace UI
             string Eaddress = tbAddress.Text.ToString();
             string Eemail = tbEmail.Text.ToString();
             
-            string saveEmployee = "";
-            SqlCommand querysaveEmployee = new SqlCommand(saveEmployee);
+            string saveEmployee = "insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('"
+                                + Eid + "', N'" + Ename + "', N'" + Eposition + "', N'" + Eaddress + "', N'" + Ephone + "', N'" + Esex + "', N'" + Eemail + "');";
+            SqlCommand querysaveEmployee = new SqlCommand(saveEmployee,ketnoi);
 
             try
             {
@@ -64,7 +69,7 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi thêm nhân viên !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ListEmployeeviewInfo();
         }
@@ -91,6 +96,9 @@ namespace UI
 
         private void btEdel_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open(); 
+
             int Eid = int.Parse(tbID.Text.ToString());
             string Ename = tbName.Text.ToString();
             string Eposition = tbPosition.Text.ToString();
@@ -99,8 +107,8 @@ namespace UI
             string Eaddress = tbAddress.Text.ToString();
             string Eemail = tbEmail.Text.ToString();
 
-            string deleteEmployee = "";
-            SqlCommand querydelEmployee = new SqlCommand(deleteEmployee);
+            string deleteEmployee = "DELETE EMPLOYEE WHERE ID = '" + Eid + "'";
+            SqlCommand querydelEmployee = new SqlCommand(deleteEmployee,ketnoi);
 
             try
             {
@@ -109,13 +117,16 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi xoá nhân viên !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ListEmployeeviewInfo();
         }
 
         private void btEupdate_Click_1(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
             int Eid = int.Parse(tbID.Text.ToString());
             string Ename = tbName.Text.ToString();
             string Eposition = tbPosition.Text.ToString();
@@ -124,8 +135,11 @@ namespace UI
             string Eaddress = tbAddress.Text.ToString();
             string Eemail = tbEmail.Text.ToString();
 
-            string UpdateEmployee = "";
-            SqlCommand queryUpdateEmployee = new SqlCommand(UpdateEmployee);
+            string UpdateEmployee = "UPDATE EMPLOYEE " +
+                "SET ID = N'" + Eid + "', FULLNAME = N'" + Ename + "', POSITION = N'" + Eposition + "', ADDRESS = N'" + Eaddress + "', SEX = N'" + Esex + "', PHONE = N'" + Ephone + "', EMAIL = N'" + Eemail + "' " +
+                "WHERE ID = N'" + Eid + "'";
+            SqlCommand queryUpdateEmployee = new SqlCommand(UpdateEmployee,ketnoi);
+            
 
             try
             {
@@ -134,13 +148,16 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi cập nhật nhân viên !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ListEmployeeviewInfo();
         }
 
         private void btEsearch_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
             string timkiem = tbEsearch.Text.ToString();
             string SearchEmployee = "'" + timkiem + "%'";
             SqlCommand querySearchEmployee = new SqlCommand(SearchEmployee);
@@ -156,7 +173,23 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi tìm kiếm món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void lvEmployee_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid gd = (DataGrid)sender;
+            QLQA.Model.Employee row_selected = gd.SelectedItem as QLQA.Model.Employee;
+            if (row_selected != null)
+            {
+                tbID.Text = row_selected.EID.ToString();
+                tbName.Text = row_selected.ENAME.ToString();
+                tbPosition.Text = row_selected.EPOSITION.ToString();
+                tbSex.Text = row_selected.ESEX.ToString();
+                tbPhone.Text = row_selected.EPHONE.ToString();
+                tbAddress.Text = row_selected.EADDRESS.ToString();
+                tbEmail.Text = row_selected.EEMAIL.ToString();
             }
         }
     }

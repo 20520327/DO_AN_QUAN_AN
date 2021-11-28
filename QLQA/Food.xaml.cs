@@ -44,8 +44,12 @@ namespace UI
             this.Close();
         }
         //Function các nút
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
         private void btSearch_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
             string timkiem = tbSearch.Text.ToString();
             string Searchfood = "select * from FOOD where NAME LIKE '" + timkiem + "%'";
             SqlCommand querySearchFood = new SqlCommand(Searchfood);
@@ -72,7 +76,7 @@ namespace UI
             if (check)
             {
                 lvFood.ItemsSource = a;
-                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFood.ItemsSource);
+                
             }
             else
             {
@@ -87,6 +91,8 @@ namespace UI
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
             int tid = int.Parse(tbID.Text.ToString());
             string tname = tbFoodname.Text.ToString();
             string tcategory = cbCate.Text.ToString();
@@ -98,7 +104,7 @@ namespace UI
                 tbPrice.Focus();
             }
             string saveFood = "INSERT INTO FOOD(ID,NAME,CATEid,PRICE) VALUES ('" + tid + "', '" + tname + "', '" + tcategory + "', '" + tmoney + "');";
-            SqlCommand querysaveFood = new SqlCommand(saveFood);
+            SqlCommand querysaveFood = new SqlCommand(saveFood,ketnoi);
 
             try
             {
@@ -111,7 +117,7 @@ namespace UI
             }
             ListFoodviewInfo();
         }
-
+        //
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             int tid = int.Parse(tbID.Text.ToString());
@@ -171,7 +177,7 @@ namespace UI
 
         private void btView_Click(object sender, RoutedEventArgs e)
         {
-
+            ListFoodviewInfo();
         }
     }
 }

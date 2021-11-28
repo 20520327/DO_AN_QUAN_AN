@@ -10,17 +10,15 @@ namespace QLQA.Model
     {
         protected string username;
         protected string password;
-        protected string name;
         protected int Employeeid;
-        protected int userrole;
+        protected string userrole;
 
-        public string Username {
+        public string USERNAME {
             get { return this.username; }
-            private set { this.username = value; }
+            set { this.username = value; }
         }
         public string PASSWORD { get => password; set => password = value; }
-        public string NAME { get => name; set => name = value; }
         public int EMPLOYEEID { get => Employeeid; set => Employeeid = value; }
-        public int Userrole { get => userrole; set => userrole = value; }
+        public string USERROLE { get => userrole; set => userrole = value; }
     }
 }

@@ -18,35 +18,36 @@
                 </Grid>
                 <Grid Margin="100,50,472,120" Background="White">
                     <ScrollViewer HorizontalScrollBarVisibility="Visible" 
-                                  VerticalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Visible"
                                   Margin="6,0,2,0">
-                        <ListView x:Name="lvEmployee" FontFamily="Gilroy" FontSize="16" Loaded="lvEmployee_Loaded">
-                            <ListView.View>
-                                <GridView>
-                                    <GridViewColumn Width="80"
-                                    DisplayMemberBinding="{Binding IDem}"
+                        <DataGrid x:Name="lvEmployee" FontFamily="Gilroy" FontSize="16" Loaded="lvEmployee_Loaded" 
+                                  AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="lvEmployee_SelectedCellsChanged">
+                            <DataGrid.Columns>
+                                
+                                    <DataGridTextColumn Width="80"
+                                    Binding="{Binding EID}"
                                     Header="ID" />
-                                    <GridViewColumn Width="150"
-                                    DisplayMemberBinding="{Binding Name}"
+                                    <DataGridTextColumn Width="150"
+                                    Binding="{Binding ENAME}"
                                     Header="Họ và Tên" />
-                                    <GridViewColumn Width="50"
-                                    DisplayMemberBinding="{Binding Sex}"
+                                    <DataGridTextColumn Width="120"
+                                    Binding="{Binding ESEX}"
                                     Header="Sex" />
-                                    <GridViewColumn Width="150"
-                                    DisplayMemberBinding="{Binding Vaitro}"
+                                    <DataGridTextColumn Width="150"
+                                    Binding="{Binding EPOSITION}"
                                     Header="Vị trí" />
-                                    <GridViewColumn Width="200"
-                                    DisplayMemberBinding="{Binding Address}"
+                                    <DataGridTextColumn Width="400"
+                                    Binding="{Binding EADDRESS}"
                                     Header="Địa chỉ" />
-                                    <GridViewColumn Width="200"
-                                    DisplayMemberBinding="{Binding Phone}"
+                                    <DataGridTextColumn Width="200"
+                                    Binding="{Binding EPHONE}"
                                     Header="Số điện thoại"/>
-                                    <GridViewColumn Width="400"
-                                    DisplayMemberBinding="{Binding Email}"
+                                    <DataGridTextColumn Width="400"
+                                    Binding="{Binding EEMAIL}"
                                     Header="Email"/>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
+                                
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </ScrollViewer>
                 </Grid>
                 <Grid Margin="106,660,472,0">
@@ -152,7 +153,7 @@
                                Width="426"/>
                     <Grid Margin="10,196,24,46">
                         <StackPanel VerticalAlignment="Top" Margin="10,-59,19,-23" Height="570">
-                            <TextBox x:Name="tbID" materialDesign:HintAssist.Hint="ID Employee" 
+                            <TextBox x:Name="tbID" materialDesign:HintAssist.Hint="ID nhân viên" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                      Margin="0,10,-0.4,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
                             <TextBox x:Name="tbName" materialDesign:HintAssist.Hint="Họ và Tên" 
@@ -161,7 +162,7 @@
                             <TextBox x:Name="tbPosition" materialDesign:HintAssist.Hint="Vị trí" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                      Margin="0,10,-0.4,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
-                            <TextBox x:Name="tbSex" materialDesign:HintAssist.Hint="Giới tính" 
+                            <TextBox x:Name="tbSex" materialDesign:HintAssist.Hint="Sex" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                      Margin="0,10,-0.4,10" CaretBrush="#FF0DA0B8" BorderBrush="#FF0DA0B8" Foreground="#FF0DA0B8" SelectionBrush="#FF0DA0B8" FontSize="18" Height="60" FontFamily="Gilroy"/>
                             <TextBox x:Name="tbPhone" materialDesign:HintAssist.Hint="Số ĐT" 

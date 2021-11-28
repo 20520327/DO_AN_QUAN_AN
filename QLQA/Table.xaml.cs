@@ -60,22 +60,27 @@ namespace UI
         }
 
         //Function các nút 
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
         private void btAddTable_Click(object sender, RoutedEventArgs e)
         {
+
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
             int tid = int.Parse(tbtID.Text.ToString());
             string tname = tbtName.Text.ToString();
             string tstatus = cbtStatus.Text.ToString();
-            string saveTable = "INSERT INTO TABLEQA(ID,NAME,STATUS) VALUES ('" + tid + "', '" + tname + "', '" + tstatus + "');";
-            SqlCommand querySaveTable = new SqlCommand(saveTable);
+            string saveTable = "INSERT INTO TABLEQA(ID,NAME,STATUS) VALUES ('" + tid + "', N'" + tname + "', N'" + tstatus + "');";
+            SqlCommand querySaveTable = new SqlCommand(saveTable,ketnoi);
 
             try
             {
                 querySaveTable.ExecuteNonQuery();
-                MessageBox.Show("Thêm bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Thêm bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch(Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi thêm bàn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ListTableviewInfo();
         }
@@ -87,47 +92,67 @@ namespace UI
 
         private void btDeleteTable_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
+            
             int tid = int.Parse(tbtID.Text.ToString());
-            string tname = tbtName.Text.ToString();
-            string tstatus = cbtStatus.Text.ToString();
-            string DeleteTable = "DELETE FROM TABLEQA WHERE ID = '" + tid + "' OR NAME = '" + tname + "'";
-            SqlCommand queryDelTable = new SqlCommand(DeleteTable);
+
+            
+
+            string DeleteTable = "DELETE FROM TABLEQA WHERE ID = '" + tid + "'";
+            SqlCommand queryDelTable = new SqlCommand(DeleteTable,ketnoi);
             try
             {
                 queryDelTable.ExecuteNonQuery();
-                MessageBox.Show("Xoá bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xoá bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi xoá bàn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ListTableviewInfo();
         }
 
         private void btUpgradeTable_Click(object sender, RoutedEventArgs e)
         {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
             int tid = int.Parse(tbtID.Text.ToString());
             string tname = tbtName.Text.ToString();
             string tstatus = cbtStatus.Text.ToString();
             string UpgradeTable =   "UPDATE TABLEQA " +
-                                    "SET ID = '" + tid + "', NAME = '" + tname + "'" + "', STATUS = '" + tstatus + "'" +
-                                    "WHERE ID = '" + tid + "' OR NAME = '" + tname + "'";
-            SqlCommand queryUpgradeTable = new SqlCommand(UpgradeTable);
+                                    "SET ID = '" + tid + "', NAME = N'" + tname + "'" + ", STATUS = N'" + tstatus + "'" +
+                                    "WHERE ID = '" + tid + "'";
+            SqlCommand queryUpgradeTable = new SqlCommand(UpgradeTable, ketnoi);
             try
             {
                 queryUpgradeTable.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Cập nhật bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + " khi cập nhật bàn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ListTableviewInfo();
         }
 
         private void btViewTable_Click(object sender, RoutedEventArgs e)
         {
+            ListTableviewInfo();
+        }
 
+        private void lvTable_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid gd = (DataGrid)sender;
+            QLQA.Model.Table row_selected = gd.SelectedItem as QLQA.Model.Table;
+            if (row_selected != null)
+            {
+                tbtID.Text = row_selected.ID.ToString();
+                tbtName.Text = row_selected.NAME.ToString();
+                cbtStatus.SelectedItem = row_selected.STATUS.ToString();
+            }
         }
     }
 }

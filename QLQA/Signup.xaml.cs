@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using QLQA;
+using QLQA.Model;
+using System.Data;
 
 namespace UI
 {
@@ -35,8 +39,12 @@ namespace UI
             this.WindowState = WindowState.Minimized;
         }
 
+        //Sign up
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
         private void btSignup_Click(object sender, RoutedEventArgs e)
         {
+            
+
             this.Close();
         }
     }

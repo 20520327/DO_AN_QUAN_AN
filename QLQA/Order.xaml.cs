@@ -42,11 +42,11 @@ namespace UI
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            for(int i = 1; i <= 15; i++)
+            for(int i = 1; i <= 100; i++)
             {
                 var a = new addTable();
                 a.Margin = new Thickness(10,10,10,10);
-                a.Tablename.Text = "Bàn " + i;
+                a.Tablename.Text = "Bàn\n  " + i;
                 this.enviroment.Children.Add(a);
             }
         }

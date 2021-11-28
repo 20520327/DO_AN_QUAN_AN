@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
+using QLQA;
 
 namespace UI
 {
@@ -31,12 +32,24 @@ namespace UI
             this.WindowState = WindowState.Minimized;
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Thuvien.exit();
+        }
+
         private void btAccount_Click(object sender, RoutedEventArgs e)
         {
-            account tk = new account();
-            this.Hide();
-            tk.ShowDialog();
-            this.Show();
+            if (SQL.lg.ROLEid == 0)
+            {
+                account nv = new account();
+                this.Hide();
+                nv.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền truy cập !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btHistory_Click(object sender, RoutedEventArgs e)
@@ -54,13 +67,20 @@ namespace UI
             dm.ShowDialog();
             this.Show();
         }
-
+        //Nhân viên
         private void btEmployee_Click(object sender, RoutedEventArgs e)
         {
-            employee nv = new employee();
-            this.Hide();
-            nv.ShowDialog();
-            this.Show();
+            if(SQL.lg.ROLEid == 0)
+            {
+                employee nv = new employee();
+                this.Hide();
+                nv.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bạn không có quyền truy cập !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btReport_Click(object sender, RoutedEventArgs e)
@@ -94,7 +114,7 @@ namespace UI
             db.ShowDialog();
             this.Show();
         }
-
+        
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("Bạn có thật sự muốn thoát ?","Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
@@ -113,5 +133,7 @@ namespace UI
         {
             
         }
+
+        
     }
 }

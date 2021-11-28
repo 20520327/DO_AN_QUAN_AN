@@ -119,6 +119,7 @@
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Food.cs" />
+    <Compile Include="Model\Login.cs" />
     <Compile Include="Model\Revenue.cs" />
     <Compile Include="Model\Table.cs" />
     <Compile Include="Report.xaml.cs" />

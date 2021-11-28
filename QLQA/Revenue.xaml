@@ -58,7 +58,7 @@
                 <Grid Margin="106,50,0,0">
                     <materialDesign:PackIcon Kind="BookOpen" Height="28" Width="28" Margin="11,17,0,0" />
                     <TextBlock Text="Revenue" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
-                    <Button x:Name="thongke"
+                    <Button x:Name="btStatistical"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thống kê"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="814,63,139,630" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -69,18 +69,18 @@
                     </Button>
 
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="373,57,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
-                    <DatePicker
+                    <DatePicker x:Name="dpDayfrom"
                         materialDesign:HintAssist.Hint="Từ ngày"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="393,58,575,630" FontSize="14" Height="42" FontFamily="Gilroy" />
                     <TextBlock Text="Chọn thời gian muốn xem doanh thu:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,74,0,0" FontSize="18" FontWeight="SemiBold" FontFamily="Gilroy" />
                     <TextBlock Text="đến" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,74,0,0" FontSize="18" FontWeight="SemiBold" FontFamily="Gilroy" />
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="580,57,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
-                    <DatePicker
+                    <DatePicker x:Name="dpDateto"
                         materialDesign:HintAssist.Hint="Đến ngày"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="600,58,367,630" FontSize="14" Height="42" FontFamily="Gilroy" />
                 </Grid>
                 <Grid Margin="106,178,100,50" Background="White">
-                    <ListView FontFamily="Gilroy" FontSize="16">
+                    <ListView x:Name="lvRevenue" FontFamily="Gilroy" FontSize="16">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Width="240"

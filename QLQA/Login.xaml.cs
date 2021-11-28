@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using QLQA;
 
 namespace UI
 {
@@ -35,19 +36,36 @@ namespace UI
             this.WindowState = WindowState.Minimized;
         }
 
-        private void nutLogin_Click(object sender, RoutedEventArgs e)
-        {
-            maintable a = new maintable();
-            a.Show();
-            this.Close();
-        }
-
         private void btsignup_Click(object sender, RoutedEventArgs e)
         {
             signup lg = new signup();
             this.Hide();
             lg.ShowDialog();
             this.Show();
+        }
+
+        private void btLogin_Click(object sender, RoutedEventArgs e)
+        {
+            maintable a = new maintable();
+            a.Show();
+            this.Close();
+
+            //string User = tbUsername.Text.ToString();
+            //string Pass = tbPassword.Password.ToString();
+            //if (SQL.CheckLogin(User, Pass))
+            //{
+            //    maintable a = new maintable();
+            //    a.Show();
+            //    this.Close();
+            //}
+            //else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
+            //{
+            //    MessageBox.Show("Bạn chưa nhập thông tin !\nXin vui lòng nhập vào !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Sai mật khẩu hoặc tên tài khoản !\nVui lòng nhập lại !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            //}
         }
     }
     

@@ -17,17 +17,17 @@ namespace QLQA.Model
             get { return this.id; }
             set { this.id = value; }
         } 
-        public string Name
+        public string NAME
         {
             get { return this.name; }
             set { this.name = value; }
         }
-        public string Category_name
+        public string CATEGORY_NAME
         {
             get { return this.category_name; }
             set { this.category_name = value; }
         }
-        public float Price
+        public float PRICE
         {
             get { return this.price; }
             set { this.price = value; }

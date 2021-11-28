@@ -10,5 +10,17 @@ namespace QLQA.Model
     {
         public int id;
         public string name;
+
+        public int ID
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
+
+        public string NAME
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
     }
 }

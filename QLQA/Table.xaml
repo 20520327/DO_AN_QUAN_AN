@@ -17,21 +17,23 @@
                     <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
                 </Grid>
                 <Grid Margin="100,50,472,120" Background="White">
-                    <ListView x:Name="lvTable" FontFamily="Gilroy" FontSize="16" Loaded="lvTable_Loaded">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="100"
-                                    DisplayMemberBinding="{Binding ID}"
+                    <DataGrid x:Name="lvTable" FontFamily="Gilroy" FontSize="16" 
+                              Loaded="lvTable_Loaded"
+                              AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="lvTable_SelectedCellsChanged">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="100"
+                                    Binding="{Binding ID}"
                                     Header="ID" />
-                                <GridViewColumn Width="150"
-                                    DisplayMemberBinding="{Binding Tenban}"
+                            <DataGridTextColumn Width="150"
+                                    Binding="{Binding NAME}"
                                     Header="Tên bàn" />
-                                <GridViewColumn Width="150"
-                                    DisplayMemberBinding="{Binding Status}"
+                            <DataGridTextColumn Width="150"
+                                    Binding="{Binding STATUS}"
                                     Header="Trạng thái" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
                 <Grid Margin="106,660,472,0">
                     <Button x:Name="btAddTable"
@@ -134,8 +136,8 @@
                                         <DropShadowEffect Opacity="0.4"/>
                                     </ComboBox.Effect>
                                     <ComboBoxItem
-                                    IsSelected="True" Content=" Bàn trống"/>
-                                    <ComboBoxItem Content=" Có người"/>
+                                    IsSelected="True" Content="Bàn trống"/>
+                                    <ComboBoxItem Content="Có người"/>
                                     
                                 </ComboBox>
                                 <Border BorderBrush="#FF0B8497" BorderThickness="1" Height="1" Margin="1,60,0,-1" Background="#FF1392A6"/>

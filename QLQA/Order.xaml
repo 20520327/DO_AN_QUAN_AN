@@ -24,14 +24,10 @@
                             Opacity="0.4" 
                             ImageSource="image/bistro1.png" Stretch="UniformToFill"/>
                         </Grid.Background>
-                        <ScrollViewer
+                    <ScrollViewer
                         VerticalScrollBarVisibility="Visible">
-                        <WrapPanel x:Name="enviroment" 
-                               HorizontalAlignment="Left" 
-                               Height="730" Margin="0,0,0,0" 
-                               VerticalAlignment="Top" Width="620"
-                               Orientation="Horizontal"
-                               />
+                        <WrapPanel x:Name="enviroment">
+                        </WrapPanel>
                     </ScrollViewer>
                 </Grid>
 
@@ -142,7 +138,7 @@
                         <ComboBoxItem Content=" Món 3"/>
                         <ComboBoxItem Content=" Món 4"/>
                     </ComboBox>
-                    <Button x:Name="themmom"
+                    <Button x:Name="btAddfood"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm món"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="290,120,20,574" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -201,29 +197,35 @@
                         <ComboBoxItem Content="Bàn 16"/>
                     </ComboBox>
                     <Rectangle Margin="0,241,0,128" Fill="White" Opacity="0.495"/>
-                    <ListView Margin="2,182,0,128" BorderBrush="#89000000" FontFamily="Gilroy">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="120"
-                                    DisplayMemberBinding="{Binding Food}"
-                                    Header="Food" />
-                                <GridViewColumn Width="100"
-                                    DisplayMemberBinding="{Binding Count}"
-                                    Header="Count" />
-                                <GridViewColumn Width="120"
-                                    DisplayMemberBinding="{Binding Dongia}"
+                    <DataGrid x:Name="lvOrder" Margin="2,182,0,128" BorderBrush="#89000000" FontFamily="Gilroy"
+                              AutoGenerateColumns="False" IsReadOnly="True">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Width="120"
+                                    Binding="{Binding Food}"
+                                    Header="Món ăn" />
+                            <DataGridTextColumn Width="100"
+                                    Binding="{Binding Count}"
+                                    Header="Số lượng" />
+                            <DataGridTextColumn Width="120"
+                                    Binding="{Binding Dongia}"
                                     Header="Đơn giá" />
-                                <GridViewColumn Width="130"
-                                    DisplayMemberBinding="{Binding Thanhtien}"
+                            <DataGridTextColumn Width="130"
+                                    Binding="{Binding Thanhtien}"
                                     Header="Thành tiền" />
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                            
+                        </DataGrid.Columns>
+                    </DataGrid>
                     <Rectangle Margin="120,616,20,67" Fill="White" Stroke="#FF2AA9C6" RadiusY="15" RadiusX="15" >
+                        
                         <Rectangle.Effect>
                             <DropShadowEffect Opacity="0.4" Color="#FF2AA9C6"/>
                         </Rectangle.Effect>
                     </Rectangle>
+                    <TextBox
+                        x:Name="tbTotalMoney"
+                        materialDesign:TransitionAssist.DisableTransitions="True" 
+                        Margin="132,625,30,75" Foreground="#FF0078D7" FontFamily="Gilroy" FontSize="14" />
                     <TextBlock Text="Total:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,625,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
                 </Grid>
             </Grid>

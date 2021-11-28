@@ -1,5 +1,5 @@
-Food còn view
-Table còn view
-Employee còn view
-Account bị thiếu liên kết sql về phần thông tin để biết tk đó của ai
+report chưa set up
+signup chưa làm
+Employee còn search
+Food chưa làm sql,search
 Order chưa làm và Revenue cũng vậy
