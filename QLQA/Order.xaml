@@ -98,6 +98,9 @@
                         <ComboBoxItem Content=" 10"/>
                         <ComboBoxItem Content=" 11"/>
                         <ComboBoxItem Content=" 12"/>
+                        <ComboBoxItem Content=" 13"/>
+                        <ComboBoxItem Content=" 14"/>
+                        <ComboBoxItem Content=" 15"/>
                     </ComboBox>
                     <ComboBox x:Name="cbCategory"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
@@ -108,16 +111,11 @@
                         Background="White" 
                         VerticalAlignment="Center" Opacity="0.8"
                         materialDesign:HintAssist.Hint="Danh mục"
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="55" IsReadOnly="True">
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="55" IsReadOnly="True" SelectionChanged="cbCategory_SelectionChanged">
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>
-                        <ComboBoxItem IsSelected="True"
-                        Content=" Thịt và gia cầm"/>
-                        <ComboBoxItem Content=" Cá và hải sản"/>
-                        <ComboBoxItem Content=" Rau"/>
-                        <ComboBoxItem Content=" Trái cây"/>
-                        <ComboBoxItem Content=" Nước"/>
+                        
                     </ComboBox>
                     <ComboBox x:Name="cbFood"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
@@ -132,26 +130,21 @@
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>
-                        <ComboBoxItem IsSelected="True"
-                        Content=" Món 1"/>
-                        <ComboBoxItem Content=" Món 2"/>
-                        <ComboBoxItem Content=" Món 3"/>
-                        <ComboBoxItem Content=" Món 4"/>
-                    </ComboBox>
+                        </ComboBox>
                     <Button x:Name="btAddfood"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm món"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="290,120,20,574" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                    FontSize="16" FontWeight="SemiBold" Height="Auto">
+                    FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btAddfood_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="thanhtoan"
+                    <Button x:Name="btCheckout"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thanh toán"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="290,674,20,20" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                        FontSize="16" FontWeight="SemiBold" Height="Auto">
+                        FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btCheckout_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -178,23 +171,14 @@
                         <ComboBox.Effect>
                             <DropShadowEffect Opacity="0.4"/>
                         </ComboBox.Effect>
-                        <ComboBoxItem
-                            IsSelected="True" Content="Bàn 1"/>
-                        <ComboBoxItem Content="Bàn 2"/>
-                        <ComboBoxItem Content="Bàn 3"/>
-                        <ComboBoxItem Content="Bàn 4"/>
-                        <ComboBoxItem Content="Bàn 5"/>
-                        <ComboBoxItem Content="Bàn 6"/>
-                        <ComboBoxItem Content="Bàn 7"/>
-                        <ComboBoxItem Content="Bàn 8"/>
-                        <ComboBoxItem Content="Bàn 9"/>
-                        <ComboBoxItem Content="Bàn 10"/>
-                        <ComboBoxItem Content="Bàn 11"/>
-                        <ComboBoxItem Content="Bàn 12"/>
-                        <ComboBoxItem Content="Bàn 13"/>
-                        <ComboBoxItem Content="Bàn 14"/>
-                        <ComboBoxItem Content="Bàn 15"/>
-                        <ComboBoxItem Content="Bàn 16"/>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}">
+
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+
                     </ComboBox>
                     <Rectangle Margin="0,241,0,128" Fill="White" Opacity="0.495"/>
                     <DataGrid x:Name="lvOrder" Margin="2,182,0,128" BorderBrush="#89000000" FontFamily="Gilroy"
@@ -202,21 +186,21 @@
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Width="120"
-                                    Binding="{Binding Food}"
+                                    Binding="{Binding FOODname1}"
                                     Header="Món ăn" />
                             <DataGridTextColumn Width="100"
-                                    Binding="{Binding Count}"
+                                    Binding="{Binding QUATITY1}"
                                     Header="Số lượng" />
                             <DataGridTextColumn Width="120"
-                                    Binding="{Binding Dongia}"
+                                    Binding="{Binding PRICE1}"
                                     Header="Đơn giá" />
                             <DataGridTextColumn Width="130"
-                                    Binding="{Binding Thanhtien}"
+                                    Binding="{Binding TOTAL1}"
                                     Header="Thành tiền" />
                             
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Rectangle Margin="120,616,20,67" Fill="White" Stroke="#FF2AA9C6" RadiusY="15" RadiusX="15" >
+                    <Rectangle Margin="120,607,20,67" Fill="White" Stroke="#FF2AA9C6" RadiusY="15" RadiusX="15" >
                         
                         <Rectangle.Effect>
                             <DropShadowEffect Opacity="0.4" Color="#FF2AA9C6"/>
@@ -225,7 +209,8 @@
                     <TextBox
                         x:Name="tbTotalMoney"
                         materialDesign:TransitionAssist.DisableTransitions="True" 
-                        Margin="132,625,30,75" Foreground="#FF0078D7" FontFamily="Gilroy" FontSize="14" />
+                        Margin="132,616,30,75" Foreground="#FF0078D7" FontSize="24"
+                        IsReadOnly="True"/>
                     <TextBlock Text="Total:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,625,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
                 </Grid>
             </Grid>

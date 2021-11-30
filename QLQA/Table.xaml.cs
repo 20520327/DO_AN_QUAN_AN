@@ -31,7 +31,7 @@ namespace UI
 
         private void btHome_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,7 @@ namespace UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         public void ListTableviewInfo()

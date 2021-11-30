@@ -43,9 +43,41 @@ namespace UI
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
         private void btSignup_Click(object sender, RoutedEventArgs e)
         {
-            
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
 
-            this.Close();
+            string fullname = tbFullName.Text.ToString();
+            string user = tbUsername.Text.ToString();
+            string pass = tbPasswordbox.Password.ToString();
+            string phone = tbPhone.Text.ToString();
+            string email = tbEmail.Text.ToString();
+            int role_ID = 1;
+
+            int employee_ID;
+            do
+            {
+                Random r = new Random();
+                employee_ID = r.Next(0, 10000);
+            } while (SQL.checkEmployeeID(employee_ID));
+            
+            string saveEmployee = "insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('"
+                                + employee_ID + "', N'" + fullname + "', N'" + "Nhân viên" + "', N'" + "" + "', N'" + phone + "', N'" + "" + "', N'" + email + "');";
+            SqlCommand querysaveEmployee = new SqlCommand(saveEmployee, ketnoi);
+
+            string saveAccount = "INSERT INTO ACCOUNT(EMPLOYEEid,ROLEid,USERNAME,PASSWORD) values (N'" + employee_ID + "', N'" + role_ID + "', N'" + user + "', N'" + pass + "');";
+            SqlCommand querysaveAccount = new SqlCommand(saveAccount, ketnoi);
+            try
+            {
+                querysaveEmployee.ExecuteNonQuery();
+                querysaveAccount.ExecuteNonQuery();
+                MessageBox.Show("Đăng ký thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
         }
     }
 }

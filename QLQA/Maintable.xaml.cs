@@ -34,7 +34,13 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            Thuvien.exit();
+            if (MessageBox.Show("Bạn có thật sự muốn thoát ?", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
+            {
+            }
+            else
+            {
+                Thuvien.exit();
+            }
         }
 
         private void btAccount_Click(object sender, RoutedEventArgs e)
@@ -117,9 +123,8 @@ namespace UI
         
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("Bạn có thật sự muốn thoát ?","Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
+            if(MessageBox.Show("Bạn có thật sự muốn đăng xuất ?","Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
             {
-
             }
             else
             {

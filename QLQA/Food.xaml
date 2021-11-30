@@ -19,7 +19,7 @@
                 <Grid Margin="100,50,472,120" Background="White">
                     <DataGrid x:Name="lvFood" FontFamily="Gilroy" FontSize="16" 
                               Loaded="lvFood_Loaded"
-                              AutoGenerateColumns="False" IsReadOnly="True">
+                              AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="lvFood_SelectedCellsChanged">
                         <DataGrid.Columns>
 
                             <DataGridTextColumn Width="100"
@@ -154,12 +154,13 @@
                                     <ComboBox.Effect>
                                         <DropShadowEffect Opacity="0.4"/>
                                     </ComboBox.Effect>
-                                    <ComboBoxItem
-                        IsSelected="True" Content=" Thịt và gia cầm"/>
-                                    <ComboBoxItem Content=" Cá và hải sản"/>
-                                    <ComboBoxItem Content=" Rau"/>
-                                    <ComboBoxItem Content=" Trái cây"/>
-                                    <ComboBoxItem Content=" Nước"/>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}">
+                                                
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
                                 </ComboBox>
                                 <Border BorderBrush="#FF0B8497" BorderThickness="1" Height="1" Margin="1,60,0,-1" Background="#FF1392A6"/>
                             </Grid>

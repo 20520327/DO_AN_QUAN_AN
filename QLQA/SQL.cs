@@ -28,7 +28,7 @@ namespace QLQA
                     a.ID = kqtruyvan.GetInt32(0);
                     a.NAME = kqtruyvan[1].ToString();
                     a.CATEGORY_NAME = kqtruyvan[2].ToString();
-                    a.PRICE = kqtruyvan.GetFloat(3);
+                    a.PRICE = kqtruyvan.GetInt32(3);
                     ls.Add(a);
                 }
             }
@@ -91,6 +91,33 @@ namespace QLQA
                 return false;
             }
             return true;
+        }
+
+        static public bool checkEmployeeID(int id)
+        {
+            int ID_chk;
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+            SqlCommand caulenh = new SqlCommand("select ID from EMPLOYEE WHERE ID = '" + id + "'", ketnoi);
+            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+            List<QLQA.Model.Employee> ls = new List<QLQA.Model.Employee>();
+            try
+            {
+                while (kqtruyvan.Read())
+                {
+                    Employee a = new Employee();
+                    ID_chk = kqtruyvan.GetInt32(0);
+                    ls.Add(a);
+                };
+                if (ls.Count() > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception es)
+            {
+                return false;
+            }
         }
 
         //Accont

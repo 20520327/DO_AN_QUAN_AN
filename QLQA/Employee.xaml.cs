@@ -37,12 +37,12 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
         //Function
         private void btEadd_Click(object sender, RoutedEventArgs e)
@@ -158,18 +158,27 @@ namespace UI
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
 
-            string timkiem = tbEsearch.Text.ToString();
-            string SearchEmployee = "'" + timkiem + "%'";
-            SqlCommand querySearchEmployee = new SqlCommand(SearchEmployee);
+            List<Employee> ls = new List<Employee>();
 
+            string timkiem = tbEsearch.Text.ToString();
+            string SearchEmployee = "select * from EMPLOYEE where FULLNAME like N'" + timkiem + "%'";
+            SqlCommand caulenh = new SqlCommand(SearchEmployee,ketnoi);
+            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
             try
             {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(querySearchEmployee))
+                while (kqtruyvan.Read())
                 {
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    lvEmployee.ItemsSource = dt.DefaultView;
+                    Employee a = new Employee();
+                    a.EID = kqtruyvan.GetInt32(0);
+                    a.ENAME = kqtruyvan[1].ToString();
+                    a.EPOSITION = kqtruyvan[2].ToString();
+                    a.EADDRESS = kqtruyvan[3].ToString();
+                    a.EPHONE = kqtruyvan[4].ToString();
+                    a.ESEX = kqtruyvan[5].ToString();
+                    a.EEMAIL = kqtruyvan[6].ToString();
+                    ls.Add(a);
                 }
+                lvEmployee.ItemsSource = ls;
             }
             catch (Exception es)
             {

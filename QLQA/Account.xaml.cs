@@ -36,12 +36,12 @@ namespace UI
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
         //function button
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
@@ -63,14 +63,13 @@ namespace UI
             }
             
                 string Ausername = tbUsername.Text.ToString();
-                string Apassword = tbPassword.ToString();
-                string Aconfirm_pass = tbPassConfirm.ToString();
-            while (Apassword != Aconfirm_pass);
+                string Apassword = tbPassword.Password.ToString();
+                string Aconfirm_pass = tbPassConfirm.Password.ToString();
+            while (Apassword != Aconfirm_pass)
             {
                 MessageBox.Show("Mật khẩu không giống nhau !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPassword.Focus();
-                Apassword = tbPassword.ToString();
-                Aconfirm_pass = tbPassConfirm.ToString();
+                return;
             }
 
             //Viết SQL
@@ -145,20 +144,19 @@ namespace UI
             }
 
             string Ausername = tbUsername.Text.ToString();
-            string Apassword = tbPassword.ToString();
-            string Aconfirm_pass = tbPassConfirm.ToString();
-            while (Apassword != Aconfirm_pass) ;
+            string Apassword = tbPassword.Password.ToString();
+            string Aconfirm_pass = tbPassConfirm.Password.ToString();
+            while (Apassword != Aconfirm_pass)
             {
                 MessageBox.Show("Mật khẩu không giống nhau !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
                 tbPassword.Focus();
-                Apassword = tbPassword.ToString();
-                Aconfirm_pass = tbPassConfirm.ToString();
+                return;
             }
 
             //Viết SQL
             string updateAccount = "UPDATE ACCOUNT " +
-                                    "SET EMPLOYEEid = '" + Aemployee_ID + "', ROLEid = '" + Arole_ID + "', USERNAME = N'" + Ausername +"', PASSWORD = N'" + Apassword + "' " +
-                                    "WHERE ID = '" + Aemployee_ID + "'";
+                                    "SET ROLEid = '" + Arole_ID + "', USERNAME = N'" + Ausername +"', PASSWORD = N'" + Apassword + "' " +
+                                    "WHERE EMPLOYEEid = '" + Aemployee_ID + "'";
             SqlCommand queryupdateAccount = new SqlCommand(updateAccount,ketnoi);
 
             try

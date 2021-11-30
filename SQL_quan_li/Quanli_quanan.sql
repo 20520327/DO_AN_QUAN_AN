@@ -33,9 +33,12 @@ create table EMPLOYEE
 go
 ALTER TABLE EMPLOYEE ALTER COLUMN FULLNAME NVARCHAR(200) COLLATE Vietnamese_CI_AS
 alter table EMPLOYEE add constraint CHK_SEX CHECK (SEX in(N'Nam',N'Nữ'))
+alter table EMPLOYEE drop CHK_SEX
 insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('1',N'Trần Hữu Trí',N'Người quản lí',N'95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7','0857350234',N'Nam',N'tritran5789@gmail.com');
 select * from EMPLOYEE
 drop table EMPLOYEE
+
+select * from EMPLOYEE where FULLNAME LIKE N'Trần %'LIKE N't%';
 
 alter table EMPLOYEE alter column FULLNAME nvarchar(max) COLLATE Vietnamese_CI_AS
 insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('2','Trần Hữu Trí','Nhân viên','95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7','0857350234','Nam','tritran5789@gmail.com');
@@ -69,6 +72,10 @@ create table CATEGORY
 )
 go
 
+select A.ID, A.NAME, B.NAME, A.PRICE from FOOD A inner join CATEGORY B on A.CATEid = B.ID
+
+select ID from CATEGORY where NAME = N'Nước uống'
+
 insert into CATEGORY (ID, NAME) values ('1',N'Nước uống')
 insert into CATEGORY (ID, NAME) values ('2',N'Cơm')
 insert into CATEGORY (ID, NAME) values ('3',N'Lẩu')
@@ -86,6 +93,16 @@ create table FOOD
 	FOREIGN KEY (CATEid) REFERENCES CATEGORY(ID)
 )
 go
+alter table FOOD alter column PRICE integer
+
+insert into FOOD (ID, NAME, CATEid, PRICE) values ('2',N'Cơm bò xào','2','35000')
+insert into FOOD (ID, NAME, CATEid, PRICE) values ('3',N'Cơm chiên cá mặn','2','35000')
+insert into FOOD (ID, NAME, CATEid, PRICE) values ('4',N'Lẩu cá','3','200000')
+insert into FOOD (ID, NAME, CATEid, PRICE) values ('5',N'Rau muống xào','4','30000')
+insert into FOOD (ID, NAME, CATEid, PRICE) values ('6',N'Bò xào chua ngọt','5','60000')
+insert into FOOD (ID, NAME, CATEid, PRICE) values ('7',N'Mực xào cải ngọt','5','80000')
+
+select A.ID, A.NAME, B.NAME, A.PRICE from FOOD A inner join CATEGORY B on A.CATEid = B.ID where A.NAME LIKE N'C%'
 
 create table TABLEQA
 (
@@ -125,50 +142,61 @@ create table ORDER_QA
 	TABLEid		integer,
 	CHECKIN		datetime,
 	CHECKOUT	datetime,
-	TOTAL money
+	BILLstatus	int not null default 0 
 
 	FOREIGN KEY (TABLEid) REFERENCES TABLEQA(ID)
 )
 go 
+
+insert into ORDER_QA(TABLEid,CHECKIN, CHECKOUT,BILLstatus) values ('1','19:30:12 11/09/2020','20:30:12 11/09/2020','0')
+insert into ORDER_QA(TABLEid,CHECKIN, CHECKOUT,BILLstatus) values ('3','8:30:00 11/12/2020','9:00:00 11/12/2020','0')
+
+select * from ORDER_QA
+
 drop table ORDER_QA
 drop table ORDER_FOOD
 drop table REVENUE
 
 create table ORDER_FOOD
 (
+	ID			integer identity(1,1) PRIMARY KEY,
 	ORDERid		integer,
 	FOODid		integer,
 	QUANTITY	integer
 
-	primary key(ORDERid,FOODid)
 	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID),
 	FOREIGN KEY (FOODid) REFERENCES FOOD(ID)
 )
 
-create table REVENUE
-(
-	ORDERid		integer primary key,
-	PRICE		money,
-	CHECKIN		datetime,
-	CHECKOUT	datetime
 
-	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID)
-)
+select * from ORDER_FOOD
+
+insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','1','1')
+insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','2','1')
+insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('2','1','1')
+
+select A.ID,B.FOODid,B.QUANTITY from (ORDER_QA A inner join ORDER_FOOD B on A.ID=B.ORDERid) where A.TABLEid = '1' and A.BILLstatus = '0'
+select * from FOOD where NAME like N'Cơm%'
+--create table REVENUE
+--(
+--	ORDERid		integer primary key,
+--	PRICE		money,
+--	CHECKIN		datetime,
+--	CHECKOUT	datetime
+
+--	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID)
+--)
 
 
 update TABLEQA
-set STATUS = 'Có người'
+set STATUS = N'Có người'
 where ID in 
 (
 	(
-		select TABLEid from ORDER_QA
-	)
-	EXCEPT
-	(
-		select TABLEid from ORDER_QA inner join REVENUE on ORDER_QA.ID = REVENUE.ORDERid
+		select TABLEid from ORDER_QA where BILLstatus = '0'
 	)
 )
-
+select ID from TABLEQA where NAME = N'Bàn 1'
 select * from EMPLOYEE
 
 --update TABLEQA
