@@ -46,26 +46,26 @@ namespace UI
 
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
-            maintable a = new maintable();
-            a.Show();
-            this.Close();
+            //maintable a = new maintable();
+            //a.Show();
+            //this.Close();
 
-            //string User = tbUsername.Text.ToString();
-            //string Pass = tbPassword.Password.ToString();
-            //if (SQL.CheckLogin(User, Pass))
-            //{
-            //    maintable a = new maintable();
-            //    a.Show();
-            //    this.Close();
-            //}
-            //else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
-            //{
-            //    MessageBox.Show("Bạn chưa nhập thông tin !\nXin vui lòng nhập vào !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Sai mật khẩu hoặc tên tài khoản !\nVui lòng nhập lại !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            //}
+            string User = tbUsername.Text.ToString();
+            string Pass = tbPassword.Password.ToString();
+            if (SQL.CheckLogin(User, Pass))
+            {
+                maintable a = new maintable();
+                a.Show();
+                this.Close();
+            }
+            else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
+            {
+                MessageBox.Show("Bạn chưa nhập thông tin !\nXin vui lòng nhập vào !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Sai mật khẩu hoặc tên tài khoản !\nVui lòng nhập lại !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
     }
     

@@ -11,13 +11,13 @@ namespace QLQA.Model
         private int id;
         private string table_num;
         private float money;
-        private string date_checkin;
-        private string date_checkout;
+        private DateTime date_checkin;
+        private DateTime date_checkout;
 
-        protected int Id { get => id; set => id = value; }
-        protected string Table_num { get => table_num; set => table_num = value; }
-        protected float Money { get => money; set => money = value; }
-        protected string Date_checkin { get => date_checkin; set => date_checkin = value; }
-        protected string Date_checkout { get => date_checkout; set => date_checkout = value; }
+        public int Id { get => id; set => id = value; }
+        public string Table_num { get => table_num; set => table_num = value; }
+        public float Money { get => money; set => money = value; }
+        public DateTime Date_checkin { get => date_checkin; set => date_checkin = value; }
+        public DateTime Date_checkout { get => date_checkout; set => date_checkout = value; }
     }
 }

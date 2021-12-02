@@ -20,6 +20,7 @@ namespace UI
     /// </summary>
     public partial class report : Window
     {
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
         public report()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -37,7 +38,8 @@ namespace UI
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
+
     }
 }

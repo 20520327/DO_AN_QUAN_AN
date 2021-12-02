@@ -33,7 +33,7 @@ namespace QLQA
         //Info bàn
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
 
-        public int getIDOfTable(string btname)
+        public static int getIDOfTable(string btname)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
@@ -56,7 +56,7 @@ namespace QLQA
             return -1;
         }
 
-        public string getNameOfFood(int ID)
+        public static string getNameOfFood(int ID)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
@@ -79,7 +79,7 @@ namespace QLQA
             return null;
         }
 
-        public int getPriceOfFood(int ID)
+        public static int getPriceOfFood(int ID)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
@@ -110,6 +110,7 @@ namespace QLQA
             List<Orderinfo> ls = new List<Orderinfo>();
             
             int id_table = getIDOfTable(Tablename.Text);
+            UI.order.selectedTable = id_table;
             string searchInfo = "select A.ID,B.FOODid,B.QUANTITY from (ORDER_QA A inner join ORDER_FOOD B on A.ID=B.ORDERid) where A.TABLEid = '"+ id_table +"' and A.BILLstatus = '0'";
             SqlCommand caulenh = new SqlCommand(searchInfo, ketnoi);
             SqlDataReader kqtruyvan = caulenh.ExecuteReader();
@@ -130,7 +131,6 @@ namespace QLQA
             catch (Exception es)
             {
                 MessageBox.Show("Lỗi load được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-
             }
             return ls;
         }
@@ -143,6 +143,24 @@ namespace QLQA
                 sum += tmp.TOTAL1;
             }
             return sum;
+        }
+
+        public void updateDataGrid()
+        {
+            var parent_window = Window.GetWindow(this);
+
+            List<Orderinfo> ls = getListInfoBill();
+            try
+            {
+                (parent_window as order).lvOrder.ItemsSource = ls;
+                int total = Sum(ls);
+
+                (parent_window as order).tbTotalMoney.Text = total + "";
+            }
+            catch (Exception cs)
+            {
+                MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void btTable_Click(object sender, RoutedEventArgs e)

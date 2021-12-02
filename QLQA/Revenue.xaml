@@ -62,7 +62,7 @@
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thống kê"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="814,63,139,630" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                    FontSize="16" FontWeight="SemiBold" Height="Auto">
+                    FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btStatistical_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -71,33 +71,37 @@
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="373,57,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
                     <DatePicker x:Name="dpDayfrom"
                         materialDesign:HintAssist.Hint="Từ ngày"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="393,58,575,630" FontSize="14" Height="42" FontFamily="Gilroy" />
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="393,58,575,630" FontSize="14" Height="42" FontFamily="Gilroy" DisplayDate="2021-12-02" />
                     <TextBlock Text="Chọn thời gian muốn xem doanh thu:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="48,74,0,0" FontSize="18" FontWeight="SemiBold" FontFamily="Gilroy" />
                     <TextBlock Text="đến" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="530,74,0,0" FontSize="18" FontWeight="SemiBold" FontFamily="Gilroy" />
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="580,57,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
                     <DatePicker x:Name="dpDateto"
                         materialDesign:HintAssist.Hint="Đến ngày"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="600,58,367,630" FontSize="14" Height="42" FontFamily="Gilroy" />
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="600,58,367,630" FontSize="14" Height="42" FontFamily="Gilroy" DisplayDate="2021-02-12" />
                 </Grid>
                 <Grid Margin="106,178,100,50" Background="White">
-                    <ListView x:Name="lvRevenue" FontFamily="Gilroy" FontSize="16">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn Width="240"
-                                    DisplayMemberBinding="{Binding tenban}"
+                    <DataGrid x:Name="lvRevenue" FontFamily="Gilroy" FontSize="16" AutoGenerateColumns="False" IsReadOnly="True" Loaded="lvRevenue_Loaded">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn  Width="80"
+                                    Binding="{Binding Id}"
+                                    Header="ID" />
+                            <DataGridTextColumn  Width="240"
+                                    Binding="{Binding Table_num}"
                                     Header="Tên bàn" />
-                                <GridViewColumn Width="240"
-                                    DisplayMemberBinding="{Binding sum}"
+                            <DataGridTextColumn  Width="240"
+                                    Binding="{Binding Money}"
                                     Header="Tổng tiền" />
-                                <GridViewColumn Width="240"
-                                    DisplayMemberBinding="{Binding datein}"
-                                    Header="Ngày vào" />
-                                <GridViewColumn Width="240"
-                                    DisplayMemberBinding="{Binding dateout}"
-                                    Header="Ngày ra"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                            <DataGridTextColumn  Width="240"
+                                    Binding="{Binding Date_checkin}"
+                                    
+                                    Header="Check In" />
+                            <DataGridTextColumn  Width="240"
+                                    Binding="{Binding Date_checkout}"
+                                    Header="Check Out"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </Grid>
         </materialDesign:Card>

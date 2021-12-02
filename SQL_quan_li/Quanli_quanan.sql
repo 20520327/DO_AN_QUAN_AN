@@ -59,6 +59,8 @@ create table ACCOUNT
 )
 go
 
+select * from ACCOUNT
+
 INSERT INTO ACCOUNT(EMPLOYEEid,ROLEid,USERNAME,PASSWORD) values ('1','0','trihuu15','123456');
 select * from ACCOUNT WHERE USERNAME = N'trihuu15' AND PASSWORD = N'123456'
 
@@ -148,91 +150,57 @@ create table ORDER_QA
 )
 go 
 
-insert into ORDER_QA(TABLEid,CHECKIN, CHECKOUT,BILLstatus) values ('1','19:30:12 11/09/2020','20:30:12 11/09/2020','0')
-insert into ORDER_QA(TABLEid,CHECKIN, CHECKOUT,BILLstatus) values ('3','8:30:00 11/12/2020','9:00:00 11/12/2020','0')
-
-select * from ORDER_QA
-
-drop table ORDER_QA
-drop table ORDER_FOOD
-drop table REVENUE
-
 create table ORDER_FOOD
 (
-	ID			integer identity(1,1) PRIMARY KEY,
 	ORDERid		integer,
 	FOODid		integer,
 	QUANTITY	integer
 
+	PRIMARY KEY(ORDERid,FOODid)
 	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID),
 	FOREIGN KEY (FOODid) REFERENCES FOOD(ID)
 )
+go
 
+create table REVENUE
+(
+	ORDERid		integer primary key,
+	CHECKIN		datetime,
+	CHECKOUT	datetime,
+	TOTAL		integer,
 
-select * from ORDER_FOOD
+	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID)
+)
+go
+
+insert into ORDER_QA(TABLEid,CHECKIN) values ('1','19:30:12 11/09/2020')
+insert into ORDER_QA(TABLEid,CHECKIN) values ('3','8:30:00 11/12/2020')
 
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','1','1')
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','2','1')
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('2','1','1')
 
-select A.ID,B.FOODid,B.QUANTITY from (ORDER_QA A inner join ORDER_FOOD B on A.ID=B.ORDERid) where A.TABLEid = '1' and A.BILLstatus = '0'
-select * from FOOD where NAME like N'Cơm%'
---create table REVENUE
---(
---	ORDERid		integer primary key,
---	PRICE		money,
---	CHECKIN		datetime,
---	CHECKOUT	datetime
-
---	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID)
---)
-
-
 update TABLEQA
 set STATUS = N'Có người'
-where ID in 
-(
-	(
-		select TABLEid from ORDER_QA where BILLstatus = '0'
-	)
-)
-select ID from TABLEQA where NAME = N'Bàn 1'
-select * from EMPLOYEE
+where ID in ((select TABLEid from ORDER_QA where BILLstatus = '0'))
 
---update TABLEQA
---set STATUS = 'Bàn trống'
---where ID in 
---(
---	select TABLEid from REVENUE inner join ORDER_QA on REVENUE.ORDERid = ORDER_QA.ID
---)
-
---Thông tin bảng account
-select A.USERNAME,A.FULLNAME,B.NAME from EMPLOYEE A inner join ROLE B on A.ROLEid = B.ID
-
---Thông tin bảng table
-select * from TABLEQA
-
---Thông tin bảng danh mục
-select * from CATEGORY
-
---Thông tin bảng food
-select A.ID, A.NAME, B.NAME, A.PRICE from FOOD A inner join CATEGORY B on A.CATEid = B.ID
-
---Thông tin bảng revenue 
-select * from REVENUE
-
-INSERT INTO FOOD(ID,NAME,CATEid,PRICE) value ()
-UPDATE FOOD
-SET ID = 1,NAME,CATEid
-select * from FOOD where NAME LIKE 
-
-select * from ACCOUNT
-select * from CATEGORY
-select * from EMPLOYEE
-select * from FOOD
-select * from ORDER_FOOD
 select * from ORDER_QA
 select * from REVENUE
-select * from ROLE
-select
 
+delete 
+
+select A.ORDERid,B.TABLEid,A.TOTAL,A.CHECKIN,A.CHECKOUT 
+from REVENUE A INNER JOIN ORDER_QA B ON A.ORDERid = B.ID 
+WHERE (A.CHECKOUT BETWEEN '12/2/2021' AND '12/3/2021') AND B.BILLstatus = '1'
+
+select A.ORDERid,B.TABLEid,A.TOTAL,A.CHECKIN,A.CHECKOUT 
+from REVENUE A INNER JOIN ORDER_QA B ON A.ORDERid = B.ID 
+WHERE A.CHECKOUT BETWEEN '12/1/2021' AND '12/2/2021'
+
+select A.ORDERid,B.TABLEid,A.TOTAL,A.CHECKIN,A.CHECKOUT 
+from REVENUE A INNER JOIN ORDER_QA B ON A.ORDERid = B.ID 
+WHERE A.CHECKOUT BETWEEN '12/1/2021' AND '12/2/2021'
+
+select A.ORDERid,B.TABLEid,A.TOTAL,A.CHECKIN,A.CHECKOUT from REVENUE A INNER JOIN ORDER_QA B ON A.ORDERid = B.ID WHERE (A.CHECKOUT BETWEEN '12/2/2021' AND '12/3/2021') AND B.BILLstatus = '1'
+
+select A.ORDERid,B.TABLEid,A.TOTAL,A.CHECKIN,A.CHECKOUT from REVENUE A INNER JOIN ORDER_QA B ON A.ORDERid = B.ID WHERE (A.CHECKOUT BETWEEN '12/2/2021 12:00:00 AM' AND '12/3/2021 12:00:00 AM') AND B.BILLstatus = '1'

@@ -91,10 +91,7 @@ namespace UI
 
         private void btReport_Click(object sender, RoutedEventArgs e)
         {
-            report bc = new report();
-            this.Hide();
-            bc.ShowDialog();
-            this.Show();
+            MessageBox.Show("Chức năng đang phát triển !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void btFood_Click(object sender, RoutedEventArgs e)
