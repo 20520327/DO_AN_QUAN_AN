@@ -111,5 +111,20 @@ namespace UI
                 MessageBox.Show("Lỗi thống kê !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void btExcel_Click(object sender, RoutedEventArgs e)
+        {
+            lvRevenue.SelectAllCells();
+            lvRevenue.ClipboardCopyMode = DataGridClipboardCopyMode.IncludeHeader;
+            ApplicationCommands.Copy.Execute(null, lvRevenue);
+            String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
+            String result = (string)Clipboard.GetData(DataFormats.Text);
+            lvRevenue.UnselectAllCells();
+            System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"C:\visual studio\Quanliquanan\SQL_quan_li\Baocao.xls");
+            file1.WriteLine(result.Replace(',', ' '));
+            file1.Close();
+
+            MessageBox.Show(" Đã lưu báo cáo thành công thành file Excel.","Thông báo",MessageBoxButton.OK,MessageBoxImage.Information);
+        }
     }
 }

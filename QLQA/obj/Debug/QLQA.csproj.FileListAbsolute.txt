@@ -49,3 +49,4 @@ C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.ValueTuple.dll
 C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.Buffers.xml
 C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\visual studio\Quanliquanan\QLQA\bin\Debug\System.ValueTuple.xml
+C:\visual studio\Quanliquanan\QLQA\obj\Debug\QLQA.csproj.ResolveComReference.cache
