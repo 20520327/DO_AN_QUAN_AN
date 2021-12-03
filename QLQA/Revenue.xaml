@@ -87,6 +87,7 @@
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="580,57,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
                     <DatePicker x:Name="dpDateto"
                         materialDesign:HintAssist.Hint="Đến ngày"
+                                SelectedDateFormat="Short"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="600,58,367,630" FontSize="14" Height="42" FontFamily="Gilroy" DisplayDate="2021-02-12" />
                 </Grid>
                 <Grid Margin="106,178,100,50" Background="White">
@@ -103,11 +104,11 @@
                                     Binding="{Binding Money}"
                                     Header="Total" />
                             <DataGridTextColumn  Width="240"
-                                    Binding="{Binding Date_checkin}"
+                                    Binding="{Binding Date_checkin, StringFormat={}{0:dd/MM/yyyy}}"
                                     
                                     Header="Check In" />
                             <DataGridTextColumn  Width="240"
-                                    Binding="{Binding Date_checkout}"
+                                    Binding="{Binding Date_checkout, StringFormat={}{0:dd/MM/yyyy}}"
                                     Header="Check Out"/>
 
                         </DataGrid.Columns>

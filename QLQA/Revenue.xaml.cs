@@ -53,6 +53,11 @@ namespace UI
 
             DateTime from = dpDayfrom.SelectedDate.Value;
             DateTime to = dpDateto.SelectedDate.Value;
+            if (to < from)
+            {
+                MessageBox.Show("Ngày nhập vào không hợp lệ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
             List<Revenue> ls = new List<Revenue>();
             string Statistic = "select A.ORDERid,B.TABLEid,A.TOTAL,A.CHECKIN,A.CHECKOUT from REVENUE A INNER JOIN ORDER_QA B ON A.ORDERid = B.ID ";
                                 
@@ -73,8 +78,10 @@ namespace UI
 
                 ls = ls.Where((obj => {
                     DateTime checkOut = obj.Date_checkout;
-                    long checkOutAsMillisecond = checkOut.Millisecond;
-                    return from.Millisecond <= checkOutAsMillisecond && to.Millisecond >= checkOutAsMillisecond;
+                    long checkOutDAY = checkOut.Day;
+                    long checkOutMONTH = checkOut.Month;
+                    long checkOutYEAR = checkOut.Year;
+                    return (from.Day <= checkOutDAY && to.Day >= checkOutDAY) && (from.Month <= checkOutMONTH && to.Month >= checkOutMONTH) && (from.Year <= checkOutYEAR && to.Year >= checkOutYEAR);
                 })).ToList();
                 lvRevenue.ItemsSource = ls;
             }

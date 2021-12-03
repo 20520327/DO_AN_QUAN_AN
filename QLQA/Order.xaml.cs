@@ -210,7 +210,7 @@ namespace UI
             if (ls1.Count() == 0)
             {
                 ketnoi.Open();
-                string TaoHD = "INSERT INTO ORDER_QA(TABLEid,CHECKIN) VALUES ('" + selectedTable + "','" + DateTime.Now.ToString("h:mm:ss dd/MM/yyyy") + "')";
+                string TaoHD = "INSERT INTO ORDER_QA(TABLEid,CHECKIN) VALUES ('" + selectedTable + "','" + DateTime.Now.ToString("") + "')";
                 SqlCommand caulenh = new SqlCommand(TaoHD, ketnoi);
                 try
                 {
@@ -305,7 +305,7 @@ namespace UI
                 {
                     a = kqtruyvan.GetDateTime(0);
                 } 
-                return a.ToString("HH:mm:ss dd/MM/yyyy");
+                return a.ToString("");
             }
             catch(Exception es)
             {
@@ -334,7 +334,7 @@ namespace UI
             int total = TotalMoneyOfBill(id_order);
 
             
-            string payoff = "UPDATE ORDER_QA SET BILLstatus = '1', CHECKOUT = '" + DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy") + "' WHERE ID = '" + id_order + "'";
+            string payoff = "UPDATE ORDER_QA SET BILLstatus = '1', CHECKOUT = '" + DateTime.Now.ToString("") + "' WHERE ID = '" + id_order + "'";
             string updateTable_1 = "update TABLEQA set STATUS = N'Bàn trống' where ID = '" + selectedTable + "'";
             SqlCommand caulenh1 = new SqlCommand(payoff, ketnoi);
             SqlCommand caulenh2 = new SqlCommand(updateTable_1, ketnoi);
@@ -355,7 +355,7 @@ namespace UI
 
             ketnoi.Open();
             string addRevenue = "INSERT INTO REVENUE(ORDERid,CHECKIN,CHECKOUT,TOTAL) VALUES ('" + id_order + "','" + 
-                                getCheckInOfOrder(id_order) + "','" + DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy") + "','" + total + "')";
+                                getCheckInOfOrder(id_order) + "','" + DateTime.Now.ToString("") + "','" + total + "')";
             SqlCommand caulenh3 = new SqlCommand(addRevenue, ketnoi);
             try
             {
