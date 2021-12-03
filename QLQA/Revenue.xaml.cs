@@ -127,9 +127,19 @@ namespace UI
             String resultat = (string)Clipboard.GetData(DataFormats.CommaSeparatedValue);
             String result = (string)Clipboard.GetData(DataFormats.Text);
             lvRevenue.UnselectAllCells();
-            System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"C:\visual studio\Quanliquanan\SQL_quan_li\Baocao.xls");
-            file1.WriteLine(result.Replace(',', ' '));
-            file1.Close();
+
+            if (dpDateto.Text != "")
+            {
+                System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"C:\visual studio\Quanliquanan\SQL_quan_li\Baocao_ngay _"+ ((DateTime)dpDateto.SelectedDate.Value).Day + "_thang_"+ ((DateTime)dpDateto.SelectedDate.Value).Month + "_nam_" + ((DateTime)dpDateto.SelectedDate.Value).Year + ".xls");
+                file1.WriteLine(result.Replace(',', ' '));
+                file1.Close();
+            }
+            else
+            {
+                System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"C:\visual studio\Quanliquanan\SQL_quan_li\Baocaotongquat.xls");
+                file1.WriteLine(result.Replace(',', ' '));
+                file1.Close();
+            }
 
             MessageBox.Show(" Đã lưu báo cáo thành công thành file Excel.","Thông báo",MessageBoxButton.OK,MessageBoxImage.Information);
         }
