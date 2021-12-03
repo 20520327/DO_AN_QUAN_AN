@@ -24,12 +24,15 @@ namespace UI
     /// </summary>
     public partial class employee : Window
     {
+        #region Chuỗi kết nối
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public employee()
         {
             InitializeComponent();
         }
 
+        #region Control Panel and Home button
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -44,7 +47,10 @@ namespace UI
         {
             this.Hide();
         }
+        #endregion
         //Function
+
+        #region Thêm nhân viên
         private void btEadd_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -73,7 +79,9 @@ namespace UI
             }
             ListEmployeeviewInfo();
         }
+        #endregion
 
+        #region View Nhân viên
         public void ListEmployeeviewInfo()
         {
             List<Employee> a = new List<Employee>();
@@ -93,7 +101,25 @@ namespace UI
         {
             ListEmployeeviewInfo();
         }
+        private void lvEmployee_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid gd = (DataGrid)sender;
+            QLQA.Model.Employee row_selected = gd.SelectedItem as QLQA.Model.Employee;
+            if (row_selected != null)
+            {
+                tbID.Text = row_selected.EID.ToString();
+                tbName.Text = row_selected.ENAME.ToString();
+                tbPosition.Text = row_selected.EPOSITION.ToString();
+                tbSex.Text = row_selected.ESEX.ToString();
+                tbPhone.Text = row_selected.EPHONE.ToString();
+                tbAddress.Text = row_selected.EADDRESS.ToString();
+                tbEmail.Text = row_selected.EEMAIL.ToString();
+            }
+        }
 
+        #endregion
+
+        #region Xoá nhân viên
         private void btEdel_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -121,7 +147,9 @@ namespace UI
             }
             ListEmployeeviewInfo();
         }
+        #endregion
 
+        #region Cập nhật nhân viên
         private void btEupdate_Click_1(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -152,7 +180,9 @@ namespace UI
             }
             ListEmployeeviewInfo();
         }
+        #endregion
 
+        #region Tìm kiếm nhân viên
         private void btEsearch_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -185,21 +215,7 @@ namespace UI
                 MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void lvEmployee_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            DataGrid gd = (DataGrid)sender;
-            QLQA.Model.Employee row_selected = gd.SelectedItem as QLQA.Model.Employee;
-            if (row_selected != null)
-            {
-                tbID.Text = row_selected.EID.ToString();
-                tbName.Text = row_selected.ENAME.ToString();
-                tbPosition.Text = row_selected.EPOSITION.ToString();
-                tbSex.Text = row_selected.ESEX.ToString();
-                tbPhone.Text = row_selected.EPHONE.ToString();
-                tbAddress.Text = row_selected.EADDRESS.ToString();
-                tbEmail.Text = row_selected.EEMAIL.ToString();
-            }
-        }
+        #endregion
+        
     }
 }

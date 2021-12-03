@@ -30,9 +30,14 @@ namespace QLQA
         {
             InitializeComponent();
         }
-        //Info bàn
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
 
+        #region Table order info
+
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
+
+        #region Lấy ID bàn
         public static int getIDOfTable(string btname)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -55,7 +60,9 @@ namespace QLQA
             }
             return -1;
         }
+        #endregion
 
+        #region Tên món ăn
         public static string getNameOfFood(int ID)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -78,7 +85,9 @@ namespace QLQA
             }
             return null;
         }
+        #endregion
 
+        #region Lấy giá món ăn
         public static int getPriceOfFood(int ID)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -101,7 +110,9 @@ namespace QLQA
             }
             return -1;
         }
+        #endregion
 
+        #region Lấy danh sách đơn hàng chưa thanh toán
         public List<Orderinfo> getListInfoBill()
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -134,8 +145,10 @@ namespace QLQA
             }
             return ls;
         }
+        #endregion
 
-       private int Sum(List<Orderinfo> ls)
+        #region Tổng
+        private int Sum(List<Orderinfo> ls)
         {
             int sum = 0;
             foreach(var tmp in ls)
@@ -144,7 +157,9 @@ namespace QLQA
             }
             return sum;
         }
+        #endregion
 
+        #region Cập nhật View đơn hàng
         public void updateDataGrid()
         {
             var parent_window = Window.GetWindow(this);
@@ -162,7 +177,9 @@ namespace QLQA
                 MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region View order từng bàn
         private void btTable_Click(object sender, RoutedEventArgs e)
         {
             var parent_window = Window.GetWindow(this);
@@ -180,5 +197,8 @@ namespace QLQA
                 MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
+
+        #endregion
     }
 }

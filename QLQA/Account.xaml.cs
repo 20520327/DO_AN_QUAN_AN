@@ -24,11 +24,14 @@ namespace UI
     /// </summary>
     public partial class account : Window
     {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public account()
         {
             InitializeComponent();
         }
-
+        #region Control Panel and Home button
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -43,8 +46,12 @@ namespace UI
         {
             this.Hide();
         }
+        #endregion
+
         //function button
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #region Account
+        #region Thêm tài khoản
+
         private void btAddAccount_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -87,7 +94,9 @@ namespace UI
             }
             ListAccountviewInfo();
         }
+        #endregion
 
+        #region Xoá tài khoản
         private void btDelAccount_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -125,7 +134,9 @@ namespace UI
             }
             ListAccountviewInfo();
         }
+        #endregion
 
+        #region Cập nhật tài khoản
         private void btUpdateAccount_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -170,7 +181,9 @@ namespace UI
             }
             ListAccountviewInfo();
         }
+        #endregion
 
+        #region View Account
         private void btViewAccount_Click(object sender, RoutedEventArgs e)
         {
             ListAccountviewInfo();
@@ -194,7 +207,8 @@ namespace UI
                 MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        
+        
         private void lvAccount_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             DataGrid gd = (DataGrid)sender;
@@ -214,5 +228,8 @@ namespace UI
                 }
             }
         }
+        #endregion
+
+        #endregion
     }
 }

@@ -24,14 +24,16 @@ namespace UI
     /// </summary>
     public partial class order : Window
     {
+        #region Các biến toàn cục và chuỗi kết nối
         public static int selectedTable = 0;
         public static float thanhtien = 0;
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public order()
         {
             InitializeComponent();
         }
-
+        #region Control Panel và Home button
         private void Minimize_Click_1(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -45,8 +47,13 @@ namespace UI
         {
             this.Hide();
         }
+        #endregion
+
+        #region Cập nhật order
         public void update_table()
         {
+
+            #region Đồng bộ bàn
             this.enviroment.Children.Clear();
             List<QLQA.Model.Table> ls = new List<QLQA.Model.Table>();
             bool check = SQL.getListTable(ref ls);
@@ -62,10 +69,13 @@ namespace UI
                 //Thêm list table
                 lsTable.Add(temp.NAME);
             }
+            
             //Combobox table
             cbTable.ItemsSource = lsTable;
             cbTable.SelectedIndex = 0;
-
+            #endregion
+            
+            #region Đồng bộ danh mục 
             //Combobox Category
             List<QLQA.Model.Category> lsCate = new List<Category>();
             bool check_Cate = SQL.getListCategory(ref lsCate);
@@ -74,47 +84,30 @@ namespace UI
                 lsCategory.Add(tmp.NAME);
             cbCategory.ItemsSource = lsCategory;
             cbCategory.SelectedIndex = 0;
+            #endregion
         }
+        #endregion
 
+        #region Load form
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.enviroment.Children.Clear();
-            List<QLQA.Model.Table> ls = new List<QLQA.Model.Table>();
-            bool check = SQL.getListTable(ref ls);
-            List<string> lsTable = new List<string>();
-            foreach(var temp in ls)
-            {
-                var a = new addTable();
-                a.Margin = new Thickness(10, 10, 10, 10);
-                a.Tablename.Text = temp.NAME;
-                if (temp.STATUS == "Có người")
-                    a.btTable.Background = Brushes.Purple;
-                this.enviroment.Children.Add(a);
-                //Thêm list table
-                lsTable.Add(temp.NAME);
-            }
-            //Combobox table
-            cbTable.ItemsSource = lsTable;
-            cbTable.SelectedIndex = 0;
-
-            //Combobox Category
-            List<QLQA.Model.Category> lsCate = new List<Category>();
-            bool check_Cate = SQL.getListCategory(ref lsCate);
-            List<string> lsCategory = new List<string>();
-            foreach (var tmp in lsCate)
-                lsCategory.Add(tmp.NAME);
-            cbCategory.ItemsSource = lsCategory;
-            cbCategory.SelectedIndex = 0;
+            update_table();
         }
+        #endregion
 
-
+        #region View order từng bàn
         private void cbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            #region Các biến và chuỗi kết nối
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
 
             int Cateid = 0;
             string tempcb = cbCategory.SelectedItem.ToString();
+            #endregion
+
+            #region Load danh sách danh mục
             string searchidcate = "select ID from CATEGORY where NAME = N'" + tempcb + "'";
             SqlCommand caulenh = new SqlCommand(searchidcate, ketnoi);
             SqlDataReader kqtruyvan = caulenh.ExecuteReader();
@@ -129,8 +122,10 @@ namespace UI
             {
                 MessageBox.Show("Lỗi tìm kiếm id category !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
             ketnoi.Close();
+            #endregion
+
+            #region Load danh sách món ăn
             ketnoi.Open();
 
             List<string> lsFoodName = new List<string>();
@@ -151,8 +146,11 @@ namespace UI
             }
             cbFood.ItemsSource = lsFoodName;
             cbFood.SelectedIndex = 0;
+            #endregion
         }
+        #endregion
 
+        #region Lấy ID món ăn
         public int getIDofFood(string name)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -175,7 +173,9 @@ namespace UI
             }
             return -1;
         }
+        #endregion
 
+        #region Tổng đơn hàng
         private int Sum(List<Orderinfo> ls)
         {
             int sum = 0;
@@ -185,7 +185,9 @@ namespace UI
             }
             return sum;
         }
+        #endregion
 
+        #region Cập nhật lại datagrid để xem danh sách món ăn mỗi bàn
         public void updateDataGrid()
         {
             List<Orderinfo> ls = getListInfoBill(selectedTable);
@@ -201,14 +203,141 @@ namespace UI
                 MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region Lấy thông tin
+
+        #region Lấy giờ vào bàn
+        public string getCheckInOfOrder(int ID)
+                {
+                    SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                    ketnoi.Open();
+
+                    SqlCommand caulenh = new SqlCommand("select CHECKIN from ORDER_QA WHERE ID = '" + ID + "'", ketnoi);
+                    SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+                    try
+                    {
+                        DateTime a = new DateTime();
+                        while (kqtruyvan.Read())
+                        {
+                            a = kqtruyvan.GetDateTime(0);
+                        } 
+                        return a.ToString("");
+                    }
+                    catch(Exception es)
+                    {
+                        MessageBox.Show("Lỗi Lấy thời gian vào bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    return null;
+                }
+                #endregion
+
+        #region Tổng tiền
+                public int TotalMoneyOfBill(int ID)
+                {
+                    List<Orderinfo> ls = getListInfoBill(selectedTable);
+                    int sum = 0;
+                    foreach (var tmp in ls)
+                    {
+                        sum += tmp.TOTAL1;
+                    }
+                    return sum;
+                }
+                #endregion
+
+        #region Lấy chi tiết đơn hàng
+                public List<Orderinfo> getListInfoBill(int id_table)
+                {
+                    SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                    ketnoi.Open();
+
+                    List<Orderinfo> ls = new List<Orderinfo>();
+
+                    string searchInfo = "select A.ID,B.FOODid,B.QUANTITY from (ORDER_QA A inner join ORDER_FOOD B on A.ID=B.ORDERid) where A.TABLEid = '" + id_table + "' and A.BILLstatus = '0'";
+                    SqlCommand caulenh = new SqlCommand(searchInfo, ketnoi);
+                    SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+                    try
+                    {
+                        while (kqtruyvan.Read())
+                        {
+                            Orderinfo a = new Orderinfo();
+                            a.OrderID1 = kqtruyvan.GetInt32(0);
+                            a.FOODid1 = kqtruyvan.GetInt32(1);
+                            a.FOODname1 = addTable.getNameOfFood(a.FOODid1);
+                            a.PRICE1 = addTable.getPriceOfFood(a.FOODid1);
+                            a.QUATITY1 = kqtruyvan.GetInt32(2);
+                            a.TOTAL1 = a.PRICE1 * a.QUATITY1;
+                            ls.Add(a);
+                        }
+                    }
+                    catch (Exception es)
+                    {
+                        MessageBox.Show("Lỗi lấy thông tin đơn hàng của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    return ls;
+                }
+        #endregion
+
+        #region Lấy ID hoá đơn đã bàn thanh toán
+                public int getIDorderofTable_ThanhToan(int IDtable)
+                {
+                    SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                    ketnoi.Open();
+                    string searchIDorder = "SELECT ID FROM ORDER_QA  WHERE TABLEid = '" + IDtable + "' AND BILLstatus = '" + 1 + "'";
+                    SqlCommand caulenh = new SqlCommand(searchIDorder, ketnoi);
+                    SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+                    try
+                    {
+                        while (kqtruyvan.Read())
+                        {
+                            return kqtruyvan.GetInt32(0);
+                        };
+                    }
+                    catch (Exception es)
+                    {
+                        MessageBox.Show("Lỗi lấy ID order của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    return -1;
+                }
+                #endregion
+
+        #region Lấy ID hoá đơn bàn chưa thánh toán
+                public int getIDorderofTable(int IDtable)
+                {
+                    SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                    ketnoi.Open();
+                    string searchIDorder = "SELECT ID FROM ORDER_QA  WHERE TABLEid = '" + IDtable + "' AND BILLstatus = '" + 0 + "'";
+                    SqlCommand caulenh = new SqlCommand(searchIDorder, ketnoi);
+                    SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+                    try
+                    {
+                        while (kqtruyvan.Read())
+                        {
+                            return kqtruyvan.GetInt32(0);
+                        };
+                    }
+                    catch(Exception es)
+                    {
+                        MessageBox.Show("Lỗi lấy ID order của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                     return -1;
+                }
+                #endregion
+
+        #endregion
+
+        #region Các button
+
+        #region bt Thêm món ăn vô đơn hàng
         private void btAddfood_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
 
             List<Orderinfo> ls1 = getListInfoBill(selectedTable);
+            #region Trường hợp nếu bàn đó chưa có người
             if (ls1.Count() == 0)
             {
+                #region Thêm hoá đơn
                 ketnoi.Open();
                 string TaoHD = "INSERT INTO ORDER_QA(TABLEid,CHECKIN) VALUES ('" + selectedTable + "','" + DateTime.Now.ToString("") + "')";
                 SqlCommand caulenh = new SqlCommand(TaoHD, ketnoi);
@@ -220,7 +349,9 @@ namespace UI
                 {
                     MessageBox.Show("Lỗi thêm hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                #endregion
 
+                #region Thêm chi tiết đơn
                 string addFood = "insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('" + getIDorderofTable(selectedTable) + "','" + getIDofFood(cbFood.Text.ToString()) + "','" + cbAmout.Text.ToString() + "')";
                 SqlCommand caulenh2 = new SqlCommand(addFood, ketnoi);
                 try
@@ -232,7 +363,9 @@ namespace UI
                     MessageBox.Show("Lỗi thêm hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 ketnoi.Close();
+                #endregion
 
+                #region Cập nhật bàn
                 ketnoi.Open();
                 string updateTable_2 = "update TABLEQA set STATUS = N'Có người' where ID in ((select TABLEid from ORDER_QA where BILLstatus = '0'))";
                 SqlCommand caulenh6 = new SqlCommand(updateTable_2, ketnoi);
@@ -242,13 +375,17 @@ namespace UI
                 }
                 catch (Exception es)
                 {
-                    MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Lỗi cập nhật người ở bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 ketnoi.Close();
                 update_table();
+                #endregion
             }
+            #endregion
+            #region Trường hợp đã có người
             else
             {
+                #region Nếu món ăn đã tồn tại
                 bool checkExist = false;
                 foreach(var tmp  in ls1)
                 {
@@ -269,7 +406,9 @@ namespace UI
                         ketnoi.Close();
                     }
                 }
+                #endregion
 
+                #region Nếu món ăn không tồn tại
                 if (!checkExist)
                 {
                     ketnoi.Open();
@@ -289,175 +428,82 @@ namespace UI
                 update_table();
             }
             updateDataGrid();
+            #endregion
+            #endregion
         }
+        #endregion
 
-        public string getCheckInOfOrder(int ID)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-
-            SqlCommand caulenh = new SqlCommand("select CHECKIN from ORDER_QA WHERE ID = '" + ID + "'", ketnoi);
-            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
-            try
-            {
-                DateTime a = new DateTime();
-                while (kqtruyvan.Read())
+        #region bt Thanh toán
+                private void btCheckout_Click(object sender, RoutedEventArgs e)
                 {
-                    a = kqtruyvan.GetDateTime(0);
-                } 
-                return a.ToString("");
-            }
-            catch(Exception es)
-            {
-                MessageBox.Show("Lỗi Lấy thời gian vào bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            return null;
-        }
-
-        public int TotalMoneyOfBill(int ID)
-        {
-            List<Orderinfo> ls = getListInfoBill(selectedTable);
-            int sum = 0;
-            foreach (var tmp in ls)
-            {
-                sum += tmp.TOTAL1;
-            }
-            return sum;
-        }
-
-        private void btCheckout_Click(object sender, RoutedEventArgs e)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
+                    SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                    ketnoi.Open();
             
-            int id_order = getIDorderofTable(selectedTable);
-            int total = TotalMoneyOfBill(id_order);
+                    int id_order = getIDorderofTable(selectedTable);
+                    int total = TotalMoneyOfBill(id_order);
 
+                    #region Cập nhật bàn đó đã đc thanh toán
+                    string payoff = "UPDATE ORDER_QA SET BILLstatus = '1', CHECKOUT = '" + DateTime.Now.ToString("") + "' WHERE ID = '" + id_order + "'";
+                    string updateTable_1 = "update TABLEQA set STATUS = N'Bàn trống' where ID = '" + selectedTable + "'";
+                    SqlCommand caulenh1 = new SqlCommand(payoff, ketnoi);
+                    SqlCommand caulenh2 = new SqlCommand(updateTable_1, ketnoi);
+                    try
+                    {
+                        caulenh1.ExecuteNonQuery();
+                        caulenh2.ExecuteNonQuery();
+                    }
+                    catch(Exception es)
+                    {
+                        MessageBox.Show("Lỗi thanh toán !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
             
-            string payoff = "UPDATE ORDER_QA SET BILLstatus = '1', CHECKOUT = '" + DateTime.Now.ToString("") + "' WHERE ID = '" + id_order + "'";
-            string updateTable_1 = "update TABLEQA set STATUS = N'Bàn trống' where ID = '" + selectedTable + "'";
-            SqlCommand caulenh1 = new SqlCommand(payoff, ketnoi);
-            SqlCommand caulenh2 = new SqlCommand(updateTable_1, ketnoi);
-            try
-            {
-                caulenh1.ExecuteNonQuery();
-                caulenh2.ExecuteNonQuery();
-            }
-            catch(Exception es)
-            {
-                MessageBox.Show("Lỗi thanh toán !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+                    updateDataGrid();
+                    update_table();
             
-            updateDataGrid();
-            update_table();
-            
-            ketnoi.Close();
+                    ketnoi.Close();
+                    #endregion
 
-            ketnoi.Open();
-            string addRevenue = "INSERT INTO REVENUE(ORDERid,CHECKIN,CHECKOUT,TOTAL) VALUES ('" + id_order + "','" + 
-                                getCheckInOfOrder(id_order) + "','" + DateTime.Now.ToString("") + "','" + total + "')";
-            SqlCommand caulenh3 = new SqlCommand(addRevenue, ketnoi);
-            try
-            {
-                caulenh3.ExecuteNonQuery();
-            }
-            catch (Exception es)
-            {
-                MessageBox.Show("Lỗi thanh toán!\nCần thêm món ăn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            ketnoi.Close();
-        }
-
-        public List<Orderinfo> getListInfoBill(int id_table)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-
-            List<Orderinfo> ls = new List<Orderinfo>();
-
-            string searchInfo = "select A.ID,B.FOODid,B.QUANTITY from (ORDER_QA A inner join ORDER_FOOD B on A.ID=B.ORDERid) where A.TABLEid = '" + id_table + "' and A.BILLstatus = '0'";
-            SqlCommand caulenh = new SqlCommand(searchInfo, ketnoi);
-            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
-            try
-            {
-                while (kqtruyvan.Read())
-                {
-                    Orderinfo a = new Orderinfo();
-                    a.OrderID1 = kqtruyvan.GetInt32(0);
-                    a.FOODid1 = kqtruyvan.GetInt32(1);
-                    a.FOODname1 = addTable.getNameOfFood(a.FOODid1);
-                    a.PRICE1 = addTable.getPriceOfFood(a.FOODid1);
-                    a.QUATITY1 = kqtruyvan.GetInt32(2);
-                    a.TOTAL1 = a.PRICE1 * a.QUATITY1;
-                    ls.Add(a);
+                    #region Thêm vào lịch sử đơn hàng
+                    ketnoi.Open();
+                    string addRevenue = "INSERT INTO REVENUE(ORDERid,CHECKIN,CHECKOUT,TOTAL) VALUES ('" + id_order + "','" + 
+                                        getCheckInOfOrder(id_order) + "','" + DateTime.Now.ToString("") + "','" + total + "')";
+                    SqlCommand caulenh3 = new SqlCommand(addRevenue, ketnoi);
+                    try
+                    {
+                        caulenh3.ExecuteNonQuery();
+                    }
+                    catch (Exception es)
+                    {
+                        MessageBox.Show("Lỗi thanh toán!\nCần thêm món ăn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    ketnoi.Close();
+                    #endregion
                 }
-            }
-            catch (Exception es)
-            {
-                MessageBox.Show("Lỗi load được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return ls;
-        }
+        #endregion
 
-        public int getIDorderofTable_ThanhToan(int IDtable)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-            string searchIDorder = "SELECT ID FROM ORDER_QA  WHERE TABLEid = '" + IDtable + "' AND BILLstatus = '" + 1 + "'";
-            SqlCommand caulenh = new SqlCommand(searchIDorder, ketnoi);
-            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
-            try
-            {
-                while (kqtruyvan.Read())
-                {
-                    return kqtruyvan.GetInt32(0);
-                };
-            }
-            catch (Exception es)
-            {
-                MessageBox.Show("Lỗi lấy ID order của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return -1;
-        }
-
-        public int getIDorderofTable(int IDtable)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-            string searchIDorder = "SELECT ID FROM ORDER_QA  WHERE TABLEid = '" + IDtable + "' AND BILLstatus = '" + 0 + "'";
-            SqlCommand caulenh = new SqlCommand(searchIDorder, ketnoi);
-            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
-            try
-            {
-                while (kqtruyvan.Read())
-                {
-                    return kqtruyvan.GetInt32(0);
-                };
-            }
-            catch(Exception es)
-            {
-                MessageBox.Show("Lỗi lấy ID order của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-             return -1;
-        }
-
+        #region bt Đổi bàn 
         private void btSwapTable_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             
             int id_table_swaped = addTable.getIDOfTable(cbTable.Text);
-            //Chuyển từ list bàn 1 qua bàn 2
+            
+            #region Lấy danh sách hoá đơn của 2 bàn
             List<Orderinfo> ls1 = getListInfoBill(selectedTable);
             List<Orderinfo> ls2 = getListInfoBill(id_table_swaped);
                 int ID_order = 0;
                 int id_table = 0;
-            //Tạo hoá đơn bàn chưa có đơn
+            #endregion
+            
+            #region Nếu cả 2 bàn đều không có người
             if (ls1.Count == 0 && ls2.Count == 0)
             {
                 MessageBox.Show("Cả 2 bàn đều chưa có người.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
+            #endregion
 
+            #region Nếu bàn cần chuyển qua chưa có người
             if (ls2.Count == 0)
             {
                 ketnoi.Open();
@@ -474,14 +520,19 @@ namespace UI
                 }
                 ketnoi.Close();
             }
+            #endregion
+
+            #region Nếu bàn chuyển qua có người
             else
             {
+                #region Duyệt danh sách từ bàn 1 qua bàn 2
                 foreach (var tmp_1 in ls1)
                 {
                     ID_order = int.Parse(tmp_1.OrderID1.ToString());
 
                     foreach (var tmp_2 in ls2)
                     {
+                        #region Nếu món ăn bàn 1 của giống bàn 2
                         if (tmp_1.FOODid1 == tmp_2.FOODid1)
                         {
                             //Nếu trùng thì cập nhật và tăng giá trị lên 
@@ -498,6 +549,9 @@ namespace UI
                             }
                             ketnoi.Close();
                         }
+                        #endregion
+
+                        #region Nếu món ăn bàn 1 không có ở bàn 2
                         else
                         {
                             //Nếu chưa có thì thêm vào
@@ -514,7 +568,9 @@ namespace UI
                             }
                             ketnoi.Close();
                         }
+                        #endregion
                     }
+                    #region Dọn bàn 1
                     ketnoi.Open();
                     string delHd = "DELETE ORDER_FOOD WHERE FOODid = '" + tmp_1.FOODid1 + "' AND ORDERid = '" + tmp_1.OrderID1 + "'";
                     SqlCommand caulenh3 = new SqlCommand(delHd, ketnoi);
@@ -527,10 +583,12 @@ namespace UI
                         MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     ketnoi.Close();
+                    #endregion
                 }
-            
-            //Xoá hoá đơn
-            ketnoi.Open();
+                #endregion
+
+                #region Xoá hoá đơn cũ của bàn cũ
+                ketnoi.Open();
             string delORDER = "DELETE ORDER_QA WHERE ID = '" + ID_order + "'";
             SqlCommand caulenh4 = new SqlCommand(delORDER, ketnoi);
             try
@@ -542,9 +600,11 @@ namespace UI
                 MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ketnoi.Close();
+                #endregion
             }
-
+            #endregion
             //Cập nhật bàn
+            #region Cập nhật bàn
             ketnoi.Open();
             string updateTable_1 = "update TABLEQA set STATUS = N'Bàn trống' where ID = '" + selectedTable + "'";
             string updateTable_2 = "update TABLEQA set STATUS = N'Có người' where ID in ((select TABLEid from ORDER_QA where BILLstatus = '0'))";
@@ -562,6 +622,9 @@ namespace UI
             }
             ketnoi.Close();
             update_table();
+            #endregion
         }
+        #endregion
     }
+    #endregion
 }

@@ -24,11 +24,14 @@ namespace UI
     /// </summary>
     public partial class table : Window
     {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public table()
         {
             InitializeComponent();
         }
-
+        #region Control Panel
         private void btHome_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -43,7 +46,9 @@ namespace UI
         {
             this.Hide();
         }
+        #endregion
 
+        #region View Table
         public void ListTableviewInfo()
         {
             List<QLQA.Model.Table> a = new List<QLQA.Model.Table>();
@@ -58,9 +63,30 @@ namespace UI
                 MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void lvTable_Loaded(object sender, RoutedEventArgs e)
+        {
+            ListTableviewInfo();
+        }
+        private void btViewTable_Click(object sender, RoutedEventArgs e)
+        {
+            ListTableviewInfo();
+        }
 
-        //Function các nút 
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        private void lvTable_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid gd = (DataGrid)sender;
+            QLQA.Model.Table row_selected = gd.SelectedItem as QLQA.Model.Table;
+            if (row_selected != null)
+            {
+                tbtID.Text = row_selected.ID.ToString();
+                tbtName.Text = row_selected.NAME.ToString();
+                cbtStatus.SelectedItem = row_selected.STATUS.ToString();
+            }
+        }
+        #endregion
+
+        #region Button 
+        #region Thêm bàn
         private void btAddTable_Click(object sender, RoutedEventArgs e)
         {
 
@@ -84,12 +110,9 @@ namespace UI
             }
             ListTableviewInfo();
         }
+        #endregion
 
-        private void lvTable_Loaded(object sender, RoutedEventArgs e)
-        {
-            ListTableviewInfo();
-        }
-
+        #region Xoá bàn
         private void btDeleteTable_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -113,7 +136,9 @@ namespace UI
             }
             ListTableviewInfo();
         }
+        #endregion
 
+        #region Cập nhật bàn
         private void btUpgradeTable_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -137,22 +162,7 @@ namespace UI
             }
             ListTableviewInfo();
         }
-
-        private void btViewTable_Click(object sender, RoutedEventArgs e)
-        {
-            ListTableviewInfo();
-        }
-
-        private void lvTable_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-            DataGrid gd = (DataGrid)sender;
-            QLQA.Model.Table row_selected = gd.SelectedItem as QLQA.Model.Table;
-            if (row_selected != null)
-            {
-                tbtID.Text = row_selected.ID.ToString();
-                tbtName.Text = row_selected.NAME.ToString();
-                cbtStatus.SelectedItem = row_selected.STATUS.ToString();
-            }
-        }
+        #endregion
+        #endregion
     }
 }

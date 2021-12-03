@@ -12,8 +12,12 @@ namespace QLQA
 {
     public class SQL
     {
+        #region Chuỗi kết nối
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
+
         //Food
+        #region Lấy danh sách món ăn
         static public bool getListFood(ref List<Food> ls)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -38,8 +42,10 @@ namespace QLQA
             }
             return true;
         }
+        #endregion
 
         //Table
+        #region Lấy danh sách bàn
         static public bool getListTable(ref List<Table> ls)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -63,8 +69,10 @@ namespace QLQA
             }
             return true;
         }
+        #endregion
 
         //Employee
+        #region Lấy danh sách nhân viên
         static public bool getListEmployee(ref List<Employee> ls)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -92,35 +100,10 @@ namespace QLQA
             }
             return true;
         }
-
-        static public bool checkEmployeeID(int id)
-        {
-            int ID_chk;
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-            SqlCommand caulenh = new SqlCommand("select ID from EMPLOYEE WHERE ID = '" + id + "'", ketnoi);
-            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
-            List<QLQA.Model.Employee> ls = new List<QLQA.Model.Employee>();
-            try
-            {
-                while (kqtruyvan.Read())
-                {
-                    Employee a = new Employee();
-                    ID_chk = kqtruyvan.GetInt32(0);
-                    ls.Add(a);
-                };
-                if (ls.Count() > 0)
-                    return true;
-                else
-                    return false;
-            }
-            catch (Exception es)
-            {
-                return false;
-            }
-        }
+        #endregion
 
         //Accont
+        #region Lấy danh sách tài khoản
         static public bool getListAccount(ref List<Account> ls)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -153,8 +136,10 @@ namespace QLQA
             }
             return true;
         }
+        #endregion
 
         //Category
+        #region Lấy danh sách danh mục
         static public bool getListCategory(ref List<Category> ls)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -177,8 +162,10 @@ namespace QLQA
             }
             return true;
         }
-            
+        #endregion
+
         //Login
+        #region Function Log in
         static public Login lg = new Login();
         static public bool CheckLogin(string user,string pass)
         {
@@ -207,7 +194,35 @@ namespace QLQA
                 return false;
             }
         }
+        #endregion
 
-        
+        #region Kiểm tra nhân viên ID
+                static public bool checkEmployeeID(int id)
+                {
+                    int ID_chk;
+                    SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                    ketnoi.Open();
+                    SqlCommand caulenh = new SqlCommand("select ID from EMPLOYEE WHERE ID = '" + id + "'", ketnoi);
+                    SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+                    List<QLQA.Model.Employee> ls = new List<QLQA.Model.Employee>();
+                    try
+                    {
+                        while (kqtruyvan.Read())
+                        {
+                            Employee a = new Employee();
+                            ID_chk = kqtruyvan.GetInt32(0);
+                            ls.Add(a);
+                        };
+                        if (ls.Count() > 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    catch (Exception es)
+                    {
+                        return false;
+                    }
+                }
+                #endregion
     }
 }

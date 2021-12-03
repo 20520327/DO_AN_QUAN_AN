@@ -25,12 +25,14 @@ namespace UI
     /// </summary>
     public partial class revenue : Window
     {
+        #region Chuỗi kết nối
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public revenue()
         {
             InitializeComponent();
         }
-        //Các nút thoát và minimize
+        #region Control panel and Home button
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -45,7 +47,9 @@ namespace UI
         {
             this.Hide();
         }
+        #endregion
 
+        #region Button Thống kê
         private void btStatistical_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -90,7 +94,9 @@ namespace UI
                 MessageBox.Show("Lỗi thống kê !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region Load bảng thống kê
         private void lvRevenue_Loaded(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -118,7 +124,9 @@ namespace UI
                 MessageBox.Show("Lỗi thống kê !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region Excel
         private void btExcel_Click(object sender, RoutedEventArgs e)
         {
             lvRevenue.SelectAllCells();
@@ -143,5 +151,6 @@ namespace UI
 
             MessageBox.Show(" Đã lưu báo cáo thành công thành file Excel.","Thông báo",MessageBoxButton.OK,MessageBoxImage.Information);
         }
+        #endregion
     }
 }

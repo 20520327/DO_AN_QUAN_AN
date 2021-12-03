@@ -24,11 +24,14 @@ namespace UI
     /// </summary>
     public partial class category : Window
     {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public category()
         {
             InitializeComponent();
         }
-
+        #region Control Panel và Home Button
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -43,9 +46,9 @@ namespace UI
         {
             this.Hide();
         }
-
+        #endregion
         //Function button
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #region Thêm danh mục
         private void btAddCate_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -68,7 +71,9 @@ namespace UI
             ListCategoryviewInfo();
 
         }
+        #endregion
 
+        #region Xoá danh mục
         private void btDelCate_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -90,7 +95,9 @@ namespace UI
             }
             ListCategoryviewInfo();
         }
+        #endregion
 
+        #region Cập nhật danh mục
         private void btUpdateCate_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -116,7 +123,9 @@ namespace UI
             }
             ListCategoryviewInfo();
         }
+        #endregion
 
+        #region View danh mục
         private void btViewCate_Click(object sender, RoutedEventArgs e)
         {
             ListCategoryviewInfo();
@@ -152,5 +161,6 @@ namespace UI
                 tbNameCate.Text = row_selected.NAME.ToString();
             }
         }
+        #endregion
     }
 }

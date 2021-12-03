@@ -26,7 +26,7 @@ namespace UI
         {
             InitializeComponent();
         }
-
+        #region Control Panel
         private void Minimize_Click_1(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -42,7 +42,11 @@ namespace UI
                 Thuvien.exit();
             }
         }
+        #endregion
 
+        #region Các button
+
+        #region Tài khoản
         private void btAccount_Click(object sender, RoutedEventArgs e)
         {
             if (SQL.lg.ROLEid == 0)
@@ -57,7 +61,9 @@ namespace UI
                 MessageBox.Show("Bạn không có quyền truy cập !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        #endregion
 
+        #region Lịch sử đơn hàng
         private void btHistory_Click(object sender, RoutedEventArgs e)
         {
             revenue ls = new revenue();
@@ -65,7 +71,9 @@ namespace UI
             ls.ShowDialog();
             this.Show();
         }
+        #endregion
 
+        #region Danh mục
         private void btList_Click(object sender, RoutedEventArgs e)
         {
             category dm = new category();
@@ -73,7 +81,9 @@ namespace UI
             dm.ShowDialog();
             this.Show();
         }
-        //Nhân viên
+        #endregion
+
+        #region Nhân viên
         private void btEmployee_Click(object sender, RoutedEventArgs e)
         {
             if(SQL.lg.ROLEid == 0)
@@ -88,12 +98,9 @@ namespace UI
                 MessageBox.Show("Bạn không có quyền truy cập !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        #endregion
 
-        private void btReport_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Chức năng đang phát triển !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
+        #region Món ăn
         private void btFood_Click(object sender, RoutedEventArgs e)
         {
             food fd = new food();
@@ -101,7 +108,9 @@ namespace UI
             fd.ShowDialog();
             this.Show();
         }
+        #endregion
 
+        #region Bàn ăn
         private void btTable_Click(object sender, RoutedEventArgs e)
         {
             table tb = new table();
@@ -109,7 +118,9 @@ namespace UI
             tb.ShowDialog();
             this.Show();
         }
+        #endregion
 
+        #region Order
         private void btOrder_Click(object sender, RoutedEventArgs e)
         {
             order db = new order();
@@ -117,7 +128,9 @@ namespace UI
             db.ShowDialog();
             this.Show();
         }
-        
+        #endregion
+
+        #region Đăng xuất
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             if(MessageBox.Show("Bạn có thật sự muốn đăng xuất ?","Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
@@ -130,12 +143,7 @@ namespace UI
                 lg.Show();
             }
         }
-
-        private void Mainform_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        
+        #endregion
+        #endregion
     }
 }

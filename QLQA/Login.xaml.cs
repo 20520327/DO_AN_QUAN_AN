@@ -25,7 +25,7 @@ namespace UI
         {
             InitializeComponent();
         }
-
+        #region Control Panel
         private void exit_Click(object sender, RoutedEventArgs e)
         {
             Thuvien.exit();
@@ -35,7 +35,9 @@ namespace UI
         {
             this.WindowState = WindowState.Minimized;
         }
+        #endregion
 
+        #region Sign up button
         private void btsignup_Click(object sender, RoutedEventArgs e)
         {
             signup lg = new signup();
@@ -43,12 +45,11 @@ namespace UI
             lg.ShowDialog();
             this.Show();
         }
+        #endregion
 
+        #region Login
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
-            //maintable a = new maintable();
-            //a.Show();
-            //this.Close();
 
             string User = tbUsername.Text.ToString();
             string Pass = tbPassword.Password.ToString();
@@ -90,6 +91,7 @@ namespace UI
                 }
             }
         }
+        #endregion
     }
-    
+
 }

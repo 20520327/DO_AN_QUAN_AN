@@ -24,10 +24,15 @@ namespace UI
     /// </summary>
     public partial class food : Window
     {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public food()
         {
             InitializeComponent();
         }
+
+        #region Control Panel and Home button
         //Các nút thoát và minimize
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
@@ -43,8 +48,10 @@ namespace UI
         {
             this.Hide();
         }
+        #endregion
         //Function các nút
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+
+        #region Tìm kiếm món ăn
         private void btSearch_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -74,7 +81,32 @@ namespace UI
                 MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        #endregion
 
+        #region Lấy ID danh mục
+        private int getIDCategory(string Cate_name)
+        {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+            int tcateid = -1;
+            SqlCommand caulenh = new SqlCommand("select ID from CATEGORY where NAME = N'" + Cate_name + "'", ketnoi);
+            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+            try
+            {
+                while (kqtruyvan.Read())
+                {
+                    tcateid = kqtruyvan.GetInt32(0);
+                };
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Lỗi truy vấn danh mục !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return tcateid;
+        }
+        #endregion
+
+        #region View món ăn
         public void ListFoodviewInfo()
         {
             List<Food> a = new List<Food>();
@@ -102,137 +134,6 @@ namespace UI
         {
             ListFoodviewInfo();
         }
-
-        private int getIDCategory(string Cate_name)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-            int tcateid = -1;
-            SqlCommand caulenh = new SqlCommand("select ID from CATEGORY where NAME = N'" + Cate_name + "'", ketnoi);
-            SqlDataReader kqtruyvan = caulenh.ExecuteReader();
-            try
-            {
-                while (kqtruyvan.Read())
-                {
-                    tcateid = kqtruyvan.GetInt32(0);
-                };
-            }
-            catch (Exception es)
-            {
-                MessageBox.Show("Lỗi truy vấn danh mục !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            return tcateid;
-        }
-
-        private void btAdd_Click(object sender, RoutedEventArgs e)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-            int tid = int.Parse(tbID.Text.ToString());
-            string tname = tbFoodname.Text.ToString();
-            string tcategory = cbCate.Text.ToString();
-            //Lấy id category
-            int tcateid = getIDCategory(tcategory);
-            if(tcateid == -1)
-            {
-                MessageBox.Show("Lỗi xác định danh mục!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            int tmoney;
-            if(!int.TryParse(tbPrice.Text.ToString(),out tmoney))
-            {
-                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                tbPrice.Clear();
-                tbPrice.Focus();
-                return;
-            }
-            string saveFood = "INSERT INTO FOOD(ID,NAME,CATEid,PRICE) VALUES (N'" + tid + "', N'" + tname + "', N'" + tcateid + "', N'" + tmoney + "');";
-            SqlCommand querysaveFood = new SqlCommand(saveFood,ketnoi);
-
-            try
-            {
-                querysaveFood.ExecuteNonQuery();
-                MessageBox.Show("Thêm món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch(Exception es)
-            {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            ListFoodviewInfo();
-        }
-        //
-        private void btDelete_Click(object sender, RoutedEventArgs e)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-
-            int tid = int.Parse(tbID.Text.ToString());
-            string tname = tbFoodname.Text.ToString();
-            string tcategory = cbCate.Text.ToString();
-            int tmoney;
-            if (!int.TryParse(tbPrice.Text.ToString(), out tmoney))
-            {
-                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                tbPrice.Clear();
-                tbPrice.Focus();
-                return;
-            }
-
-            string delFood = "DELETE FROM FOOD WHERE ID = '" + tid + "'";
-            SqlCommand querydelFood = new SqlCommand(delFood,ketnoi);
-
-            try
-            {
-                querydelFood.ExecuteNonQuery();
-                MessageBox.Show("Xoá món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception es)
-            {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            ListFoodviewInfo();
-        }
-
-        private void BtUpdate(object sender, RoutedEventArgs e)
-        {
-            SqlConnection ketnoi = new SqlConnection(Connectionstring);
-            ketnoi.Open();
-
-            int tid = int.Parse(tbID.Text.ToString());
-            string tname = tbFoodname.Text.ToString();
-            string tcategory = cbCate.Text.ToString();
-            float tmoney;
-
-            int tcateid = getIDCategory(tcategory);
-            if (tcateid == -1)
-            {
-                MessageBox.Show("Lỗi xác định danh mục!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-            if (!float.TryParse(tbPrice.Text.ToString(), out tmoney))
-            {
-                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                tbPrice.Clear();
-                tbPrice.Focus();
-                return;
-            }
-
-            string UpdateFood = "UPDATE FOOD " + 
-                                "SET ID = '" + tid + "', NAME = N'" + tname + "', CATEid = N'" + tcateid + "', PRICE = '" + tmoney + "'" +
-                                "WHERE ID = '" + tid + "'";
-            SqlCommand queryUpadteFood = new SqlCommand(UpdateFood,ketnoi);
-            try
-            {
-                queryUpadteFood.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception es)
-            {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            ListFoodviewInfo();
-        }
-
         private void btView_Click(object sender, RoutedEventArgs e)
         {
             ListFoodviewInfo();
@@ -250,5 +151,149 @@ namespace UI
                 tbPrice.Text = row_selected.PRICE.ToString();
             }
         }
+        #endregion
+
+        #region Thêm món ăn
+        private void btAdd_Click(object sender, RoutedEventArgs e)
+        {
+            #region Các biến and chuỗi kết nối
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+            int tid = int.Parse(tbID.Text.ToString());
+            string tname = tbFoodname.Text.ToString();
+            string tcategory = cbCate.Text.ToString();
+            int tcateid = getIDCategory(tcategory);
+            int tmoney;
+            #endregion
+            //Lấy id category
+            #region Xác định danh mục
+            
+            if(tcateid == -1)
+            {
+                MessageBox.Show("Lỗi xác định danh mục!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            #endregion
+
+            #region Check tiền
+
+            if (!int.TryParse(tbPrice.Text.ToString(),out tmoney))
+            {
+                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                tbPrice.Clear();
+                tbPrice.Focus();
+                return;
+            }
+            #endregion
+
+            #region SQL Thêm món
+            string saveFood = "INSERT INTO FOOD(ID,NAME,CATEid,PRICE) VALUES (N'" + tid + "', N'" + tname + "', N'" + tcateid + "', N'" + tmoney + "');";
+            SqlCommand querysaveFood = new SqlCommand(saveFood,ketnoi);
+
+            try
+            {
+                querysaveFood.ExecuteNonQuery();
+                MessageBox.Show("Thêm món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch(Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            #endregion
+            ListFoodviewInfo();
+        }
+        #endregion
+
+        #region Xoá món ăn
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            #region Các biến và chuỗi kết nối
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
+            int tid = int.Parse(tbID.Text.ToString());
+            string tname = tbFoodname.Text.ToString();
+            string tcategory = cbCate.Text.ToString();
+            int tmoney;
+            #endregion
+
+            #region Check giá tiền
+            if (!int.TryParse(tbPrice.Text.ToString(), out tmoney))
+            {
+                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                tbPrice.Clear();
+                tbPrice.Focus();
+                return;
+            }
+            #endregion
+
+            #region SQL và cập nhật view
+            string delFood = "DELETE FROM FOOD WHERE ID = '" + tid + "'";
+            SqlCommand querydelFood = new SqlCommand(delFood,ketnoi);
+
+            try
+            {
+                querydelFood.ExecuteNonQuery();
+                MessageBox.Show("Xoá món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            ListFoodviewInfo();
+            #endregion
+        }
+        #endregion
+
+        #region Cập nhật món ăn
+        private void BtUpdate(object sender, RoutedEventArgs e)
+        {
+            #region các biến và chuỗi kết nối
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
+            int tid = int.Parse(tbID.Text.ToString());
+            string tname = tbFoodname.Text.ToString();
+            string tcategory = cbCate.Text.ToString();
+            float tmoney;
+            #endregion
+
+            #region Xác định danh mục
+            int tcateid = getIDCategory(tcategory);
+            if (tcateid == -1)
+            {
+                MessageBox.Show("Lỗi xác định danh mục!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            #endregion
+
+            #region Check giá tiền
+            if (!float.TryParse(tbPrice.Text.ToString(), out tmoney))
+            {
+                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                tbPrice.Clear();
+                tbPrice.Focus();
+                return;
+            }
+            #endregion
+
+            #region Cập nhật lại bàn
+            string UpdateFood = "UPDATE FOOD " + 
+                                "SET ID = '" + tid + "', NAME = N'" + tname + "', CATEid = N'" + tcateid + "', PRICE = '" + tmoney + "'" +
+                                "WHERE ID = '" + tid + "'";
+            SqlCommand queryUpadteFood = new SqlCommand(UpdateFood,ketnoi);
+            try
+            {
+                queryUpadteFood.ExecuteNonQuery();
+                MessageBox.Show("Cập nhật món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            
+            ListFoodviewInfo();
+            #endregion
+        }
+        #endregion
+        
     }
 }

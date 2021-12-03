@@ -10,6 +10,7 @@ namespace UI
 {
     public class Thuvien
     {
+        #region Control Panel
         static public void exit()
         {
             Environment.Exit(0);
@@ -18,5 +19,6 @@ namespace UI
         {
             System.Windows.Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
+        #endregion
     }
 }

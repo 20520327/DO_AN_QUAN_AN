@@ -11,7 +11,7 @@
     <Grid>
         <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
             <Grid>
-                <Image x:Name="Mainform" Source="image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45" Loaded="Mainform_Loaded"/>
+                <Image x:Name="Mainform" Source="image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
                 <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
                     <Rectangle.Fill>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -43,7 +43,7 @@
                 <Button x:Name="Minimize"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
-                    Margin="0,10,40,0"
+                    Margin="0,10,50,0"
                     ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFF2CB05" BorderBrush="#FFF2CB05" Click="Minimize_Click_1" RenderTransformOrigin="-1.56,0.7">
                     <materialDesign:PackIcon
                         Kind="WindowMinimize"
@@ -52,7 +52,7 @@
                 </Button>
 
                 <Grid Margin="155,55,55,0" Height="700" VerticalAlignment="Top">
-                    <Image Source="image/bistro1.png" VerticalAlignment="Top" Margin="0,-41,0,0" Height="257" >
+                    <Image Source="image/bistro1.png" VerticalAlignment="Top" Margin="0,-53,0,0" Height="257" >
                         <Image.Effect>
                             <DropShadowEffect Color="#FF7025D9" Opacity="0.4"/>
                         </Image.Effect>
@@ -73,7 +73,7 @@
                         FontSize="28" FontWeight="Bold"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="150"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="67,0,753,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btOrder_Click">
+                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="186,0,634,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btOrder_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -92,7 +92,7 @@
                         FontSize="28" FontWeight="Bold"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="Auto"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="292,335,526,215" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btTable_Click">
+                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="410,335,408,215" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btTable_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -112,7 +112,7 @@
                         FontSize="28" FontWeight="Bold"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="150"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="528,0,291,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btFood_Click">
+                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="632,0,187,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btFood_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -122,16 +122,6 @@
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="150"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="528,0,291,10" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btHistory_Click">
                         <TextBlock Text="Lịch sử đơn hàng" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" FontWeight="Bold" FontFamily="Gilroy" />
-                        <Button.Effect>
-                            <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button x:Name="btReport"
-                        Content="Báo cáo" FontFamily="Gilroy" 
-                        FontSize="28" FontWeight="Bold"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        Style="{StaticResource MaterialDesignRaisedLightButton}" Height="150"
-                        ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="753,0,65,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" Click="btReport_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                         </Button.Effect>

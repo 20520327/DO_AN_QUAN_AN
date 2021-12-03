@@ -24,11 +24,15 @@ namespace UI
     /// </summary>
     public partial class signup : Window
     {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public signup()
         {
             InitializeComponent();
         }
 
+        #region Control Panel 
         private void btexit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -38,9 +42,9 @@ namespace UI
         {
             this.WindowState = WindowState.Minimized;
         }
+        #endregion
 
-        //Sign up
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #region bt Đăng ký
         private void btSignup_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -53,13 +57,16 @@ namespace UI
             string email = tbEmail.Text.ToString();
             int role_ID = 1;
 
+            #region Random ID nhân viên
             int employee_ID;
             do
             {
                 Random r = new Random();
                 employee_ID = r.Next(0, 10000);
             } while (SQL.checkEmployeeID(employee_ID));
-            
+            #endregion
+
+            #region Lưu nhân viên và lưu tài khoản
             string saveEmployee = "insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('"
                                 + employee_ID + "', N'" + fullname + "', N'" + "Nhân viên" + "', N'" + "" + "', N'" + phone + "', N'" + "" + "', N'" + email + "');";
             SqlCommand querysaveEmployee = new SqlCommand(saveEmployee, ketnoi);
@@ -77,7 +84,8 @@ namespace UI
             {
                 MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
+            #endregion
         }
+        #endregion
     }
 }
