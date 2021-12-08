@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:UI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
+        x:Name="_this"
         Title="Account" Height="800" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}" AllowsTransparency="True" 
         Icon="image/bistro1.png">
     <Grid>
@@ -24,7 +25,7 @@
                             <DataGridTextColumn Header="Tên tài khoản"  Width="200" Binding="{Binding USERNAME}" />
                             <DataGridTextColumn Header="ID nhân viên"   Width="200" Binding="{Binding EMPLOYEEID}" />
                             <DataGridTextColumn Header="Quyền"          Width="150" Binding="{Binding USERROLE}" />
-                            
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -112,17 +113,25 @@
                                Margin="10,186,0,0" RadiusY="21.5" RadiusX="21.5" Stroke="#FF2AA9C6" VerticalAlignment="Top" 
                                Width="419"/>
                     <Grid Margin="10,196,24,70">
-                        <StackPanel VerticalAlignment="Top" Margin="20,0,19,0" Height="460">
-                            <TextBox x:Name="tbUsername" 
+                        <Grid VerticalAlignment="Top" Margin="20,0,19,0" Height="460">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBox x:Name="tbUsername"
                                      materialDesign:HintAssist.Hint="Tên tài khoản" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                                     Margin="0,10" 
+                                     Margin="0,81,0,53" 
                                      CaretBrush="#FF0DA0B8" 
                                      BorderBrush="#FF0DA0B8" 
                                      Foreground="#FF0DA0B8" 
                                      SelectionBrush="#FF0DA0B8" 
-                                     FontSize="18" Height="60" FontFamily="Gilroy"/>
+                                     FontSize="18" Height="50" FontFamily="Gilroy" Grid.RowSpan="2" />
                             <TextBox x:Name="tbIDEmployee" 
+                                     Grid.Row="0"
                                      materialDesign:HintAssist.Hint="Nhập ID nhân viên" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                      Margin="0,10" 
@@ -130,21 +139,28 @@
                                      BorderBrush="#FF0DA0B8" 
                                      Foreground="#FF0DA0B8" 
                                      SelectionBrush="#FF0DA0B8" 
-                                     FontSize="18" Height="60" FontFamily="Gilroy"/>
+                                     FontSize="18" Height="50" FontFamily="Gilroy"/>
                             <PasswordBox x:Name="tbPassword" 
+                                         Grid.Row="1"
                                          materialDesign:HintAssist.Hint="Mật khẩu" 
+                                         PasswordChanged="tbPassword_PasswordChanged"
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
-                                         Margin="0,10" CaretBrush="#FF0DA0B8" 
+                                         Margin="0,39,0,0" CaretBrush="#FF0DA0B8" 
                                          Foreground="#FF0DA0B8" 
                                          SelectionBrush="#FF0DA0B8" 
                                          BorderBrush="#FF0DA0B8" FontSize="18"/>
-                            <PasswordBox x:Name="tbPassConfirm" 
+                            <PasswordBox x:Name="tbPassConfirm"
+                                         Grid.Row="2"
                                          materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
-                                         Margin="0,10" CaretBrush="#FF0DA0B8" 
+                                         Margin="0,5,0,29" CaretBrush="#FF0DA0B8" 
                                          Foreground="#FF0DA0B8" 
                                          SelectionBrush="#FF0DA0B8" 
                                          BorderBrush="#FF0DA0B8" FontSize="18"/>
+                            <TextBlock 
+                                
+                                Text="Loại tài khoản" FontFamily="Gilroy" 
+                                 VerticalAlignment="Center"          FontSize="18" Foreground="#FF5EBAC9" Margin="0,10,0,53" Height="29" Background="White" Grid.Row="3"/>
                             <Grid Height="60" Margin="0,0,0,0">
                                 <Grid.Resources>
                                     <Style x:Key="ComboboxStyle" TargetType="{x:Type Border}">
@@ -152,10 +168,9 @@
                                         <Setter Property="CornerRadius" Value="100"/>
                                     </Style>
                                 </Grid.Resources>
-                                <TextBlock Text="Loại tài khoản" FontFamily="Gilroy" 
-                                 VerticalAlignment="Center"          FontSize="18" Foreground="#FF5EBAC9" Margin="0,21,0,10" Height="29" Background="White"/>
+
                                 <Border
-                                    Style="{StaticResource ComboboxStyle}" Margin="1,81,-1,-81">
+                                    Style="{StaticResource ComboboxStyle}" Margin="-2,323,2,-323">
 
                                     <ComboBox x:Name="cbRole"
                                     materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
@@ -165,7 +180,7 @@
                                     FontSize="22" Width="220" 
                                     BorderBrush="White" Background="#FFFFFBFB" 
                                     VerticalAlignment="Center" Opacity="0.8" 
-                                    Margin="0,-66,24,84" Foreground="#FF12A6BD">
+                                    Margin="0,-65,-1,83" Foreground="#FF12A6BD">
 
                                         <ComboBox.Effect>
                                             <DropShadowEffect Opacity="0.4"/>
@@ -175,10 +190,38 @@
                                         <ComboBoxItem Content="Nhân viên"/>
                                     </ComboBox>
                                 </Border>
-                                <Border BorderBrush="#FF0B8497" BorderThickness="1" Height="1" Margin="1,60,0,-1" Background="#FF1392A6"/>
+                                <Border BorderBrush="#FF0B8497" BorderThickness="1" Height="1" Margin="-1,305,2,-246" Background="#FF1392A6"/>
                             </Grid>
-
-                        </StackPanel>
+                            <TextBox x:Name="Unmask_pass"
+                                materialDesign:HintAssist.Hint="Mật khẩu"
+                                Background="White"
+                                Visibility="Hidden"  
+                                Text="{Binding ElementName=_this, Path=Password}"
+                                Margin="0,44,0,0" 
+                                CaretBrush="#FF0DA0B8" 
+                                BorderBrush="#FF0DA0B8" 
+                                Foreground="#FF0DA0B8" 
+                                SelectionBrush="#FF0DA0B8" 
+                                FontSize="18" FontFamily="Gilroy" Grid.Row="1">
+                                <TextBox.Style>
+                                    <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox">
+                                        
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <CheckBox
+                                x:Name="Unsee"
+                                Style="{StaticResource MaterialDesignCheckBox}"
+                                Margin="299,26,-299,66" 
+                                Grid.RowSpan="2"
+                                FontFamily="Gilroy"
+                                Checked="Unsee_Checked"
+                                Unchecked="Unsee_Unchecked"
+                                Foreground="#FF0DA0B8" 
+                                FontSize="18" Grid.Row="1">
+                                Check
+                            </CheckBox>
+                        </Grid>
                     </Grid>
                 </Grid>
 

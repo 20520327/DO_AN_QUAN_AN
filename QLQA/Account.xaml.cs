@@ -16,13 +16,14 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using System.ComponentModel;
 
 namespace UI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class account : Window
+    public partial class account : Window, INotifyPropertyChanged
     {
         #region Chuỗi kết nối
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
@@ -50,6 +51,7 @@ namespace UI
 
         //function button
         #region Account
+
         #region Thêm tài khoản
 
         private void btAddAccount_Click(object sender, RoutedEventArgs e)
@@ -207,8 +209,7 @@ namespace UI
                 MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
-        
+ 
         private void lvAccount_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             DataGrid gd = (DataGrid)sender;
@@ -217,16 +218,49 @@ namespace UI
             {
                 tbIDEmployee.Text = row_selected.EMPLOYEEID.ToString();
                 tbUsername.Text = row_selected.USERNAME.ToString();
+                tbPassword.Password = row_selected.PASSWORD.ToString();
                 string role = row_selected.USERROLE.ToString();
-                if (role == "0")
-                {
-                    cbRole.Text = "Người quản lí";
-                }
-                else
-                {
-                    cbRole.Text = "Nhân viên";
-                }
+                cbRole.Text = role;
             }
+        }
+
+        private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (string.CompareOrdinal(Password, this.tbPassword.Password) == 0)
+                return;
+            Password = this.tbPassword.Password;
+        }
+
+        private string _password;
+        public string Password
+        {
+            get => _password;
+            set
+            {
+                _password = value;
+                this.tbPassword.Password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            //Thông báo pass thay đổi để check cập nhật đúng cho cái textbox
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Unsee_Checked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Hidden;
+            Unmask_pass.Visibility = Visibility.Visible;
+        }
+
+        private void Unsee_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Visible;
+            Unmask_pass.Visibility = Visibility.Hidden;
         }
         #endregion
 
