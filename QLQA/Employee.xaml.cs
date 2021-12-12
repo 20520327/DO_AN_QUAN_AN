@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -40,12 +41,14 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
         //Function
@@ -71,11 +74,17 @@ namespace UI
             try
             {
                 querysaveEmployee.ExecuteNonQuery();
-                MessageBox.Show("Thêm nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm nhân viên thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
             ListEmployeeviewInfo();
         }
@@ -93,10 +102,16 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
         }
-
+        private void btEview_Click(object sender, RoutedEventArgs e)
+        {
+            ListEmployeeviewInfo();
+        }
         private void lvEmployee_Loaded(object sender, RoutedEventArgs e)
         {
             ListEmployeeviewInfo();
@@ -139,11 +154,17 @@ namespace UI
             try
             {
                 querydelEmployee.ExecuteNonQuery();
-                MessageBox.Show("Xoá nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá nhân viên thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
             ListEmployeeviewInfo();
         }
@@ -172,11 +193,17 @@ namespace UI
             try
             {
                 queryUpdateEmployee.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật nhân viên thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật nhân viên thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
             ListEmployeeviewInfo();
         }
@@ -212,10 +239,14 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi" + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "employee");
             }
         }
         #endregion
+
         
     }
 }

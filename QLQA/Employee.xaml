@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Employee" Height="800" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}" AllowsTransparency="True" 
         Icon="image/bistro1.png">
+    <materialDesign:DialogHost Identifier="employee">
     <Grid>
         <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
             <Grid>
@@ -82,7 +83,7 @@
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xem"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="469,45,19,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
-                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5">
+                        FontSize="16" FontWeight="SemiBold" Height="Auto" RenderTransformOrigin="0.5,0.5" Click="btEview_Click">
                         <Button.Effect>
                             <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
                         </Button.Effect>
@@ -182,4 +183,5 @@
             </Grid>
         </materialDesign:Card>
     </Grid>
+    </materialDesign:DialogHost>
 </Window>

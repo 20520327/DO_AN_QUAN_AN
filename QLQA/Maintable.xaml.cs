@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using QLQA;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -34,16 +35,23 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Bạn có thật sự muốn thoát ?", "Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
-            {
-            }
-            else
-            {
-                Thuvien.exit();
-            }
+            QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Bạn có muốn đóng ứng dụng?");
+            QLQA.Notification.Exit b = new QLQA.Notification.Exit();
+            b.DataContext = dia;
+            DialogHost.Show(b, "Maintable");
+        }
+
+        #region Đăng xuất
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Bạn có muốn đăng xuất ?");
+            QLQA.Notification.LogOut b = new QLQA.Notification.LogOut();
+            b.DataContext = dia;
+            DialogHost.Show(b, "Maintable");
         }
         #endregion
-
+        #endregion
+        
         #region Các button
 
         #region Tài khoản
@@ -52,13 +60,15 @@ namespace UI
             if (SQL.lg.ROLEid == 0)
             {
                 account nv = new account();
-                this.Hide();
-                nv.ShowDialog();
-                this.Show();
+                App.swapMainWindow(nv);
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Bạn không có quyền truy cập !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Bạn không có quyền truy cập !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "Maintable");
             }
         }
         #endregion
@@ -67,9 +77,8 @@ namespace UI
         private void btHistory_Click(object sender, RoutedEventArgs e)
         {
             revenue ls = new revenue();
-            this.Hide();
-            ls.ShowDialog();
-            this.Show();
+            App.swapMainWindow(ls);
+            this.Close();
         }
         #endregion
 
@@ -77,9 +86,8 @@ namespace UI
         private void btList_Click(object sender, RoutedEventArgs e)
         {
             category dm = new category();
-            this.Hide();
-            dm.ShowDialog();
-            this.Show();
+            App.swapMainWindow(dm);
+            this.Close();
         }
         #endregion
 
@@ -89,13 +97,15 @@ namespace UI
             if(SQL.lg.ROLEid == 0)
             {
                 employee nv = new employee();
-                this.Hide();
-                nv.ShowDialog();
-                this.Show();
+                App.swapMainWindow(nv);
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Bạn không có quyền truy cập !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Bạn không có quyền truy cập !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "Maintable");
             }
         }
         #endregion
@@ -104,9 +114,8 @@ namespace UI
         private void btFood_Click(object sender, RoutedEventArgs e)
         {
             food fd = new food();
-            this.Hide();
-            fd.ShowDialog();
-            this.Show();
+            App.swapMainWindow(fd);
+            this.Close();
         }
         #endregion
 
@@ -114,36 +123,21 @@ namespace UI
         private void btTable_Click(object sender, RoutedEventArgs e)
         {
             table tb = new table();
-            this.Hide();
-            tb.ShowDialog();
-            this.Show();
+            App.swapMainWindow(tb);
+            this.Close();
         }
         #endregion
 
         #region Order
         private void btOrder_Click(object sender, RoutedEventArgs e)
         {
-            order db = new order();
-            this.Hide();
-            db.ShowDialog();
-            this.Show();
+            UI.order db = new UI.order();
+            App.swapMainWindow(db);
+            this.Close();
         }
         #endregion
 
-        #region Đăng xuất
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-            if(MessageBox.Show("Bạn có thật sự muốn đăng xuất ?","Thông báo", MessageBoxButton.OKCancel, MessageBoxImage.Information) != MessageBoxResult.OK)
-            {
-            }
-            else
-            {
-                login lg = new login();
-                this.Close();
-                lg.Show();
-            }
-        }
-        #endregion
+        
         #endregion
     }
 }

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 using QLQA;
 
 namespace UI
@@ -41,9 +42,8 @@ namespace UI
         private void btsignup_Click(object sender, RoutedEventArgs e)
         {
             signup lg = new signup();
-            this.Hide();
-            lg.ShowDialog();
-            this.Show();
+            App.swapMainWindow(lg);
+            this.Close();
         }
         #endregion
 
@@ -56,16 +56,21 @@ namespace UI
             if (SQL.CheckLogin(User, Pass))
             {
                 maintable a = new maintable();
-                a.Show();
-                this.Close();
+                App.swapMainWindow(a);
             }
             else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
             {
-                MessageBox.Show("Bạn chưa nhập thông tin !\nXin vui lòng nhập vào !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Bạn chưa nhập thông tin.\nVui lòng nhập vào.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "login");
             }
             else
             {
-                MessageBox.Show("Sai mật khẩu hoặc tên tài khoản !\nVui lòng nhập lại !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Sai mật khẩu hoặc tài khoản!\nVui lòng nhập lại.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "login");
             }
         }
 
@@ -83,11 +88,17 @@ namespace UI
                 }
                 else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
                 {
-                    MessageBox.Show("Bạn chưa nhập thông tin !\nXin vui lòng nhập vào !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Bạn chưa nhập thông tin.\nVui lòng nhập vào.");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "login");
                 }
                 else
                 {
-                    MessageBox.Show("Sai mật khẩu hoặc tên tài khoản !\nVui lòng nhập lại !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Sai mật khẩu hoặc tài khoản!\nVui lòng nhập lại.");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "login");
                 }
             }
         }

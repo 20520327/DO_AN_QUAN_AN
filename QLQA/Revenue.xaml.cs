@@ -17,6 +17,7 @@ using QLQA;
 using QLQA.Model;
 using System.Data;
 using System.Data.SqlTypes;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -35,7 +36,8 @@ namespace UI
         #region Control panel and Home button
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -45,7 +47,8 @@ namespace UI
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
 
@@ -59,7 +62,10 @@ namespace UI
             DateTime to = dpDateto.SelectedDate.Value;
             if (to < from)
             {
-                MessageBox.Show("Ngày nhập vào không hợp lệ", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Ngày nhập vào không hợp lệ !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "revenue");
                 return;
             }
             List<Revenue> ls = new List<Revenue>();
@@ -91,7 +97,10 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi thống kê !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi thống kê !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "revenue");
             }
         }
         #endregion
@@ -121,7 +130,10 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi thống kê !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi load bảng thống kê !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "revenue");
             }
         }
         #endregion
@@ -149,7 +161,10 @@ namespace UI
                 file1.Close();
             }
 
-            MessageBox.Show(" Đã lưu báo cáo thành công thành file Excel.","Thông báo",MessageBoxButton.OK,MessageBoxImage.Information);
+            QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Đã lưu báo cáo thành công thành file Excel.");
+            QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+            b.DataContext = dia;
+            DialogHost.Show(b, "revenue");
         }
         #endregion
     }

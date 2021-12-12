@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -40,12 +41,14 @@ namespace UI
         }
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
 
@@ -120,7 +123,10 @@ namespace UI
             }
             catch(Exception es)
             {
-                MessageBox.Show("Lỗi tìm kiếm id category !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi tìm kiếm id category !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
             }
             ketnoi.Close();
             #endregion
@@ -142,7 +148,10 @@ namespace UI
             }
             catch(Exception es)
             {
-                MessageBox.Show("Lỗi Load danh sách món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi load danh sách món ăn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
             }
             cbFood.ItemsSource = lsFoodName;
             cbFood.SelectedIndex = 0;
@@ -168,8 +177,11 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi không tìm được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không tìm được id món ăn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
             }
             return -1;
         }
@@ -199,8 +211,11 @@ namespace UI
                 tbTotalMoney.Text = total + "";
             }
             catch (Exception cs)
-            {
-                MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+            { 
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không load được hoá đơn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
             }
         }
         #endregion
@@ -226,8 +241,11 @@ namespace UI
                     }
                     catch(Exception es)
                     {
-                        MessageBox.Show("Lỗi Lấy thời gian vào bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi lấy thời gian vào bàn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
+            }
                     return null;
                 }
                 #endregion
@@ -272,8 +290,11 @@ namespace UI
                     }
                     catch (Exception es)
                     {
-                        MessageBox.Show("Lỗi lấy thông tin đơn hàng của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi lấy thông tin đơn hàng của bàn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
+            }
                     return ls;
                 }
         #endregion
@@ -295,8 +316,11 @@ namespace UI
                     }
                     catch (Exception es)
                     {
-                        MessageBox.Show("Lỗi lấy ID order của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi lấy ID order của bàn đã thanh toán !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
+            }
                     return -1;
                 }
                 #endregion
@@ -318,8 +342,11 @@ namespace UI
                     }
                     catch(Exception es)
                     {
-                        MessageBox.Show("Lỗi lấy ID order của bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi lấy ID order của bàn chưa thanh toán !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
+            }
                      return -1;
                 }
                 #endregion
@@ -347,7 +374,10 @@ namespace UI
                 }
                 catch(Exception es)
                 {
-                    MessageBox.Show("Lỗi thêm hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thêm hoá đơn !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "order");
                 }
                 #endregion
 
@@ -360,7 +390,10 @@ namespace UI
                 }
                 catch (Exception es)
                 {
-                    MessageBox.Show("Lỗi thêm hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thêm hoá đơn !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "order");
                 }
                 ketnoi.Close();
                 #endregion
@@ -375,13 +408,17 @@ namespace UI
                 }
                 catch (Exception es)
                 {
-                    MessageBox.Show("Lỗi cập nhật người ở bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật người ở bàn !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "order");
                 }
                 ketnoi.Close();
                 update_table();
                 #endregion
             }
             #endregion
+
             #region Trường hợp đã có người
             else
             {
@@ -401,7 +438,10 @@ namespace UI
                         }
                         catch (Exception es)
                         {
-                            MessageBox.Show("Lỗi thêm món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                            QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thêm món ăn !");
+                            QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                            b.DataContext = a;
+                            DialogHost.Show(b);
                         }
                         ketnoi.Close();
                     }
@@ -421,7 +461,10 @@ namespace UI
                     }
                     catch (Exception es)
                     {
-                        MessageBox.Show("Lỗi thêm món ăn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thêm món ăn !");
+                        QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                        b.DataContext = a;
+                        DialogHost.Show(b);
                     }
                     ketnoi.Close();
                 }
@@ -454,8 +497,11 @@ namespace UI
                     }
                     catch(Exception es)
                     {
-                        MessageBox.Show("Lỗi thanh toán !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thanh toán !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
+            }
             
                     updateDataGrid();
                     update_table();
@@ -474,7 +520,10 @@ namespace UI
                     }
                     catch (Exception es)
                     {
-                        MessageBox.Show("Lỗi thanh toán!\nCần thêm món ăn!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thanh toán!\nCần thêm món ăn!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
                     }
                     ketnoi.Close();
                     #endregion
@@ -498,13 +547,15 @@ namespace UI
             #region Nếu cả 2 bàn đều không có người
             if (ls1.Count == 0 && ls2.Count == 0)
             {
-                MessageBox.Show("Cả 2 bàn đều chưa có người.", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Cả 2 bàn đều chưa có người.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b,"order");
             }
             #endregion
 
             #region Nếu bàn cần chuyển qua chưa có người
-            if (ls2.Count == 0)
+            if (ls2.Count == 0 && ls1.Count != 0 )
             {
                 ketnoi.Open();
                 string updateNewTable = "UPDATE ORDER_QA SET TABLEid = '" + id_table_swaped + "' WHERE ID = '" + getIDorderofTable(selectedTable) + "'";
@@ -516,7 +567,11 @@ namespace UI
                 }
                 catch (Exception es)
                 {
-                    MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "order");
                 }
                 ketnoi.Close();
             }
@@ -545,7 +600,10 @@ namespace UI
                             }
                             catch (Exception es)
                             {
-                                MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
+                                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                                b.DataContext = a;
+                                DialogHost.Show(b, "order");
                             }
                             ketnoi.Close();
                         }
@@ -564,7 +622,10 @@ namespace UI
                             }
                             catch (Exception es)
                             {
-                                MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
+                                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                                b.DataContext = a;
+                                DialogHost.Show(b, "order");
                             }
                             ketnoi.Close();
                         }
@@ -580,7 +641,10 @@ namespace UI
                     }
                     catch (Exception es)
                     {
-                        MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                        QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi xoá món ăn hoá đơn bàn cũ !");
+                        QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                        b.DataContext = a;
+                        DialogHost.Show(b, "order");
                     }
                     ketnoi.Close();
                     #endregion
@@ -597,8 +661,11 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi xoá hoá đơn bàn cũ !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "order");
+                }
             ketnoi.Close();
                 #endregion
             }
@@ -614,11 +681,17 @@ namespace UI
             {
                 caulenh5.ExecuteNonQuery();
                 caulenh6.ExecuteNonQuery();
-                MessageBox.Show("Chuyển bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Chuyển bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi cập nhật chuyển bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "order");
             }
             ketnoi.Close();
             update_table();

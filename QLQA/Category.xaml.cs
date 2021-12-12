@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -39,12 +40,14 @@ namespace UI
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
         //Function button
@@ -62,11 +65,17 @@ namespace UI
             try
             {
                 querysaveCategory.ExecuteNonQuery();
-                MessageBox.Show("Thêm danh mục thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm danh mục thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "category");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi thêm danh mục!\nXin hãy kiểm tra thông tin danh mục.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "category");
             }
             ListCategoryviewInfo();
 
@@ -87,11 +96,17 @@ namespace UI
             try
             {
                 querydelCategory.ExecuteNonQuery();
-                MessageBox.Show("Thêm danh mục thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá danh mục thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "category");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá danh mục!\nXin hãy kiểm tra thông tin danh mục.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "category");
             }
             ListCategoryviewInfo();
         }
@@ -115,11 +130,17 @@ namespace UI
             try
             {
                 queryupdateCategory.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật danh mục thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật danh mục thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "category");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi cập nhật danh mục!\nXin hãy kiểm tra thông tin danh mục.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "category");
             }
             ListCategoryviewInfo();
         }
@@ -147,7 +168,10 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
         }
 

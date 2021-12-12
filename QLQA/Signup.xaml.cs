@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -35,7 +36,8 @@ namespace UI
         #region Control Panel 
         private void btexit_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            login lg = new login();
+            App.swapMainWindow(lg);
         }
 
         private void btMinimize_Click(object sender, RoutedEventArgs e)
@@ -44,19 +46,44 @@ namespace UI
         }
         #endregion
 
+        #region check textbox
+        private bool check_signup()
+        {
+            if(!string.IsNullOrEmpty(tbFullName.Text) && !string.IsNullOrEmpty(tbUsername.Text) && !string.IsNullOrEmpty(tbPasswordbox.Password) && !string.IsNullOrEmpty(tbPhone.Text))
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
         #region bt Đăng ký
         private void btSignup_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
-
-            string fullname = tbFullName.Text.ToString();
-            string user = tbUsername.Text.ToString();
-            string pass = tbPasswordbox.Password.ToString();
-            string phone = tbPhone.Text.ToString();
-            string email = tbEmail.Text.ToString();
+            string fullname, user, pass, phone, email;
             int role_ID = 1;
 
+            if (check_signup())
+            {
+                fullname = tbFullName.Text.ToString();
+                user = tbUsername.Text.ToString();
+                pass = tbPasswordbox.Password.ToString();
+                phone = tbPhone.Text.ToString();
+                email = tbEmail.Text.ToString();
+                role_ID = 1;
+            }
+            else
+            {
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Bạn chưa nhập đầy đủ thông\ntin !");
+                QLQA.Notification.WrongPass dia = new QLQA.Notification.WrongPass();
+                dia.DataContext = a;
+                DialogHost.Show(dia, "signup");
+                return;
+            }    
+                
+            
             #region Random ID nhân viên
             int employee_ID;
             do
@@ -77,12 +104,18 @@ namespace UI
             {
                 querysaveEmployee.ExecuteNonQuery();
                 querysaveAccount.ExecuteNonQuery();
-                MessageBox.Show("Đăng ký thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Đăng ký thành công!");
+                QLQA.Notification.WrongPass dia = new QLQA.Notification.WrongPass();
+                dia.DataContext = a;
+                DialogHost.Show(dia, "signup");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass dia = new QLQA.Notification.WrongPass();
+                dia.DataContext = a;
+                DialogHost.Show(dia, "signup");
             }
             #endregion
         }

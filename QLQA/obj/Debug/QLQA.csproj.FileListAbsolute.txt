@@ -102,3 +102,9 @@ C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\QLQA.csproj.Gen
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\QLQA.csproj.CoreCompileInputs.cache
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\QLQA.exe
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\QLQA.pdb
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\Notification\WrongPass.g.cs
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\Notification\WrongPass.baml
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\Notification\LogOut.g.cs
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\Notification\LogOut.baml
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\Notification\Exit.g.cs
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\Notification\Exit.baml

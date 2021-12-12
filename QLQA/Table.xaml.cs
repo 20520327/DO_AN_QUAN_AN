@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -34,7 +35,8 @@ namespace UI
         #region Control Panel
         private void btHome_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -44,7 +46,8 @@ namespace UI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
 
@@ -60,7 +63,10 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
         }
         private void lvTable_Loaded(object sender, RoutedEventArgs e)
@@ -85,7 +91,7 @@ namespace UI
         }
         #endregion
 
-        #region Button 
+        #region Table 
         #region Thêm bàn
         private void btAddTable_Click(object sender, RoutedEventArgs e)
         {
@@ -102,11 +108,19 @@ namespace UI
             try
             {
                 querySaveTable.ExecuteNonQuery();
-                MessageBox.Show("Thêm bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
             catch(Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi thêm bàn ăn!\nXin hãy kiểm tra lại thông tin bàn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
             ListTableviewInfo();
         }
@@ -128,11 +142,17 @@ namespace UI
             try
             {
                 queryDelTable.ExecuteNonQuery();
-                MessageBox.Show("Xoá bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá bàn ăn!\nXin hãy kiểm tra lại thông tin bàn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
             ListTableviewInfo();
         }
@@ -154,11 +174,19 @@ namespace UI
             try
             {
                 queryUpgradeTable.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật bàn thành công !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi cập nhật bàn ăn!\nXin hãy kiểm tra lại thông tin bàn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "table");
             }
             ListTableviewInfo();
         }

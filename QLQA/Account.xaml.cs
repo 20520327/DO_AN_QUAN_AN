@@ -17,6 +17,7 @@ using QLQA;
 using QLQA.Model;
 using System.Data;
 using System.ComponentModel;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -40,12 +41,14 @@ namespace UI
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
 
@@ -76,7 +79,10 @@ namespace UI
                 string Aconfirm_pass = tbPassConfirm.Password.ToString();
             while (Apassword != Aconfirm_pass)
             {
-                MessageBox.Show("Mật khẩu không giống nhau !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Mật khẩu không giống nhau !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
                 tbPassword.Focus();
                 return;
             }
@@ -88,11 +94,17 @@ namespace UI
             try
             {
                 querysaveAccount.ExecuteNonQuery();
-                MessageBox.Show("Thêm tài khoản thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm tài khoản thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
             ListAccountviewInfo();
         }
@@ -128,11 +140,17 @@ namespace UI
             try
             {
                 querydeleteAccount.ExecuteNonQuery();
-                MessageBox.Show("Xoá tài khoản thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá tài khoản thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
             ListAccountviewInfo();
         }
@@ -161,7 +179,10 @@ namespace UI
             string Aconfirm_pass = tbPassConfirm.Password.ToString();
             while (Apassword != Aconfirm_pass)
             {
-                MessageBox.Show("Mật khẩu không giống nhau !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Warning);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Mật khẩu không giống nhau !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
                 tbPassword.Focus();
                 return;
             }
@@ -175,11 +196,17 @@ namespace UI
             try
             {
                 queryupdateAccount.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật tài khoản thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật tài khoản thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
             ListAccountviewInfo();
         }
@@ -206,7 +233,10 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
         }
  

@@ -16,6 +16,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
+using MaterialDesignThemes.Wpf;
 
 namespace UI
 {
@@ -41,12 +42,14 @@ namespace UI
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            maintable a = new maintable();
+            App.swapMainWindow(a);
         }
         #endregion
         //Function các nút
@@ -78,7 +81,10 @@ namespace UI
             }
             catch(Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi tìm kiếm món ăn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b);
             }
         }
         #endregion
@@ -100,7 +106,10 @@ namespace UI
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi truy vấn danh mục !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi truy vấn ID danh mục !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             return tcateid;
         }
@@ -126,7 +135,10 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("Lỗi loading!!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
+                QLQA.Notification.WrongPass c = new QLQA.Notification.WrongPass();
+                c.DataContext = dia;
+                DialogHost.Show(c, "food");
             }
         }
 
@@ -170,7 +182,10 @@ namespace UI
             
             if(tcateid == -1)
             {
-                MessageBox.Show("Lỗi xác định danh mục!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi xác định danh mục !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             #endregion
 
@@ -178,7 +193,10 @@ namespace UI
 
             if (!int.TryParse(tbPrice.Text.ToString(),out tmoney))
             {
-                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Giá tiền không hợp lệ !!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
                 tbPrice.Clear();
                 tbPrice.Focus();
                 return;
@@ -192,11 +210,17 @@ namespace UI
             try
             {
                 querysaveFood.ExecuteNonQuery();
-                MessageBox.Show("Thêm món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm món ăn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             catch(Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi " + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi thêm món ăn!\nXin hãy kiểm tra lại thông tin món ăn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             #endregion
             ListFoodviewInfo();
@@ -219,7 +243,10 @@ namespace UI
             #region Check giá tiền
             if (!int.TryParse(tbPrice.Text.ToString(), out tmoney))
             {
-                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Giá tiền không hợp lệ !!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
                 tbPrice.Clear();
                 tbPrice.Focus();
                 return;
@@ -233,11 +260,17 @@ namespace UI
             try
             {
                 querydelFood.ExecuteNonQuery();
-                MessageBox.Show("Xoá món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá món ăn thành công!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá món ăn!\nXin hãy kiểm tra lại thông tin món ăn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             ListFoodviewInfo();
             #endregion
@@ -261,14 +294,20 @@ namespace UI
             int tcateid = getIDCategory(tcategory);
             if (tcateid == -1)
             {
-                MessageBox.Show("Lỗi xác định danh mục!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi xác định danh mục!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             #endregion
 
             #region Check giá tiền
             if (!float.TryParse(tbPrice.Text.ToString(), out tmoney))
             {
-                MessageBox.Show("Giá tiền không hợp lệ !!!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Giá tiền không hợp lệ !!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
                 tbPrice.Clear();
                 tbPrice.Focus();
                 return;
@@ -283,11 +322,17 @@ namespace UI
             try
             {
                 queryUpadteFood.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật món ăn thành công!", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Information);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật món ăn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             catch (Exception es)
             {
-                MessageBox.Show("Xảy ra lỗi" + es.Message + "", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi cập nhật món ăn!\nXin hãy kiểm tra lại thông tin món ăn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "food");
             }
             
             ListFoodviewInfo();

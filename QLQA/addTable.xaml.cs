@@ -17,7 +17,7 @@ using System.Data.SqlClient;
 using QLQA;
 using QLQA.Model;
 using System.Data;
-
+using MaterialDesignThemes.Wpf;
 
 namespace QLQA
 {
@@ -55,8 +55,10 @@ namespace QLQA
             }
             catch(Exception es)
             {
-                MessageBox.Show("Lỗi không tìm được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-                
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không tìm được id bàn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b);
             }
             return -1;
         }
@@ -80,8 +82,10 @@ namespace QLQA
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi không tìm được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không tìm được tên món ăn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b);
             }
             return null;
         }
@@ -105,8 +109,10 @@ namespace QLQA
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi không tìm được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không tìm được giá món ăn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b);
             }
             return -1;
         }
@@ -141,7 +147,10 @@ namespace QLQA
             }
             catch (Exception es)
             {
-                MessageBox.Show("Lỗi load được id bàn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi load được id đơn hàng chưa thanh toán !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b);
             }
             return ls;
         }
@@ -174,7 +183,10 @@ namespace QLQA
             }
             catch (Exception cs)
             {
-                MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không load được hoá đơn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b);
             }
         }
         #endregion
@@ -194,7 +206,10 @@ namespace QLQA
             }
             catch(Exception cs)
             {
-                MessageBox.Show("Lỗi không load được hoá đơn !", "Thông báo", MessageBoxButton.OK, MessageBoxImage.Error);
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi không load được hoá đơn !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b);
             }
         }
         #endregion

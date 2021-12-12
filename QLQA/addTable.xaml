@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:QLQA"
              mc:Ignorable="d" 
              d:DesignHeight="140" d:DesignWidth="140">
-    
+    <materialDesign:DialogHost>
         <Grid
         HorizontalAlignment="Center"
         VerticalAlignment="Center">
@@ -25,5 +25,5 @@
             </Button.Effect>
         </Button>
         </Grid>
-    
+    </materialDesign:DialogHost>
 </UserControl>

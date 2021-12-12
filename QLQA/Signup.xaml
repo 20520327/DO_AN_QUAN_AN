@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Signup" Height="500" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None" Background="{x:Null}" AllowsTransparency="True" 
         Icon="image/bistro1.png">
+    <materialDesign:DialogHost Identifier="signup">
     <Grid>
         <materialDesign:Card UniformCornerRadius="15">
             <Grid>
@@ -68,5 +69,5 @@
             </Grid>
         </materialDesign:Card>
     </Grid>
-
+    </materialDesign:DialogHost>
 </Window>
