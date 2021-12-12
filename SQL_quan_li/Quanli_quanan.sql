@@ -18,7 +18,6 @@ create table ROLE
 go
 INSERT INTO ROLE(ID,NAME) VALUES ('0',N'Người quản lí')
 INSERT INTO ROLE(ID,NAME) VALUES ('1',N'Nhân viên')
-delete ROLE where ID in ('0','1')
 
 create table EMPLOYEE
 (
@@ -34,11 +33,7 @@ go
 ALTER TABLE EMPLOYEE ALTER COLUMN FULLNAME NVARCHAR(200) COLLATE Vietnamese_CI_AS
 
 insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('1',N'Trần Hữu Trí',N'Người quản lí',N'95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7','0857350234',N'Nam',N'tritran5789@gmail.com');
-
-
-insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('2','Trần Hữu Trí','Nhân viên','95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7','0857350234','Nam','tritran5789@gmail.com');
-insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('7','Trần Hữu Trí','Nhân viên','95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7','0857350234','Nam','tritran5789@gmail.com');
-insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('8','Trần Hữu Trí','Nhân viên','95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7','0857350234','Nam','tritran5789@gmail.com');
+insert into EMPLOYEE(ID,FULLNAME,POSITION,ADDRESS,PHONE,SEX,EMAIL) values ('2',N'Kim Thảo',N'Nhân viên',N'95/20/18B Lê Văn Lương, Tân Kiểng, Quận 7',N'0857350234',N'Nữ',N'tritran5789@gmail.com');
 
 
 create table ACCOUNT 
@@ -54,7 +49,7 @@ create table ACCOUNT
 )
 go
 
-INSERT INTO ACCOUNT(EMPLOYEEid,ROLEid,USERNAME,PASSWORD) values ('1','0','trihuu15','123456');
+INSERT INTO ACCOUNT(EMPLOYEEid,ROLEid,USERNAME,PASSWORD) values ('1','0','admin','123456');
 
 create table CATEGORY
 (
@@ -153,7 +148,4 @@ insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','1','1')
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','2','1')
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('2','1','1')
 
-update TABLEQA
-set STATUS = N'Có người'
-where ID in ((select TABLEid from ORDER_QA where BILLstatus = '0'))
 
