@@ -26,7 +26,7 @@
             <Label Content="Thông báo" FontSize="22" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Width="116" FontFamily="Gilroy"/>
             <TextBlock TextWrapping="Wrap" Text="{Binding Path = Mess}" FontSize="20" HorizontalAlignment="Left" Margin="120,80,0,0" VerticalAlignment="Top" Width="259" FontFamily="Gilroy"/>
 
-            <Image HorizontalAlignment="Left" Height="89" Margin="24,55,0,0" VerticalAlignment="Top" Width="82" Source="ImageforNof\information.png"/>
+            <Image HorizontalAlignment="Left" Height="89" Margin="24,55,0,0" VerticalAlignment="Top" Width="82" Source="ImageforNof\open-door.png"/>
         </Grid>
     </Border>
 </UserControl>

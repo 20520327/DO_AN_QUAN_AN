@@ -51,6 +51,7 @@ namespace UI
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
 
+
             string User = tbUsername.Text.ToString();
             string Pass = tbPassword.Password.ToString();
             if (SQL.CheckLogin(User, Pass))

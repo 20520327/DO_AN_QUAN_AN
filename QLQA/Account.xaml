@@ -9,7 +9,7 @@
         x:Name="_this"
         Title="Account" Height="800" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}" AllowsTransparency="True" 
         Icon="image/bistro1.png">
-    <materialDesign:DialogHost>
+    <materialDesign:DialogHost Identifier="winAccount">
     <Grid>
         <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
             <Grid>
@@ -159,7 +159,6 @@
                                          SelectionBrush="#FF0DA0B8" 
                                          BorderBrush="#FF0DA0B8" FontSize="18"/>
                             <TextBlock 
-                                
                                 Text="Loại tài khoản" FontFamily="Gilroy" 
                                  VerticalAlignment="Center"          FontSize="18" Foreground="#FF5EBAC9" Margin="0,10,0,53" Height="29" Background="White" Grid.Row="3"/>
                             <Grid Height="60" Margin="0,0,0,0">
@@ -197,7 +196,7 @@
                                 materialDesign:HintAssist.Hint="Mật khẩu"
                                 Background="White"
                                 Visibility="Hidden"  
-                                Text="{Binding ElementName=_this, Path=Password}"
+                                TextChanged="Unmask_pass_TextChanged"
                                 Margin="0,44,0,0" 
                                 CaretBrush="#FF0DA0B8" 
                                 BorderBrush="#FF0DA0B8" 

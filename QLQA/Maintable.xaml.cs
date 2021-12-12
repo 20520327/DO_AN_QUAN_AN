@@ -42,13 +42,14 @@ namespace UI
         }
 
         #region Đăng xuất
-        private void Home_Click(object sender, RoutedEventArgs e)
+        private void Logout_Click(object sender, RoutedEventArgs e)
         {
             QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Bạn có muốn đăng xuất ?");
             QLQA.Notification.LogOut b = new QLQA.Notification.LogOut();
             b.DataContext = dia;
             DialogHost.Show(b, "Maintable");
         }
+        
         #endregion
         #endregion
         
@@ -135,9 +136,15 @@ namespace UI
             App.swapMainWindow(db);
             this.Close();
         }
+
         #endregion
 
-        
         #endregion
+
+        private void Account_popup_Click(object sender, RoutedEventArgs e)
+        {
+            QLQA.Notification.MyAccount b = new QLQA.Notification.MyAccount();
+            DialogHost.Show(b, "Maintable");
+        }
     }
 }

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("notification/closed-sign.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("notification/employee-of-the-month.png")]
 
 

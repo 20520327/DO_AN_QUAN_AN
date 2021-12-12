@@ -82,7 +82,7 @@ namespace UI
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Mật khẩu không giống nhau !");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
                 tbPassword.Focus();
                 return;
             }
@@ -97,14 +97,14 @@ namespace UI
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm tài khoản thành công!");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
             catch (Exception es)
             {
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
             ListAccountviewInfo();
         }
@@ -143,14 +143,14 @@ namespace UI
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá tài khoản thành công !");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
             catch (Exception es)
             {
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
             ListAccountviewInfo();
         }
@@ -182,9 +182,8 @@ namespace UI
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Mật khẩu không giống nhau !");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
                 tbPassword.Focus();
-                return;
             }
 
             //Viết SQL
@@ -199,14 +198,14 @@ namespace UI
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật tài khoản thành công!");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
             catch (Exception es)
             {
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
             ListAccountviewInfo();
         }
@@ -236,7 +235,7 @@ namespace UI
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
-                DialogHost.Show(b);
+                DialogHost.Show(b, "winAccount");
             }
         }
  
@@ -256,11 +255,16 @@ namespace UI
 
         private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            if (string.CompareOrdinal(Password, this.tbPassword.Password) == 0)
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
                 return;
-            Password = this.tbPassword.Password;
+            Unmask_pass.Text = this.tbPassword.Password;
         }
-
+        private void Unmask_pass_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            this.tbPassword.Password = Unmask_pass.Text;
+        }
         private string _password;
         public string Password
         {
@@ -286,7 +290,7 @@ namespace UI
             this.tbPassword.Visibility = Visibility.Hidden;
             Unmask_pass.Visibility = Visibility.Visible;
         }
-
+        
         private void Unsee_Unchecked(object sender, RoutedEventArgs e)
         {
             this.tbPassword.Visibility = Visibility.Visible;
@@ -295,5 +299,7 @@ namespace UI
         #endregion
 
         #endregion
+
+        
     }
 }

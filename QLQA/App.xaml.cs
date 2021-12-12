@@ -25,8 +25,6 @@ namespace QLQA
         {
             login a = new login();
             a.Show();
-            //signup a = new signup();
-            //a.Show();
         }
     }
 }
