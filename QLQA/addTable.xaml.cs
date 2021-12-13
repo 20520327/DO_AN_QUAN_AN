@@ -18,6 +18,7 @@ using QLQA;
 using QLQA.Model;
 using System.Data;
 using MaterialDesignThemes.Wpf;
+using QLQA.View;
 
 namespace QLQA
 {
@@ -26,9 +27,11 @@ namespace QLQA
     /// </summary>
     public partial class addTable : UserControl
     {
-        public addTable()
+        private QAorder caller;
+        public addTable(QAorder caller = null)
         {
             InitializeComponent();
+            this.caller = caller;
         }
 
         #region Table order info
@@ -127,7 +130,7 @@ namespace QLQA
             List<Orderinfo> ls = new List<Orderinfo>();
             
             int id_table = getIDOfTable(Tablename.Text);
-            UI.order.selectedTable = id_table;
+            QLQA.View.QAorder.selectedTable = id_table;
             string searchInfo = "select A.ID,B.FOODid,B.QUANTITY from (ORDER_QA A inner join ORDER_FOOD B on A.ID=B.ORDERid) where A.TABLEid = '"+ id_table +"' and A.BILLstatus = '0'";
             SqlCommand caulenh = new SqlCommand(searchInfo, ketnoi);
             SqlDataReader kqtruyvan = caulenh.ExecuteReader();
@@ -171,15 +174,14 @@ namespace QLQA
         #region Cập nhật View đơn hàng
         public void updateDataGrid()
         {
-            var parent_window = Window.GetWindow(this);
 
             List<Orderinfo> ls = getListInfoBill();
             try
             {
-                (parent_window as order).lvOrder.ItemsSource = ls;
+                caller.lvOrder.ItemsSource = ls;
                 int total = Sum(ls);
 
-                (parent_window as order).tbTotalMoney.Text = total + "";
+                caller.tbTotalMoney.Text = total + "";
             }
             catch (Exception cs)
             {
@@ -194,15 +196,13 @@ namespace QLQA
         #region View order từng bàn
         private void btTable_Click(object sender, RoutedEventArgs e)
         {
-            var parent_window = Window.GetWindow(this);
-
             List<Orderinfo> ls = getListInfoBill();
             try
             {
-                (parent_window as order).lvOrder.ItemsSource = ls;
+                caller.lvOrder.ItemsSource = ls;
                 int total = Sum(ls);
 
-                (parent_window as order).tbTotalMoney.Text = total + "";
+                caller.tbTotalMoney.Text = total + "";
             }
             catch(Exception cs)
             {

@@ -1,0 +1,198 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using System.Data.SqlClient;
+using QLQA;
+using QLQA.Model;
+using System.Data;
+using MaterialDesignThemes.Wpf;
+using UI;
+
+namespace QLQA.View
+{
+    /// <summary>
+    /// Interaction logic for QAtable.xaml
+    /// </summary>
+    public partial class QAtable : UserControl
+    {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+
+        public WindowState WindowState { get; private set; }
+        #endregion
+        public QAtable()
+        {
+            InitializeComponent();
+        }
+
+        #region Control Panel
+        private void btHome_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+        #endregion
+
+        #region View Table
+        public void ListTableviewInfo()
+        {
+            List<QLQA.Model.Table> a = new List<QLQA.Model.Table>();
+            bool check = SQL.getListTable(ref a);
+            if (check)
+            {
+                lvTable.ItemsSource = a;
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvTable.ItemsSource);
+            }
+            else
+            {
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Lỗi loading!!!");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+        }
+        private void lvTable_Loaded(object sender, RoutedEventArgs e)
+        {
+            ListTableviewInfo();
+        }
+        private void btViewTable_Click(object sender, RoutedEventArgs e)
+        {
+            ListTableviewInfo();
+        }
+
+        private void lvTable_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            DataGrid gd = (DataGrid)sender;
+            QLQA.Model.Table row_selected = gd.SelectedItem as QLQA.Model.Table;
+            if (row_selected != null)
+            {
+                tbtID.Text = row_selected.ID.ToString();
+                tbtName.Text = row_selected.NAME.ToString();
+                cbtStatus.SelectedItem = row_selected.STATUS.ToString();
+            }
+        }
+        #endregion
+
+        #region Table 
+        #region Thêm bàn
+        private void btAddTable_Click(object sender, RoutedEventArgs e)
+        {
+
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
+            int tid = int.Parse(tbtID.Text.ToString());
+            string tname = tbtName.Text.ToString();
+            string tstatus = cbtStatus.Text.ToString();
+            string saveTable = "INSERT INTO TABLEQA(ID,NAME,STATUS) VALUES ('" + tid + "', N'" + tname + "', N'" + tstatus + "');";
+            SqlCommand querySaveTable = new SqlCommand(saveTable, ketnoi);
+
+            try
+            {
+                querySaveTable.ExecuteNonQuery();
+
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Thêm bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+            catch (Exception es)
+            {
+
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi thêm bàn ăn!\nXin hãy kiểm tra lại thông tin bàn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+            ListTableviewInfo();
+        }
+        #endregion
+
+        #region Xoá bàn
+        private void btDeleteTable_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
+
+            int tid = int.Parse(tbtID.Text.ToString());
+
+
+
+            string DeleteTable = "DELETE FROM TABLEQA WHERE ID = '" + tid + "'";
+            SqlCommand queryDelTable = new SqlCommand(DeleteTable, ketnoi);
+            try
+            {
+                queryDelTable.ExecuteNonQuery();
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xoá bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+            catch (Exception es)
+            {
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá bàn ăn!\nXin hãy kiểm tra lại thông tin bàn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+            ListTableviewInfo();
+        }
+        #endregion
+
+        #region Cập nhật bàn
+        private void btUpgradeTable_Click(object sender, RoutedEventArgs e)
+        {
+            SqlConnection ketnoi = new SqlConnection(Connectionstring);
+            ketnoi.Open();
+
+            int tid = int.Parse(tbtID.Text.ToString());
+            string tname = tbtName.Text.ToString();
+            string tstatus = cbtStatus.Text.ToString();
+            string UpgradeTable = "UPDATE TABLEQA " +
+                                    "SET ID = '" + tid + "', NAME = N'" + tname + "'" + ", STATUS = N'" + tstatus + "'" +
+                                    "WHERE ID = '" + tid + "'";
+            SqlCommand queryUpgradeTable = new SqlCommand(UpgradeTable, ketnoi);
+            try
+            {
+                queryUpgradeTable.ExecuteNonQuery();
+
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Cập nhật bàn thành công !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+            catch (Exception es)
+            {
+
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi cập nhật bàn ăn!\nXin hãy kiểm tra lại thông tin bàn.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
+            ListTableviewInfo();
+        }
+        #endregion
+        #endregion
+    }
+}

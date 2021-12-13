@@ -18,8 +18,9 @@ namespace QLQA
         {
             Window old = App.Current.MainWindow;
             App.Current.MainWindow = a;
-            old.Close();
             a.Show();
+            old.Close();
+            Console.WriteLine("Swap Window");
         }
         public void start(object sender, StartupEventArgs e)
         {

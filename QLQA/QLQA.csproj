@@ -36,6 +36,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=2.0.3.2, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.2.0.3\lib\net452\MaterialDesignColors.dll</HintPath>
@@ -119,6 +122,7 @@
     <Compile Include="addTable.xaml.cs">
       <DependentUpon>addTable.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command\ChangeViewCommand.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\Employee.cs" />
@@ -141,37 +145,50 @@
     <Compile Include="Notification\WrongPass.xaml.cs">
       <DependentUpon>WrongPass.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Report.xaml.cs" />
-    <Compile Include="Revenue.xaml.cs" />
     <Compile Include="Signup.xaml.cs" />
     <Compile Include="SQL.cs" />
-    <Compile Include="Table.xaml.cs" />
     <Compile Include="Thuvien.cs" />
-    <Page Include="Account.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Command\TitleBarCommand.cs" />
+    <Compile Include="View\AccountView.cs" />
+    <Compile Include="View\CategoryView.cs" />
+    <Compile Include="View\MaintableView.cs" />
+    <Compile Include="View\QAaccount.xaml.cs">
+      <DependentUpon>QAaccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAcategory.xaml.cs">
+      <DependentUpon>QAcategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAemployee.xaml.cs">
+      <DependentUpon>QAemployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAfood.xaml.cs">
+      <DependentUpon>QAfood.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAmaintable.xaml.cs">
+      <DependentUpon>QAmaintable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAorder.xaml.cs">
+      <DependentUpon>QAorder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QArevenue.xaml.cs">
+      <DependentUpon>QArevenue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAtable.xaml.cs">
+      <DependentUpon>QAtable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\QAWindow.xaml.cs">
+      <DependentUpon>QAWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView.cs" />
+    <Compile Include="View\FoodView.cs" />
+    <Compile Include="View\OrderView.cs" />
+    <Compile Include="View\RevenueView.cs" />
+    <Compile Include="View\TableView.cs" />
     <Page Include="addTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Category.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Employee.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Food.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Login.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Maintable.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -179,16 +196,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Account.xaml.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Category.xaml.cs" />
-    <Compile Include="Employee.xaml.cs" />
-    <Compile Include="Food.xaml.cs" />
     <Compile Include="Login.xaml.cs" />
-    <Compile Include="Maintable.xaml.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -209,29 +221,48 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Order.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Report.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Revenue.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Signup.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Table.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="View\QAaccount.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAcategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAemployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAfood.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAmaintable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAorder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QArevenue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAtable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\QAWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Order.xaml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -299,6 +330,7 @@
   <ItemGroup>
     <Resource Include="Notification\employee-of-the-month.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.2.1\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

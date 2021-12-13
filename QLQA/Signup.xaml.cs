@@ -120,5 +120,13 @@ namespace UI
             #endregion
         }
         #endregion
+
+        #region hyperink đăng nhập
+        private void btlogin_Click_1(object sender, RoutedEventArgs e)
+        {
+            login lg = new login();
+            App.swapMainWindow(lg);
+        }
+        #endregion
     }
 }

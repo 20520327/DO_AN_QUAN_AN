@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using QLQA;
+using QLQA.View;
 
 namespace UI
 {
@@ -56,7 +57,7 @@ namespace UI
             string Pass = tbPassword.Password.ToString();
             if (SQL.CheckLogin(User, Pass))
             {
-                maintable a = new maintable();
+                QAWindow a = new QAWindow();
                 App.swapMainWindow(a);
             }
             else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
@@ -83,9 +84,8 @@ namespace UI
                 string Pass = tbPassword.Password.ToString();
                 if (SQL.CheckLogin(User, Pass))
                 {
-                    maintable a = new maintable();
-                    a.Show();
-                    this.Close();
+                    QAWindow a = new QAWindow();
+                    App.swapMainWindow(a);
                 }
                 else if (tbUsername.Text.ToString() == "" || tbPassword.Password.ToString() == "")
                 {

@@ -24,14 +24,13 @@ namespace QLQA.Notification
     /// </summary>
     public partial class MyAccount : UserControl, INotifyPropertyChanged
     {
+        #region Chuỗi kết nỗi
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
-
+        #endregion
         public MyAccount()
         {
             InitializeComponent();
         }
-
-
 
         #region Peek password
         public event PropertyChangedEventHandler PropertyChanged;
@@ -67,6 +66,7 @@ namespace QLQA.Notification
         }
         #endregion
 
+        #region Update button
         private void UpdateAC_Click(object sender, RoutedEventArgs e)
         {
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
@@ -109,6 +109,7 @@ namespace QLQA.Notification
                 DialogHost.Show(b, "Myaccount");
             }
         }
+
         #region Load Myaccount
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
@@ -125,7 +126,7 @@ namespace QLQA.Notification
             Unmask_pass.Text = SQL.lg.PASSWORD.ToString();
         }
         #endregion
+        #endregion
 
-        
     }
 }
