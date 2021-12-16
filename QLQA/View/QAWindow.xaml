@@ -35,6 +35,9 @@
                     <DataTemplate DataType="{x:Type local:TableView}">
                         <local:QAtable/>
                     </DataTemplate>
+                    <!--<DataTemplate DataType="{x:Type local:ReportView}">
+                        <local:QAreport/>
+                    </DataTemplate>-->
                     <DataTemplate DataType="{x:Type local:MaintableView}">
                         <local:QAmaintable/>
                     </DataTemplate>

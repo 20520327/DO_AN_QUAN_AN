@@ -152,14 +152,16 @@ namespace QLQA.View
             lvRevenue.UnselectAllCells();
             SaveFileDialog save = new SaveFileDialog();
             save.Filter = "Excel |*.xls";
+            bool check = false;
             if (dpDateto.Text != "")
             {
                 //System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"C:\visual studio\Quanliquanan\SQL_quan_li\Baocao_ngay _" + ((DateTime)dpDateto.SelectedDate.Value).Day + "_thang_" + ((DateTime)dpDateto.SelectedDate.Value).Month + "_nam_" + ((DateTime)dpDateto.SelectedDate.Value).Year + ".xls");
                 if (save.ShowDialog() == true)
                 {
-                System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"" + save.FileName + "");
-                file1.WriteLine(result.Replace(',', ' '));
-                file1.Close();
+                    check = true;
+                    System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"" + save.FileName + "");
+                    file1.WriteLine(result.Replace(',', ' '));
+                    file1.Close();
                 }
                     
             }
@@ -168,17 +170,19 @@ namespace QLQA.View
                 //System.IO.StreamWriter file1 = new System.IO.StreamWriter(@"C:\visual studio\Quanliquanan\SQL_quan_li\Baocaotongquat.xls");
                 if(save.ShowDialog() == true)
                 {
-                System.IO.StreamWriter file1 = new System.IO.StreamWriter(@""+ save.FileName +"");
-                file1.WriteLine(result.Replace(',', ' '));
-                file1.Close();
+                    check = true;
+                    System.IO.StreamWriter file1 = new System.IO.StreamWriter(@""+ save.FileName +"");
+                    file1.WriteLine(result.Replace(',', ' '));
+                    file1.Close();
                 }
-                
             }
-
-            QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Đã lưu báo cáo thành công thành file Excel.");
-            QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-            b.DataContext = dia;
-            DialogHost.Show(b, "main");
+            if (check)
+            {
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Đã lưu báo cáo thành công thành file Excel.");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+            }
         }
         #endregion
     }

@@ -17,6 +17,7 @@ using QLQA;
 using QLQA.Model;
 using System.Data;
 using MaterialDesignThemes.Wpf;
+using System.Security.Cryptography;
 
 namespace UI
 {
@@ -69,7 +70,7 @@ namespace UI
             {
                 fullname = tbFullName.Text.ToString();
                 user = tbUsername.Text.ToString();
-                pass = tbPasswordbox.Password.ToString();
+                pass = ChangeToMD5(tbPasswordbox.Password.ToString());
                 phone = tbPhone.Text.ToString();
                 email = tbEmail.Text.ToString();
                 role_ID = 1;
@@ -118,6 +119,22 @@ namespace UI
                 DialogHost.Show(dia, "signup");
             }
             #endregion
+        }
+
+        #endregion
+
+        #region MD5
+        public string ChangeToMD5(string pass)
+        {
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
+            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
+            string hasPass = "";
+
+            foreach (var item in hasData)
+            {
+                hasPass += item;
+            }
+            return hasPass;
         }
         #endregion
 

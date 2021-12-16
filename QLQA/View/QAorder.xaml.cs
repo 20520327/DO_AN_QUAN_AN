@@ -29,7 +29,8 @@ namespace QLQA.View
         #region Các biến toàn cục và chuỗi kết nối
         public static int selectedTable = 0;
         public static float thanhtien = 0;
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        public static bool confirm = false;
+        public static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
 
         public WindowState WindowState { get; private set; }
         #endregion
@@ -540,7 +541,14 @@ namespace QLQA.View
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
 
             int id_table_swaped = addTable.getIDOfTable(cbTable.Text);
-
+            if(selectedTable == id_table_swaped)
+            {
+                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Không thể chuyển cùng bàn");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = a;
+                DialogHost.Show(b, "main");
+                return;
+            }
             #region Lấy danh sách hoá đơn của 2 bàn
             List<Orderinfo> ls1 = getListInfoBill(selectedTable);
             List<Orderinfo> ls2 = getListInfoBill(id_table_swaped);
@@ -555,123 +563,143 @@ namespace QLQA.View
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = a;
                 DialogHost.Show(b, "main");
+                return;
             }
             #endregion
 
-            #region Nếu bàn cần chuyển qua chưa có người
+            #region Nếu bàn cần chuyển qua bàn chưa có người
             if (ls2.Count == 0 && ls1.Count != 0)
             {
-                ketnoi.Open();
-                string updateNewTable = "UPDATE ORDER_QA SET TABLEid = '" + id_table_swaped + "' WHERE ID = '" + getIDorderofTable(selectedTable) + "'";
-                SqlCommand lenh = new SqlCommand(updateNewTable, ketnoi);
-                try
+                //QLQA.Notification.ViewModel.ViewModel mess = new QLQA.Notification.ViewModel.ViewModel("Bạn có muốn chuyển từ bàn " + selectedTable + " qua bàn " + id_table_swaped + " không ?");
+                //QLQA.Notification.Check dia = new QLQA.Notification.Check();
+                //dia.DataContext = mess;
+                //DialogHost.Show(dia, "main");
+                //var result = await DialogHost.Show(dia, "main");
+                //if (confirm)
                 {
-                    lenh.ExecuteNonQuery();
-
-                }
-                catch (Exception es)
-                {
-
-                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
-                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-                    b.DataContext = a;
-                    DialogHost.Show(b, "main");
-                }
-                ketnoi.Close();
-            }
-            #endregion
-
-            #region Nếu bàn chuyển qua có người
-            else
-            {
-                #region Duyệt danh sách từ bàn 1 qua bàn 2
-                foreach (var tmp_1 in ls1)
-                {
-                    ID_order = int.Parse(tmp_1.OrderID1.ToString());
-
-                    foreach (var tmp_2 in ls2)
-                    {
-                        #region Nếu món ăn bàn 1 của giống bàn 2
-                        if (tmp_1.FOODid1 == tmp_2.FOODid1)
-                        {
-                            //Nếu trùng thì cập nhật và tăng giá trị lên 
-                            ketnoi.Open();
-                            string updateHD = "UPDATE ORDER_FOOD SET QUANTITY = '" + (tmp_1.QUATITY1 + tmp_2.QUATITY1) + "' WHERE ORDERid = '" + int.Parse(tmp_2.OrderID1.ToString()) + "' AND FOODid = '" + int.Parse(tmp_2.FOODid1.ToString()) + "'";
-                            SqlCommand caulenh1 = new SqlCommand(updateHD, ketnoi);
-                            try
-                            {
-                                caulenh1.ExecuteNonQuery();
-                            }
-                            catch (Exception es)
-                            {
-                                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
-                                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-                                b.DataContext = a;
-                                DialogHost.Show(b, "main");
-                            }
-                            ketnoi.Close();
-                        }
-                        #endregion
-
-                        #region Nếu món ăn bàn 1 không có ở bàn 2
-                        else
-                        {
-                            //Nếu chưa có thì thêm vào
-                            ketnoi.Open();
-                            string addHD = "INSERT INTO ORDER_FOOD(ORDERid, FOODid, QUANTITY) values ('" + tmp_2.OrderID1 + "', '" + tmp_1.FOODid1 + "','" + tmp_1.QUATITY1 + "')";
-                            SqlCommand caulenh2 = new SqlCommand(addHD, ketnoi);
-                            try
-                            {
-                                caulenh2.ExecuteNonQuery();
-                            }
-                            catch (Exception es)
-                            {
-                                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
-                                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-                                b.DataContext = a;
-                                DialogHost.Show(b, "main");
-                            }
-                            ketnoi.Close();
-                        }
-                        #endregion
-                    }
-                    #region Dọn bàn 1
                     ketnoi.Open();
-                    string delHd = "DELETE ORDER_FOOD WHERE FOODid = '" + tmp_1.FOODid1 + "' AND ORDERid = '" + tmp_1.OrderID1 + "'";
-                    SqlCommand caulenh3 = new SqlCommand(delHd, ketnoi);
+                    string updateNewTable = "UPDATE ORDER_QA SET TABLEid = '" + id_table_swaped + "' WHERE ID = '" + getIDorderofTable(selectedTable) + "'";
+                    SqlCommand lenh = new SqlCommand(updateNewTable, ketnoi);
                     try
                     {
-                        caulenh3.ExecuteNonQuery();
+                        lenh.ExecuteNonQuery();
+
                     }
                     catch (Exception es)
                     {
-                        QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi xoá món ăn hoá đơn bàn cũ !");
+
+                        QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
                         QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                         b.DataContext = a;
                         DialogHost.Show(b, "main");
                     }
                     ketnoi.Close();
-                    #endregion
                 }
-                #endregion
+            }
+            #endregion
 
-                #region Xoá hoá đơn cũ của bàn cũ
-                ketnoi.Open();
-                string delORDER = "DELETE ORDER_QA WHERE ID = '" + ID_order + "'";
-                SqlCommand caulenh4 = new SqlCommand(delORDER, ketnoi);
-                try
+            #region Nếu bàn chuyển qua bàn có người
+            else
+            {
+                //QLQA.Notification.ViewModel.ViewModel mess = new QLQA.Notification.ViewModel.ViewModel("Bạn có muốn chuyển từ bàn " + selectedTable + " qua bàn " + id_table_swaped + " không ?");
+                //QLQA.Notification.Check dia = new QLQA.Notification.Check();
+                //dia.DataContext = mess;
+                //DialogHost.Show(dia, "main");
+                //if (confirm)
+                bool passed;
                 {
-                    caulenh4.ExecuteNonQuery();
+                    #region Duyệt danh sách từ bàn 1 qua bàn 2
+                    foreach (var tmp_1 in ls1)
+                    {
+                        passed = false;
+                        ID_order = int.Parse(tmp_1.OrderID1.ToString());
+                        foreach (var tmp_2 in ls2)
+                        { 
+                            
+                            #region Nếu món ăn bàn 1 của giống bàn 2
+                            if (tmp_1.FOODid1 == tmp_2.FOODid1 && !passed)
+                            {
+                                passed = true;
+                                //Nếu trùng thì cập nhật và tăng giá trị lên 
+                                ketnoi.Open();
+                                string updateHD = "UPDATE ORDER_FOOD SET QUANTITY = '" + (tmp_1.QUATITY1 + tmp_2.QUATITY1) + "' WHERE ORDERid = '" + int.Parse(tmp_2.OrderID1.ToString()) + "' AND FOODid = '" + int.Parse(tmp_2.FOODid1.ToString()) + "'";
+                                SqlCommand caulenh1 = new SqlCommand(updateHD, ketnoi);
+                                try
+                                {
+                                    caulenh1.ExecuteNonQuery();
+                                }
+                                catch (Exception es)
+                                {
+                                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
+                                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                                    b.DataContext = a;
+                                    DialogHost.Show(b, "main");
+                                }
+                                ketnoi.Close();
+                            }
+                            #endregion
+
+                            #region Nếu món ăn bàn 1 không có ở bàn 2
+                            else if(!passed)
+                            {
+                                passed = true;
+                                //Nếu chưa có thì thêm vào
+                                ketnoi.Open();
+                                string addHD = "INSERT INTO ORDER_FOOD(ORDERid, FOODid, QUANTITY) values ('" + tmp_2.OrderID1 + "', '" + tmp_1.FOODid1 + "','" + tmp_1.QUATITY1 + "')";
+                                SqlCommand caulenh2 = new SqlCommand(addHD, ketnoi);
+                                try
+                                {
+                                    caulenh2.ExecuteNonQuery();
+                                }
+                                catch (Exception es)
+                                {
+                                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
+                                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                                    b.DataContext = a;
+                                    DialogHost.Show(b, "main");
+                                }
+                                ketnoi.Close();
+                            }
+                            #endregion
+                        }
+                        #region Dọn bàn 1
+                        ketnoi.Open();
+                        string delHd = "DELETE ORDER_FOOD WHERE FOODid = '" + tmp_1.FOODid1 + "' AND ORDERid = '" + tmp_1.OrderID1 + "'";
+                        SqlCommand caulenh3 = new SqlCommand(delHd, ketnoi);
+                        try
+                        {
+                            caulenh3.ExecuteNonQuery();
+                        }
+                        catch (Exception es)
+                        {
+                            QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi xoá món ăn hoá đơn bàn cũ !");
+                            QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                            b.DataContext = a;
+                            DialogHost.Show(b, "main");
+                        }
+                        ketnoi.Close();
+                        #endregion
+                    }
+                    #endregion
+
+                    #region Xoá hoá đơn cũ của bàn cũ
+                    ketnoi.Open();
+                    string delORDER = "DELETE ORDER_QA WHERE ID = '" + ID_order + "'";
+                    SqlCommand caulenh4 = new SqlCommand(delORDER, ketnoi);
+                    try
+                    {
+                        caulenh4.ExecuteNonQuery();
+                    }
+                    catch (Exception es)
+                    {
+                        QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi xoá hoá đơn bàn cũ !");
+                        QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                        b.DataContext = a;
+                        DialogHost.Show(b, "main");
+                    }
+                    ketnoi.Close();
+                    #endregion}
                 }
-                catch (Exception es)
-                {
-                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi xoá hoá đơn bàn cũ !");
-                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-                    b.DataContext = a;
-                    DialogHost.Show(b, "main");
-                }
-                ketnoi.Close();
-                #endregion
             }
             #endregion
             //Cập nhật bàn
@@ -700,7 +728,10 @@ namespace QLQA.View
             ketnoi.Close();
             update_table();
             #endregion
+            //Trả lại biến confirm
+            confirm = false;
         }
+        
         #endregion
     }
     #endregion

@@ -139,7 +139,7 @@ namespace QLQA.View
 
 
 
-            string DeleteTable = "DELETE FROM TABLEQA WHERE ID = '" + tid + "'";
+            string DeleteTable = "DELETE FROM TABLEQA WHERE ID = " + tid + "";
             SqlCommand queryDelTable = new SqlCommand(DeleteTable, ketnoi);
             try
             {

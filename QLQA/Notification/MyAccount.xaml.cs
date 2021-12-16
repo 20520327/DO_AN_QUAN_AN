@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +23,7 @@ namespace QLQA.Notification
     /// <summary>
     /// Interaction logic for MyAccount.xaml
     /// </summary>
-    public partial class MyAccount : UserControl, INotifyPropertyChanged
+    public partial class MyAccount : UserControl
     {
         #region Chuỗi kết nỗi
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
@@ -32,37 +33,18 @@ namespace QLQA.Notification
             InitializeComponent();
         }
 
-        #region Peek password
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region MD5
+        public string ChangeToMD5(string pass)
+        {
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
+            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
+            string hasPass = "";
 
-        private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
-                return;
-            Unmask_pass.Text = this.tbPassword.Password;
-        }
-        private void Unmask_pass_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
-                return;
-            this.tbPassword.Password = Unmask_pass.Text;
-        }
-
-        protected void OnPropertyChanged(string propertyName)
-        {
-            //Thông báo pass thay đổi để check cập nhật đúng cho cái textbox
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        private void Unsee_Checked(object sender, RoutedEventArgs e)
-        {
-            this.tbPassword.Visibility = Visibility.Hidden;
-            Unmask_pass.Visibility = Visibility.Visible;
-        }
-
-        private void Unsee_Unchecked(object sender, RoutedEventArgs e)
-        {
-            this.tbPassword.Visibility = Visibility.Visible;
-            Unmask_pass.Visibility = Visibility.Hidden;
+            foreach (var item in hasData)
+            {
+                hasPass += item;
+            }
+            return hasPass;
         }
         #endregion
 
@@ -73,10 +55,24 @@ namespace QLQA.Notification
             ketnoi.Open();
 
             int Aemployee_ID = SQL.lg.EMPLOYEEid;
-            
             string Ausername = tbUsername.Text.ToString();
-            string Apassword = tbPassword.Password.ToString();
-            string Aconfirm_pass = tbConfirmPassword.Password.ToString();
+            string Aoldpass = ChangeToMD5(tbOldPassword.Password.ToString());
+            string Apassword = ChangeToMD5(tbPassword.Password.ToString());
+            string Aconfirm_pass = ChangeToMD5(tbConfirmPassword.Password.ToString());
+
+            #region Check pass cũ và username cũ
+            if (!SQL.CheckLogin(Ausername, Aoldpass))
+            {
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Tài khoản hoặc mật khẩu cũ chưa đúng !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "Myaccount");
+                return;
+            }
+            #endregion
+
+            #region Check pass mới
+            
             if (Apassword != Aconfirm_pass)
             {
                 QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Mật khẩu không giống nhau !");
@@ -85,6 +81,7 @@ namespace QLQA.Notification
                 DialogHost.Show(b, "Myaccount");
                 tbPassword.Focus();
             }
+            #endregion
 
             //Viết SQL
             string updateAccount = "UPDATE ACCOUNT " +
@@ -122,8 +119,6 @@ namespace QLQA.Notification
             {
                 tbPosition.Text = "Nhân viên";
             }
-            tbPassword.Password = SQL.lg.PASSWORD.ToString();
-            Unmask_pass.Text = SQL.lg.PASSWORD.ToString();
         }
         #endregion
         #endregion

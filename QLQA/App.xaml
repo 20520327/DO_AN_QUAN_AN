@@ -20,6 +20,7 @@
                     <view:RevenueView x:Key="RevenueView"/>
                     <view:TableView x:Key="TableView"/>
                     <view:MaintableView x:Key="MaintableView"/>
+                    <!--<view:ReportView x:Key="ReportView"/>-->
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Security.Cryptography;
 using MaterialDesignThemes.Wpf;
 using QLQA;
 using QLQA.View;
@@ -27,6 +28,7 @@ namespace UI
         {
             InitializeComponent();
         }
+
         #region Control Panel
         private void exit_Click(object sender, RoutedEventArgs e)
         {
@@ -48,14 +50,30 @@ namespace UI
         }
         #endregion
 
+        #region MD5
+        public string ChangeToMD5 (string pass)
+        {
+            byte[] temp = ASCIIEncoding.ASCII.GetBytes(pass);
+            byte[] hasData = new MD5CryptoServiceProvider().ComputeHash(temp);
+            string hasPass = "";
+
+            foreach (var item in hasData)
+            {
+                hasPass += item;
+            }
+            return hasPass;
+        }
+        #endregion
+
         #region Login
         private void btLogin_Click(object sender, RoutedEventArgs e)
         {
-
-
             string User = tbUsername.Text.ToString();
             string Pass = tbPassword.Password.ToString();
-            if (SQL.CheckLogin(User, Pass))
+
+            string hasPass = ChangeToMD5(Pass);
+
+            if (SQL.CheckLogin(User, hasPass))
             {
                 QAWindow a = new QAWindow();
                 App.swapMainWindow(a);
@@ -76,13 +94,18 @@ namespace UI
             }
         }
 
+        
+
         private void tbPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Enter)
             {
                 string User = tbUsername.Text.ToString();
                 string Pass = tbPassword.Password.ToString();
-                if (SQL.CheckLogin(User, Pass))
+
+                string hasPass = ChangeToMD5(Pass);
+
+                if (SQL.CheckLogin(User, hasPass))
                 {
                     QAWindow a = new QAWindow();
                     App.swapMainWindow(a);

@@ -3,32 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:QLQA.Notification"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="480">
+             d:DesignHeight="600" d:DesignWidth="480">
     <materialDesign:DialogHost Identifier="Myaccount">
-        <Border Background="White" CornerRadius="20">
-        <Grid Loaded="Grid_Loaded">
-            <Grid Margin="10,0,10,104">
-                <Image HorizontalAlignment="Left" Height="100" Margin="180,22,0,0" VerticalAlignment="Top" Width="100" Source="employee-of-the-month.png"/>
-                <Grid x:Name="myaccountinfo" VerticalAlignment="Top" Height="323" Margin="0,127,0,0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <TextBox x:Name="tbUsername"
+        <Border Background="White" CornerRadius="20" Margin="0,0,0,-15">
+            <Grid Loaded="Grid_Loaded" Margin="0,0,0,48">
+                <Grid Margin="10,0,10,104">
+                    <Image HorizontalAlignment="Left" Height="100" Margin="180,22,0,0" VerticalAlignment="Top" Width="100" Source="employee-of-the-month.png"/>
+                    <Grid x:Name="myaccountinfo" VerticalAlignment="Top" Height="300" Margin="0,127,0,-51">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="tbUsername"
                                      materialDesign:HintAssist.Hint="Tên tài khoản" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                                     Margin="0,0,0,10" 
                                      CaretBrush="#FF0DA0B8" 
                                      BorderBrush="#FF0DA0B8" 
                                      Foreground="#FF0DA0B8" 
                                      SelectionBrush="#FF0DA0B8" 
-                                     FontSize="20" FontFamily="Gilroy" Grid.Row="0" />
-                    <TextBox x:Name="tbPosition"
+                                     FontSize="20" FontFamily="Gilroy" Grid.Row="0" Margin="0,10" />
+                        <TextBox x:Name="tbPosition"
                                      materialDesign:HintAssist.Hint="Chức vụ" 
                                      Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
                                      CaretBrush="#FF0DA0B8" 
@@ -36,70 +35,51 @@
                                      Foreground="#FF0DA0B8" 
                                      SelectionBrush="#FF0DA0B8" 
                                      IsReadOnly="True"
-                                     FontSize="20" FontFamily="Gilroy" Grid.Row="1" Margin="0,0,0,10" />
-                        <PasswordBox x:Name="tbPassword" 
+                                     FontSize="20" FontFamily="Gilroy" Margin="0,10" Grid.Row="1" />
+                        <PasswordBox x:Name="tbOldPassword" 
                                          Grid.Row="2"
-                                         materialDesign:HintAssist.Hint="Mật khẩu" 
-                                         PasswordChanged="tbPassword_PasswordChanged"
+                                         materialDesign:HintAssist.Hint="Mật khẩu cũ" 
+                                         
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
-                                         Margin="0,10,0,0" CaretBrush="#FF0DA0B8" 
+                                         Margin="0,10" CaretBrush="#FF0DA0B8" 
+                                         Foreground="#FF0DA0B8" 
+                                         SelectionBrush="#FF0DA0B8" 
+                                         BorderBrush="#FF0DA0B8" FontSize="20"/>
+                        <PasswordBox x:Name="tbPassword" 
+                                         Grid.Row="3"
+                                         materialDesign:HintAssist.Hint="Mật khẩu" 
+                                         
+                                         Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                                         Margin="0,10" CaretBrush="#FF0DA0B8" 
                                          Foreground="#FF0DA0B8" 
                                          SelectionBrush="#FF0DA0B8" 
                                          BorderBrush="#FF0DA0B8" FontSize="20"/>
                         <PasswordBox x:Name="tbConfirmPassword" 
                                          Grid.Row="3"
                                          materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
-                                         
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
-                                         Margin="0,5,0,0" CaretBrush="#FF0DA0B8" 
+                                         Margin="0,85,0,-65" CaretBrush="#FF0DA0B8" 
                                          Foreground="#FF0DA0B8" 
                                          SelectionBrush="#FF0DA0B8" 
-                                         BorderBrush="#FF0DA0B8" FontSize="20" Height="65" VerticalAlignment="Top"/>
-
-
+                                         BorderBrush="#FF0DA0B8" FontSize="20" Height="55" VerticalAlignment="Top"/>
+                    </Grid>
                 </Grid>
-                
-                <TextBox x:Name="Unmask_pass"
-                                materialDesign:HintAssist.Hint="Mật khẩu"
-                                Background="White"
-                                Visibility="Hidden"  
-                                TextChanged="Unmask_pass_TextChanged"
-                                Margin="0,301,0,86"
-                                CaretBrush="#FF0DA0B8" 
-                                BorderBrush="#FF0DA0B8" 
-                                Foreground="#FF0DA0B8" 
-                                SelectionBrush="#FF0DA0B8" 
-                                FontSize="20" FontFamily="Gilroy">
-                    <TextBox.Style>
-                        <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox">
-
-                        </Style>
-                    </TextBox.Style>
-                </TextBox>
-                <CheckBox
-                                x:Name="Unsee"
-                                Style="{StaticResource MaterialDesignCheckBox}"
-                                Margin="372,296,-372,74"
-                                FontFamily="Gilroy"
-                                Checked="Unsee_Checked"
-                                Unchecked="Unsee_Unchecked"
-                                Foreground="#FF0DA0B8" 
-                                FontSize="18">
-                    Check
-                </CheckBox>
-            </Grid>
-            <Button x:Name="UpdateAC" Background="#FF0DA0B8" Content="Cập nhật" Width="110" Margin="349,474,21,31" Height="45" BorderBrush="#FF0DA0B8" FontSize="18" FontFamily="Gilroy" Click="UpdateAC_Click"/>
-
-            <Button x:Name="ExitAC"
+                <Button x:Name="UpdateAC" 
+                        Background="#FF0DA0B8" 
+                        Content="Cập nhật" Width="110" 
+                        Margin="350,535,20,-13" Height="45" 
+                        BorderBrush="#FF0DA0B8" FontSize="18" 
+                        FontFamily="Gilroy" Click="UpdateAC_Click"/>
+                <Button x:Name="ExitAC"
             Style="{StaticResource MaterialDesignRaisedButton}"
             Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
             Background="#FF0DA0B8"
             BorderBrush="#FF0DA0B8"
-            ToolTip="Resource name: MaterialDesignRaisedButton" Margin="21,474,349,31" 
+            ToolTip="Resource name: MaterialDesignRaisedButton" Margin="20,535,350,-13" 
             FontSize="18" FontFamily="Gilroy" Height="45">
-                Thoát
-            </Button>
-        </Grid>
-    </Border>
-</materialDesign:DialogHost>
+                    Thoát
+                </Button>
+            </Grid>
+        </Border>
+    </materialDesign:DialogHost>
 </UserControl>

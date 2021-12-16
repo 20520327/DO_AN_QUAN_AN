@@ -8,8 +8,6 @@ set dateformat DMY
 
 --Tạo bảng
 --ROLE(RoleID, RoleName)
-alter table EMPLOYEE drop CHK_SEX
-alter table TABLEQA drop CHK_STATUS
 create table ROLE
 (
 	ID		integer primary key,
@@ -106,6 +104,10 @@ insert into TABLEQA (ID, NAME, STATUS) values ('12',N'Bàn 12',N'Bàn trống')
 insert into TABLEQA (ID, NAME, STATUS) values ('13',N'Bàn 13',N'Bàn trống')
 insert into TABLEQA (ID, NAME, STATUS) values ('14',N'Bàn 14',N'Bàn trống')
 
+select * from TABLEQA
+DELETE FROM TABLEQA WHERE ID = 14
+select * from ORDER_QA 
+
 create table ORDER_QA
 (
 	ID			integer identity(1,1) primary key,
@@ -113,20 +115,17 @@ create table ORDER_QA
 	CHECKIN		datetime,
 	CHECKOUT	datetime,
 	BILLstatus	int not null default 0 
-
-	FOREIGN KEY (TABLEid) REFERENCES TABLEQA(ID)
 )
 go 
 
 create table ORDER_FOOD
 (
+	ID			integer identity(1,1) primary key,
 	ORDERid		integer,
 	FOODid		integer,
 	QUANTITY	integer
 
-	PRIMARY KEY(ORDERid,FOODid)
 	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID),
-	FOREIGN KEY (FOODid) REFERENCES FOOD(ID)
 )
 go
 
@@ -148,4 +147,5 @@ insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','1','1')
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','2','1')
 insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('2','1','1')
 
+drop table ORDER_FOOD
 

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QLQA"
         mc:Ignorable="d"
+        Icon="image/bistro1.png"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         

@@ -82,7 +82,7 @@ namespace QLQA.View
             }
             catch (Exception es)
             {
-                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi thêm nhân viên !\nVui lòng kiểm tra lại thông tin.");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
                 DialogHost.Show(b, "main");
@@ -162,7 +162,7 @@ namespace QLQA.View
             }
             catch (Exception es)
             {
-                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá nhân viên !\nVui lòng kiểm tra lại thông tin.");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
                 DialogHost.Show(b, "main");
@@ -201,7 +201,7 @@ namespace QLQA.View
             }
             catch (Exception es)
             {
-                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi " + es.Message + "");
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi cập nhật nhân viên !\nVui lòng kiểm tra lại thông tin.");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
                 DialogHost.Show(b, "main");
@@ -240,7 +240,7 @@ namespace QLQA.View
             }
             catch (Exception es)
             {
-                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi" + es.Message + "");
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi tìm nhân viên !\nVui lòng kiểm tra lại thông tin.");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
                 DialogHost.Show(b, "main");

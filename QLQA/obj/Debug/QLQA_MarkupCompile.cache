@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\App.xaml
-17-1871896433
-
-43-987332615
-125755478718
-addTable.xaml;Login.xaml;MainWindow.xaml;Notification\Exit.xaml;Notification\LogOut.xaml;Notification\MyAccount.xaml;Notification\WrongPass.xaml;Signup.xaml;View\QAaccount.xaml;View\QAcategory.xaml;View\QAemployee.xaml;View\QAfood.xaml;View\QAmaintable.xaml;View\QAorder.xaml;View\QArevenue.xaml;View\QAtable.xaml;View\QAWindow.xaml;
+20-1781480531
+284-1989911929
+47-465849482
+1491507225352
+addTable.xaml;Login.xaml;MainWindow.xaml;Notification\Check.xaml;Notification\Exit.xaml;Notification\LogOut.xaml;Notification\MyAccount.xaml;Notification\WrongPass.xaml;Report.xaml;Signup.xaml;View\QAaccount.xaml;View\QAcategory.xaml;View\QAemployee.xaml;View\QAfood.xaml;View\QAmaintable.xaml;View\QAorder.xaml;View\QAreport.xaml;View\QArevenue.xaml;View\QAtable.xaml;View\QAWindow.xaml;
 
 False
 

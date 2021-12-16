@@ -1,0 +1,100 @@
+﻿<Window x:Class="QLQA.Report"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+        xmlns:local="clr-namespace:QLQA"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Report" Height="800" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="{x:Null}" AllowsTransparency="True" 
+        Icon="image/bistro1.png">
+
+    <Grid>
+        <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
+            <Grid>
+                <Image Source="image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
+                <Grid Margin="110,0,0,730" >
+                    <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
+                    <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                </Grid>
+                
+                <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#049DBF"/>
+                            <GradientStop Color="#F2CB05" Offset="1"/>
+                            <GradientStop Color="#F2E205" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Button
+                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                     HorizontalAlignment="Left"
+                     ToolTip="MaterialDesignFloatingActionMiniButton" Height="50" Margin="28,698,0,32" Width="50" Background="#FFEB4343" BorderBrush="#FFEB4343">
+                    <materialDesign:PackIcon
+                        Kind="Home"
+                        Height="24"
+                        Width="24"  VerticalAlignment="Center"/>
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Margin="0,10,10,0"
+                    ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFEB4343" BorderBrush="#FFEB4343">
+                    <materialDesign:PackIcon
+                        Kind="Close"
+                        Height="15"
+                        Width="15" VerticalAlignment="Center"/>
+                </Button>
+                <Button
+                    Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Margin="0,10,45,0"
+                    ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFF2CB05" BorderBrush="#FFF2CB05">
+                    <materialDesign:PackIcon
+                        Kind="WindowMinimize"
+                        Height="15"
+                        Width="15" VerticalAlignment="Center"/>
+                </Button>
+                <Grid Margin="106,50,0,0">
+                    <materialDesign:PackIcon Kind="FileDocument" Height="28" Width="28" Margin="11,17,0,0" />
+                    <TextBlock Text="Report" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                    <ToolBarTray Margin="0,63,1,0"/>
+                    <Grid>
+                        <WindowsFormsHost HorizontalAlignment="Left" Height="667" Margin="0,63,0,0" VerticalAlignment="Top" Width="1074">
+                            <rv:ReportViewer x:Name="ReportDemo"/>
+                        </WindowsFormsHost>
+                    </Grid>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="226,15,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
+                    <DatePicker x:Name="dpDayfrom"
+                        materialDesign:HintAssist.Hint="Từ ngày"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="247,17,721,671" FontSize="14" Height="42" FontFamily="Gilroy" DisplayDate="2021-12-02" />
+                    <Button x:Name="btStatisticalTable"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thống kê"
+                    materialDesign:ButtonAssist.CornerRadius="9"
+                    ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="944,23,10,671" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
+                    FontSize="16" FontWeight="SemiBold" Height="Auto" >
+                        <Button.Effect>
+                            <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
+                        </Button.Effect>
+                    </Button>
+                    <TextBox FontSize="18" 
+                             FontWeight="SemiBold" 
+                             FontFamily="Gilroy" 
+                             HorizontalAlignment="Left" 
+                             Height="25" 
+                             Margin="375,25,0,0" 
+                             TextWrapping="Wrap" 
+                             Text="đến" 
+                             VerticalAlignment="Top" 
+                             Width="40" RenderTransformOrigin="0.975,1.24"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="47" Margin="420,15,0,0" Stroke="#FF7025D9" VerticalAlignment="Top" Width="144" RadiusY="15.5" RadiusX="15.5"/>
+                    <DatePicker x:Name="dpDayfrom_Copy"
+                        materialDesign:HintAssist.Hint="Đến ngày"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="440,17,528,671" FontSize="14" Height="42" FontFamily="Gilroy" DisplayDate="2021-12-02" />
+                </Grid>
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+</Window>

@@ -27,9 +27,9 @@ namespace QLQA.Notification
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UI.login a = new UI.login();
+            UI.login lg = new UI.login();
+            App.swapMainWindow(lg);
             Window.GetWindow(this).Close();
-            a.Show();
         }
     }
 }

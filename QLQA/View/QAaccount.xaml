@@ -148,7 +148,7 @@
                             <PasswordBox x:Name="tbPassword" 
                                          Grid.Row="1"
                                          materialDesign:HintAssist.Hint="Mật khẩu" 
-                                         PasswordChanged="tbPassword_PasswordChanged"
+                                         
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                                          Margin="0,39,0,0" CaretBrush="#FF0DA0B8" 
                                          Foreground="#FF0DA0B8" 
@@ -196,35 +196,7 @@
                                 </Border>
                                 <Border BorderBrush="#FF0B8497" BorderThickness="1" Height="1" Margin="-1,305,2,-246" Background="#FF1392A6"/>
                             </Grid>
-                            <TextBox x:Name="Unmask_pass"
-                                materialDesign:HintAssist.Hint="Mật khẩu"
-                                Background="White"
-                                Visibility="Hidden"  
-                                TextChanged="Unmask_pass_TextChanged"
-                                Margin="0,44,0,0" 
-                                CaretBrush="#FF0DA0B8" 
-                                BorderBrush="#FF0DA0B8" 
-                                Foreground="#FF0DA0B8" 
-                                SelectionBrush="#FF0DA0B8" 
-                                FontSize="18" FontFamily="Gilroy" Grid.Row="1">
-                                <TextBox.Style>
-                                    <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox">
-
-                                    </Style>
-                                </TextBox.Style>
-                            </TextBox>
-                            <CheckBox
-                                x:Name="Unsee"
-                                Style="{StaticResource MaterialDesignCheckBox}"
-                                Margin="299,26,-299,66" 
-                                Grid.RowSpan="2"
-                                FontFamily="Gilroy"
-                                Checked="Unsee_Checked"
-                                Unchecked="Unsee_Unchecked"
-                                Foreground="#FF0DA0B8" 
-                                FontSize="18" Grid.Row="1">
-                                Check
-                            </CheckBox>
+                            
                         </Grid>
                     </Grid>
                 </Grid>
