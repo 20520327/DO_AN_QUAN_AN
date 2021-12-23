@@ -19,7 +19,7 @@
                         Width="100" Height="100"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="0,0,0,0" 
                         Background="#FF049DBF" BorderBrush="#FF049DBF" VerticalAlignment="Top" HorizontalAlignment="Left" Opacity="0.8" Foreground="#DDFFFFFF" Click="btTable_Click" >
-            <TextBlock x:Name="Tablename"  Text=""/>
+            <TextBlock x:Name="Tablename"  Text="" FontFamily="Gilroy"/>
             <Button.Effect>
                 <DropShadowEffect Color="#049DBF" Opacity="0.3"/>
             </Button.Effect>

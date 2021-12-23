@@ -35,7 +35,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="Account_popup"  Grid.Row="0" FontFamily="Gilroy" FontSize="20" Content="Tài khoản" Click="Account_popup_Click"/>
+                        <Button x:Name="Account_popup"  Grid.Row="0" FontFamily="Gilroy" FontSize="20" Content="Tài khoản" Click="Account_popup_Click"/>
                             <Button x:Name="Logout"         Grid.Row="1" FontFamily="Gilroy" FontSize="20" Content="Đăng xuất" Click="Logout_Click"/>
                         </Grid>
                     </materialDesign:PopupBox>
@@ -80,16 +80,18 @@
                             </TextBlock.Foreground>
                         </TextBlock>
                         <Button x:Name="btOrder" IsEnabled="True"
-                        Content="Gọi món" FontFamily="Gilroy" 
+                         FontFamily="Gilroy" 
                         FontSize="28" FontWeight="Bold"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="150"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="186,0,634,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF"
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource OrderView}">
-                            <Button.Effect>
+                        <Image Source="../image/goimon (1).png"/>
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
+                            
                         </Button>
                     <Button x:Name="btEmployee" IsEnabled="True"
                         materialDesign:ButtonAssist.CornerRadius="20"
@@ -97,20 +99,21 @@
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="67,0,753,10" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" 
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource EmployeeView}">
-                            <TextBlock Text="Nhân viên" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" FontWeight="Bold" FontFamily="Gilroy" />
-                            <Button.Effect>
+                        <Image Source="../image/nhanvien.png"/>
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
                         </Button>
                     <Button x:Name="btTable" IsEnabled="True"
-                        Content="Bàn" FontFamily="Gilroy" 
+                        FontFamily="Gilroy" 
                         FontSize="28" FontWeight="Bold"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="Auto"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="410,335,408,215" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" 
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource TableView}">
-                            <Button.Effect>
+                        <Image Source="../image/ban.png"/>
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
                         </Button>
@@ -120,21 +123,22 @@
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="292,0,526,10" VerticalAlignment="Bottom" BorderBrush="#FF7025D9" Background="#FF7025D9" Foreground="#DDFFFFFF" 
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource CategoryView}">
-                            <TextBlock Text="Danh mục" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" FontWeight="Bold" FontFamily="Gilroy" />
-                            <Button.Effect>
+                        <Image Source="../image/danhmuc.png"/>
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
 
                         </Button>
                     <Button x:Name="btFood" IsEnabled="True"
-                        Content="Món ăn" FontFamily="Gilroy" 
+                        FontFamily="Gilroy" 
                         FontSize="28" FontWeight="Bold"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Style="{StaticResource MaterialDesignRaisedLightButton}" Height="150"
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="632,0,187,215" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" 
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource FoodView}">
-                            <Button.Effect>
+                        <Image Source="../image/monan.png" />
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
                         </Button>
@@ -144,8 +148,8 @@
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="528,0,291,10" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" 
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource RevenueView}">
-                            <TextBlock Text="Lịch sử đơn hàng" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" FontWeight="Bold" FontFamily="Gilroy" />
-                            <Button.Effect>
+                        <Image Source="../image/lichsudonhang.png"/>
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
                         </Button>
@@ -155,8 +159,8 @@
                         ToolTip="Resource name: MaterialDesignRaisedLightButton" Margin="753,0,65,10" VerticalAlignment="Bottom" Background="#FF7025D9" BorderBrush="#FF7025D9" Foreground="#DDFFFFFF" 
                                 Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource AccountView}">
-                            <TextBlock Text="Tài khoản" TextWrapping="Wrap" TextAlignment="Center" FontSize="28" FontWeight="Bold" FontFamily="Gilroy" />
-                            <Button.Effect>
+                        <Image Source="../image/taikhoan.png"/>
+                        <Button.Effect>
                                 <DropShadowEffect Color="#FF7025D9" Opacity="0.3"/>
                             </Button.Effect>
                         </Button>

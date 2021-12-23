@@ -27,8 +27,10 @@ namespace QLQA.View
     public partial class QAorder : UserControl
     {
         #region Các biến toàn cục và chuỗi kết nối
+        
         public static int selectedTable = 0;
         public static float thanhtien = 0;
+        public static bool IsTT = false;
         public static bool confirm = false;
         public static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
 
@@ -104,7 +106,7 @@ namespace QLQA.View
         }
         #endregion
 
-        #region View order từng bàn
+        #region View món ăn
         private void cbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             #region Các biến và chuỗi kết nối
@@ -482,57 +484,77 @@ namespace QLQA.View
         #endregion
 
         #region bt Thanh toán
-        private void btCheckout_Click(object sender, RoutedEventArgs e)
+        private async void btCheckout_Click(object sender, RoutedEventArgs e)
         {
+            Order or = new Order();
             SqlConnection ketnoi = new SqlConnection(Connectionstring);
             ketnoi.Open();
 
             int id_order = getIDorderofTable(selectedTable);
             int total = TotalMoneyOfBill(id_order);
 
-            #region Cập nhật bàn đó đã đc thanh toán
-            string payoff = "UPDATE ORDER_QA SET BILLstatus = '1', CHECKOUT = '" + DateTime.Now.ToString("") + "' WHERE ID = '" + id_order + "'";
-            string updateTable_1 = "update TABLEQA set STATUS = N'Bàn trống' where ID = '" + selectedTable + "'";
-            SqlCommand caulenh1 = new SqlCommand(payoff, ketnoi);
-            SqlCommand caulenh2 = new SqlCommand(updateTable_1, ketnoi);
-            try
-            {
-                caulenh1.ExecuteNonQuery();
-                caulenh2.ExecuteNonQuery();
-            }
-            catch (Exception es)
-            {
-                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thanh toán !");
-                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-                b.DataContext = a;
-                DialogHost.Show(b, "main");
-            }
+            or.ID = id_order;
+            or.TABLE = selectedTable.ToString();
+            or.CHECKIN = DateTime.Parse(getCheckInOfOrder(id_order));
+            or.CHECKOUT = DateTime.Now;
+            or.Info = getListInfoBill(selectedTable);
+            or.TOTAL = total;
 
-            updateDataGrid();
-            update_table();
+            QLQA.View.BillInfo bill = new QLQA.View.BillInfo();
+            bill.DataContext = or;
+            await DialogHost.Show(bill, "main");
 
-            ketnoi.Close();
-            #endregion
+            if(IsTT)
+            {
+                #region Cập nhật bàn đó đã đc thanh toán
+                string payoff = "UPDATE ORDER_QA SET BILLstatus = '1', CHECKOUT = '" + DateTime.Now.ToString("") + "' WHERE ID = '" + id_order + "'";
+                string updateTable_1 = "update TABLEQA set STATUS = N'Bàn trống' where ID = '" + selectedTable + "'";
+                SqlCommand caulenh1 = new SqlCommand(payoff, ketnoi);
+                SqlCommand caulenh2 = new SqlCommand(updateTable_1, ketnoi);
+                try
+                {
+                    caulenh1.ExecuteNonQuery();
+                    caulenh2.ExecuteNonQuery();
+                }
+                catch (Exception es)
+                {
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thanh toán !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "main");
+                }
 
-            #region Thêm vào lịch sử đơn hàng
-            ketnoi.Open();
-            string addRevenue = "INSERT INTO REVENUE(ORDERid,CHECKIN,CHECKOUT,TOTAL) VALUES ('" + id_order + "','" +
-                                getCheckInOfOrder(id_order) + "','" + DateTime.Now.ToString("") + "','" + total + "')";
-            SqlCommand caulenh3 = new SqlCommand(addRevenue, ketnoi);
-            try
-            {
-                caulenh3.ExecuteNonQuery();
-            }
-            catch (Exception es)
-            {
-                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thanh toán!\nCần thêm món ăn!");
-                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
-                b.DataContext = a;
-                DialogHost.Show(b, "main");
-            }
-            ketnoi.Close();
-            #endregion
+                updateDataGrid();
+                update_table();
+
+                ketnoi.Close();
+                #endregion
+
+                #region Thêm vào lịch sử đơn hàng
+                ketnoi.Open();
+                string addRevenue = "INSERT INTO REVENUE(ORDERid,CHECKIN,CHECKOUT,TOTAL) VALUES ('" + id_order + "','" +
+                                    getCheckInOfOrder(id_order) + "','" + DateTime.Now.ToString("") + "','" + total + "')";
+                SqlCommand caulenh3 = new SqlCommand(addRevenue, ketnoi);
+                try
+                {
+                    caulenh3.ExecuteNonQuery();
+                }
+                catch (Exception es)
+                {
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi thanh toán!\nCần thêm món ăn!");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = a;
+                    DialogHost.Show(b, "main");
+                }
+                ketnoi.Close();
+                IsTT = false;
         }
+            else
+            {
+                return;
+            }
+            #endregion
+            }
         #endregion
 
         #region bt Đổi bàn 
@@ -587,7 +609,6 @@ namespace QLQA.View
                     }
                     catch (Exception es)
                     {
-
                         QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Lỗi cập nhật chuyển bàn !");
                         QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                         b.DataContext = a;

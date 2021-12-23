@@ -15,7 +15,7 @@
                     <Image Source="../image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
                     <Grid Margin="110,0,0,730" >
                         <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
-                        <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                    <TextBlock Text="ỨNG DỤNG QUẢN LÝ QUÁN ĂN BATI" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="20" FontWeight="Medium" FontFamily="Gilroy" />
                     </Grid>
                     <Grid Margin="100,50,472,120" Background="White">
                         <DataGrid x:Name="lvFood" FontFamily="Gilroy" FontSize="16" 
@@ -41,6 +41,7 @@
                     </Grid>
                     <Grid Margin="106,660,472,0">
                         <Button x:Name="btAdd"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="20,45,468,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -50,6 +51,7 @@
                             </Button.Effect>
                         </Button>
                         <Button x:Name="btDelete"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xóa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="168,45,320,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -59,6 +61,7 @@
                             </Button.Effect>
                         </Button>
                         <Button x:Name="btUpdate"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Sửa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="318,45,170,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -68,6 +71,7 @@
                             </Button.Effect>
                         </Button>
                         <Button x:Name="btView"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xem"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="469,45,19,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -124,7 +128,7 @@
                     </Button>
                     <Grid Margin="730,50,0,0">
                         <materialDesign:PackIcon Kind="FoodApple" Height="28" Width="28" Margin="11,17,0,0" />
-                        <TextBlock Text="Food" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                        <TextBlock Text="Món ăn" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Black" FontFamily="Gilroy" />
                         <Rectangle Margin="10,92,160,591" Fill="White" Stroke="#FF2AA9C6" RadiusY="15" RadiusX="15" >
                             <Rectangle.Effect>
                                 <DropShadowEffect Opacity="0.4" Color="#FF2AA9C6"/>
@@ -133,8 +137,9 @@
                         <TextBox
                         x:Name="tbSearch"
                         materialDesign:TransitionAssist.DisableTransitions="True" 
-                        Margin="25,101,175,599" Foreground="#FF0078D7" FontFamily="Gilroy" FontSize="14" />
+                        Margin="25,101,175,599" Foreground="#FF0078D7" FontFamily="Gilroy" FontSize="14" KeyDown="tbSearch_KeyDown" />
                         <Button x:Name="btSearch"
+                                FontFamily="Gilroy"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Tìm kiếm"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="310,98,20,596" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 

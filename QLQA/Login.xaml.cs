@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,12 +23,14 @@ namespace UI
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class login : Window
+    public partial class login : Window, INotifyPropertyChanged
     {
         public login()
         {
             InitializeComponent();
         }
+
+        
 
         #region Control Panel
         private void exit_Click(object sender, RoutedEventArgs e)
@@ -126,6 +129,41 @@ namespace UI
                 }
             }
         }
+        #endregion
+
+        #region Pass peek
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            //Thông báo pass thay đổi để check cập nhật đúng cho cái textbox
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Unsee_Checked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Hidden;
+            Unmask_pass.Visibility = Visibility.Visible;
+        }
+
+        private void Unsee_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Visible;
+            Unmask_pass.Visibility = Visibility.Hidden;
+        }
+
+        private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            Unmask_pass.Text = this.tbPassword.Password;
+        }
+        private void Unmask_pass_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            this.tbPassword.Password = Unmask_pass.Text;
+        }
+
         #endregion
     }
 

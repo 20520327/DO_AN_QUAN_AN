@@ -89,6 +89,43 @@ namespace QLQA.View
                 DialogHost.Show(b, "main");
             }
         }
+
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                ketnoi.Open();
+
+                string timkiem = tbSearch.Text.ToString();
+                string Searchfood = "select A.ID, A.NAME, B.NAME, A.PRICE from FOOD A inner join CATEGORY B on A.CATEid = B.ID where A.NAME LIKE N'" + timkiem + "%'";
+                SqlCommand caulenh = new SqlCommand(Searchfood, ketnoi);
+                SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+
+                List<Food> ls = new List<Food>();
+                try
+                {
+                    while (kqtruyvan.Read())
+                    {
+                        Food a = new Food();
+                        a.ID = kqtruyvan.GetInt32(0);
+                        a.NAME = kqtruyvan[1].ToString();
+                        a.CATEGORY_NAME = kqtruyvan[2].ToString();
+                        a.PRICE = kqtruyvan.GetInt32(3);
+                        ls.Add(a);
+                    }
+                    lvFood.ItemsSource = ls;
+                }
+                catch (Exception es)
+                {
+                    QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi tìm kiếm món ăn !");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = dia;
+                    DialogHost.Show(b, "main");
+                }
+            }
+        }
+
         #endregion
 
         #region Lấy ID danh mục
@@ -342,5 +379,6 @@ namespace QLQA.View
         }
         #endregion
 
+        
     }
 }

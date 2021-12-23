@@ -10,6 +10,7 @@
     <Border Background="White" CornerRadius="15">
         <Grid x:Name="check" Margin="0,0,-244,-128" >
             <Button x:Name="ok"
+                    FontFamily="Gilroy"
             Style="{StaticResource MaterialDesignRaisedButton}"
             Width="100"
                     FontSize="18"
@@ -18,6 +19,7 @@
                 Cancel
             </Button>
             <Button x:Name="confirm"
+                    FontFamily="Gilroy"
             Style="{StaticResource MaterialDesignRaisedButton}"
             Width="100"
                     FontSize="18"

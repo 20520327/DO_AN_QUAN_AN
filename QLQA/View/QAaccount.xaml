@@ -14,7 +14,7 @@
                 <Image Source="../image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
                 <Grid Margin="110,0,0,730" >
                     <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
-                    <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                    <TextBlock Text="ỨNG DỤNG QUẢN LÝ QUÁN ĂN BATI" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="20" FontWeight="Black" FontFamily="Gilroy" />
                 </Grid>
                 <Grid Margin="100,50,472,120" Background="White">
                     <DataGrid x:Name="lvAccount" FontFamily="Gilroy" FontSize="16" Loaded="lvAccount_Loaded" 
@@ -30,6 +30,7 @@
                 </Grid>
                 <Grid Margin="106,660,472,0">
                     <Button x:Name="btAddAccount"
+                            FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="20,45,468,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -39,6 +40,7 @@
                         </Button.Effect>
                     </Button>
                     <Button x:Name="btDelAccount"
+                            FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xóa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="168,45,320,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -48,6 +50,7 @@
                         </Button.Effect>
                     </Button>
                     <Button x:Name="btupdateAccount"
+                            FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Sửa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="318,45,170,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -57,6 +60,7 @@
                         </Button.Effect>
                     </Button>
                     <Button x:Name="btViewAccount"
+                            FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xem"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="469,45,19,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -113,7 +117,7 @@
                 </Button>
                 <Grid Margin="730,50,0,0">
                     <materialDesign:PackIcon Kind="AccountMultiple" Height="28" Width="28" Margin="11,17,0,0" />
-                    <TextBlock Text="Account" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                    <TextBlock Text="Tài khoản" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Black" FontFamily="Gilroy" />
                     <Rectangle Fill="White" HorizontalAlignment="Left" Height="395" 
                                Margin="10,186,0,0" RadiusY="21.5" RadiusX="21.5" Stroke="#FF2AA9C6" VerticalAlignment="Top" 
                                Width="419"/>
@@ -147,8 +151,9 @@
                                      FontSize="18" Height="50" FontFamily="Gilroy"/>
                             <PasswordBox x:Name="tbPassword" 
                                          Grid.Row="1"
+                                         FontFamily="Gilroy"
                                          materialDesign:HintAssist.Hint="Mật khẩu" 
-                                         
+                                         PasswordChanged="tbPassword_PasswordChanged"
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                                          Margin="0,39,0,0" CaretBrush="#FF0DA0B8" 
                                          Foreground="#FF0DA0B8" 
@@ -156,6 +161,7 @@
                                          BorderBrush="#FF0DA0B8" FontSize="18"/>
                             <PasswordBox x:Name="tbPassConfirm"
                                          Grid.Row="2"
+                                         FontFamily="Gilroy"
                                          materialDesign:HintAssist.Hint="Nhập lại mật khẩu" 
                                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
                                          Margin="0,5,0,29" CaretBrush="#FF0DA0B8" 
@@ -196,7 +202,35 @@
                                 </Border>
                                 <Border BorderBrush="#FF0B8497" BorderThickness="1" Height="1" Margin="-1,305,2,-246" Background="#FF1392A6"/>
                             </Grid>
-                            
+                            <TextBox x:Name="Unmask_pass"
+                                materialDesign:HintAssist.Hint="Mật khẩu"
+                                Background="White"
+                                Visibility="Hidden"  
+                                TextChanged="Unmask_pass_TextChanged"
+                                Margin="0,44,0,0" 
+                                CaretBrush="#FF0DA0B8" 
+                                BorderBrush="#FF0DA0B8" 
+                                Foreground="#FF0DA0B8" 
+                                SelectionBrush="#FF0DA0B8" 
+                                FontSize="18" FontFamily="Gilroy" Grid.Row="1">
+                                <TextBox.Style>
+                                    <Style BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}" TargetType="TextBox">
+
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                            <CheckBox
+                                x:Name="Unsee"
+                                Style="{StaticResource MaterialDesignCheckBox}"
+                                Margin="299,26,-299,66" 
+                                Grid.RowSpan="2"
+                                FontFamily="Gilroy"
+                                Checked="Unsee_Checked"
+                                Unchecked="Unsee_Unchecked"
+                                Foreground="#FF0DA0B8" 
+                                FontSize="18" Grid.Row="1">
+                                Check
+                            </CheckBox>
                         </Grid>
                     </Grid>
                 </Grid>

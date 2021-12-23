@@ -66,7 +66,7 @@ namespace UI
             string fullname, user, pass, phone, email;
             int role_ID = 1;
 
-            if (check_signup())
+            if (check_signup() && tbPasswordbox.Password.Length >= 8)
             {
                 fullname = tbFullName.Text.ToString();
                 user = tbUsername.Text.ToString();
@@ -75,13 +75,13 @@ namespace UI
                 email = tbEmail.Text.ToString();
                 role_ID = 1;
             }
-            else
+            else 
             {
-                QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Bạn chưa nhập đầy đủ thông\ntin !");
-                QLQA.Notification.WrongPass dia = new QLQA.Notification.WrongPass();
-                dia.DataContext = a;
-                DialogHost.Show(dia, "signup");
-                return;
+                    QLQA.Notification.ViewModel.ViewModel a = new QLQA.Notification.ViewModel.ViewModel("Bạn chưa nhập đầy đủ thông tin hoặc mật khẩu chưa đủ 8 ký tự !");
+                    QLQA.Notification.WrongPass dia = new QLQA.Notification.WrongPass();
+                    dia.DataContext = a;
+                    DialogHost.Show(dia, "signup");
+                    return;
             }    
                 
             

@@ -15,7 +15,7 @@
                     <Image Source="../image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
                     <Grid Margin="110,0,0,730" >
                         <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
-                        <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                    <TextBlock Text="ỨNG DỤNG QUẢN LÝ QUÁN ĂN BATI" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="20" FontWeight="Black" FontFamily="Gilroy" />
                     </Grid>
 
                     <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
@@ -64,8 +64,9 @@
                     </Button>
                     <Grid Margin="106,50,0,0">
                         <materialDesign:PackIcon Kind="BookOpen" Height="28" Width="28" Margin="11,17,0,0" />
-                        <TextBlock Text="Revenue" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Black" FontFamily="Gilroy" Text="Lịch sử bán hàng" />
                         <Button x:Name="btStatistical"
+                                FontFamily="Gilroy"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thống kê"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="765,63,189,630" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -76,6 +77,7 @@
                         </Button>
 
                         <Button x:Name="btExcell"
+                                FontFamily="Gilroy"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="In File Excel"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="944,63,10,630" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 

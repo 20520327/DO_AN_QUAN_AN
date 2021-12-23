@@ -162,7 +162,7 @@ namespace QLQA.View
             }
             catch (Exception es)
             {
-                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá nhân viên !\nVui lòng kiểm tra lại thông tin.");
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xin vui lòng xoá tài khoản của nhân viên này trước !");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
                 DialogHost.Show(b, "main");
@@ -246,7 +246,47 @@ namespace QLQA.View
                 DialogHost.Show(b, "main");
             }
         }
+        private void tbEsearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                SqlConnection ketnoi = new SqlConnection(Connectionstring);
+                ketnoi.Open();
+
+                List<Employee> ls = new List<Employee>();
+
+                string timkiem = tbEsearch.Text.ToString();
+                string SearchEmployee = "select * from EMPLOYEE where FULLNAME like N'" + timkiem + "%'";
+                SqlCommand caulenh = new SqlCommand(SearchEmployee, ketnoi);
+                SqlDataReader kqtruyvan = caulenh.ExecuteReader();
+                try
+                {
+                    while (kqtruyvan.Read())
+                    {
+                        Employee a = new Employee();
+                        a.EID = kqtruyvan.GetInt32(0);
+                        a.ENAME = kqtruyvan[1].ToString();
+                        a.EPOSITION = kqtruyvan[2].ToString();
+                        a.EADDRESS = kqtruyvan[3].ToString();
+                        a.EPHONE = kqtruyvan[4].ToString();
+                        a.ESEX = kqtruyvan[5].ToString();
+                        a.EEMAIL = kqtruyvan[6].ToString();
+                        ls.Add(a);
+                    }
+                    lvEmployee.ItemsSource = ls;
+                }
+                catch (Exception es)
+                {
+                    QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi tìm nhân viên !\nVui lòng kiểm tra lại thông tin.");
+                    QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                    b.DataContext = dia;
+                    DialogHost.Show(b, "main");
+                }
+            }
+        }
+
         #endregion
 
+        
     }
 }

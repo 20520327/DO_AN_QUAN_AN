@@ -15,7 +15,7 @@
                     <Image Source="../image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
                     <Grid Margin="110,0,0,730" >
                         <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
-                        <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                    <TextBlock Text="ỨNG DỤNG QUẢN LÝ QUÁN ĂN BATI" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="20" FontWeight="Black" FontFamily="Gilroy" />
                     </Grid>
                     <Grid Margin="100,50,472,120" Background="White">
                         <DataGrid x:Name="lvCategory" FontFamily="Gilroy" FontSize="16" Loaded="lvCategory_Loaded" IsReadOnly="True" AutoGenerateColumns="False" SelectedCellsChanged="lvCategory_SelectedCellsChanged">
@@ -27,6 +27,7 @@
                     </Grid>
                     <Grid Margin="106,660,472,0">
                         <Button x:Name="btAddCate"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="20,45,468,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -36,6 +37,7 @@
                             </Button.Effect>
                         </Button>
                         <Button x:Name="btDelCate"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xóa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="168,45,320,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -45,6 +47,7 @@
                             </Button.Effect>
                         </Button>
                         <Button x:Name="btUpdateCate"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Sửa"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="318,45,170,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -54,6 +57,7 @@
                             </Button.Effect>
                         </Button>
                         <Button x:Name="btViewCate"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Xem"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="469,45,19,40" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
@@ -109,7 +113,7 @@
                     </Button>
                     <Grid Margin="730,50,0,0">
                         <materialDesign:PackIcon Kind="Apps" Height="28" Width="28" Margin="11,17,0,0" />
-                        <TextBlock Text="Category" VerticalAlignment="Top" Margin="45,15,282,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
+                        <TextBlock Text="Danh mục" VerticalAlignment="Top" Margin="45,15,282,0" FontSize="24" FontWeight="Black" FontFamily="Gilroy" />
                         <Rectangle Fill="White" HorizontalAlignment="Left" Height="190" 
                                Margin="10,192,0,0" RadiusY="21.5" RadiusX="21.5" Stroke="#FF2AA9C6" VerticalAlignment="Top" 
                                Width="419"/>
@@ -120,8 +124,9 @@
                             </StackPanel>
                         </Grid>
                     </Grid>
+                <TextBlock HorizontalAlignment="Left" FontFamily="Gilroy" FontSize="18" Margin="750,456,0,0" TextWrapping="Wrap" Text="*Bạn chỉ có thể xoá được danh mục khi đã xoá hết món ăn của danh mục đó*" VerticalAlignment="Top" FontStyle="Italic" TextDecorations="Underline" Foreground="#FFEEB552"/>
 
-                </Grid>
+            </Grid>
             </materialDesign:Card>
         </Grid>
     

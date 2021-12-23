@@ -23,10 +23,14 @@ namespace QLQA.Notification
     /// <summary>
     /// Interaction logic for MyAccount.xaml
     /// </summary>
-    public partial class MyAccount : UserControl
+    public partial class MyAccount : UserControl, INotifyPropertyChanged
     {
         #region Chuỗi kết nỗi
         private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
         #endregion
         public MyAccount()
         {
@@ -120,6 +124,38 @@ namespace QLQA.Notification
                 tbPosition.Text = "Nhân viên";
             }
         }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            //Thông báo pass thay đổi để check cập nhật đúng cho cái textbox
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Unsee_Checked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Hidden;
+            Unmask_pass.Visibility = Visibility.Visible;
+        }
+
+        private void Unsee_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Visible;
+            Unmask_pass.Visibility = Visibility.Hidden;
+        }
+
+        private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            Unmask_pass.Text = this.tbPassword.Password;
+        }
+        private void Unmask_pass_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            this.tbPassword.Password = Unmask_pass.Text;
+        }
+
         #endregion
         #endregion
 

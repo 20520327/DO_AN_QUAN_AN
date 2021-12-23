@@ -224,6 +224,9 @@
     <Compile Include="Thuvien.cs" />
     <Compile Include="Command\TitleBarCommand.cs" />
     <Compile Include="View\AccountView.cs" />
+    <Compile Include="View\BillInfo.xaml.cs">
+      <DependentUpon>BillInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CategoryView.cs" />
     <Compile Include="View\MaintableView.cs" />
     <Compile Include="View\QAaccount.xaml.cs">
@@ -310,6 +313,10 @@
     <Page Include="Signup.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="View\BillInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\QAaccount.xaml">
       <SubType>Designer</SubType>
@@ -817,6 +824,13 @@
     <Content Include="Content\ej\web\responsive-css\ej.responsive.css" />
     <Content Include="Content\ej\web\responsive-css\ejgrid.responsive.css" />
     <Content Include="Content\ej\web\ribbon-css\ej.icons.css" />
+    <Resource Include="image\nhanvien.png" />
+    <Resource Include="image\goimon %281%29.png" />
+    <Resource Include="image\lichsudonhang.png" />
+    <Resource Include="image\monan.png" />
+    <Resource Include="image\taikhoan.png" />
+    <Resource Include="image\danhmuc.png" />
+    <Resource Include="image\ban.png" />
     <Content Include="Scripts\ej\common\ej.core.min.js" />
     <Content Include="Scripts\ej\common\ej.data.min.js" />
     <Content Include="Scripts\ej\common\ej.draggable.min.js" />

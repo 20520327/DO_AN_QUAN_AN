@@ -104,7 +104,7 @@ namespace QLQA.View
             }
             catch (Exception es)
             {
-                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Xảy ra lỗi khi xoá danh mục!\nXin hãy kiểm tra thông tin danh mục.");
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Bạn không thể xoá danh mục khi vẫn còn món ăn trong danh mục này!");
                 QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
                 b.DataContext = dia;
                 DialogHost.Show(b, "main");

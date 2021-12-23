@@ -24,15 +24,16 @@ namespace QLQA.View
     /// <summary>
     /// Interaction logic for QAaccount.xaml
     /// </summary>
-    public partial class QAaccount : UserControl
+    public partial class QAaccount : UserControl,INotifyPropertyChanged
     {
+        #region Chuỗi kết nối
+        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
+        #endregion
         public QAaccount()
         {
             InitializeComponent();
         }
-        #region Chuỗi kết nối
-        private static string Connectionstring = "Data Source=DESKTOP-68RLUI9\\SQLEXPRESS;Initial Catalog=QuanAn;Integrated Security=True";
-        #endregion
+
 
         #region Control Panel and Home button
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -85,6 +86,15 @@ namespace QLQA.View
             else
             {
                 Arole_ID = 1;
+            }
+
+            if(tbPassword.Password.Length < 8)
+            {
+                QLQA.Notification.ViewModel.ViewModel dia = new QLQA.Notification.ViewModel.ViewModel("Độ dài mật khẩu phải trên hoặc bằng 8 ký tự !");
+                QLQA.Notification.WrongPass b = new QLQA.Notification.WrongPass();
+                b.DataContext = dia;
+                DialogHost.Show(b, "main");
+                return;
             }
 
             string Ausername = tbUsername.Text.ToString();
@@ -260,14 +270,50 @@ namespace QLQA.View
             {
                 tbIDEmployee.Text = row_selected.EMPLOYEEID.ToString();
                 tbUsername.Text = row_selected.USERNAME.ToString();
+
                 string role = row_selected.USERROLE.ToString();
                 cbRole.Text = role;
             }
         }
 
+        private void tbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            Unmask_pass.Text = this.tbPassword.Password;
+        }
+        private void Unmask_pass_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.CompareOrdinal(Unmask_pass.Text, this.tbPassword.Password) == 0)
+                return;
+            this.tbPassword.Password = Unmask_pass.Text;
+        }
+
+
         public WindowState WindowState { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            //Thông báo pass thay đổi để check cập nhật đúng cho cái textbox
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Unsee_Checked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Hidden;
+            Unmask_pass.Visibility = Visibility.Visible;
+        }
+
+        private void Unsee_Unchecked(object sender, RoutedEventArgs e)
+        {
+            this.tbPassword.Visibility = Visibility.Visible;
+            Unmask_pass.Visibility = Visibility.Hidden;
+        }
         #endregion
 
         #endregion
+
     }
 }

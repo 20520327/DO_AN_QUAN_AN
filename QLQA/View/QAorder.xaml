@@ -10,105 +10,105 @@
              DataContextChanged="Window_Loaded"
              d:DesignHeight="800" d:DesignWidth="1200">
     <Grid>
-            <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
-                <Grid>
-                    <Image Source="../image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
-                    <Grid Margin="110,0,0,730" >
-                        <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
-                        <TextBlock Text="BATI RESTAURANT MANAGER SYSTEM" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="18" FontWeight="Medium" FontFamily="Showcard Gothic" />
-                    </Grid>
-                    <Grid Margin="105,50,455,0">
+        <materialDesign:Card Margin="10" UniformCornerRadius="15" Background="#FFFFFEEE">
+            <Grid>
+                <Image Source="../image/bg2.png" Width="1500" Margin="-130,0,-190,0" Opacity="0.45"/>
+                <Grid Margin="110,0,0,730" >
+                    <materialDesign:PackIcon Kind="Food" Height="22" Width="22" Margin="10,12,0,0" />
+                    <TextBlock Text="ỨNG DỤNG QUẢN LÝ QUÁN ĂN BATI" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,13,0,0" FontSize="20" FontWeight="Black" FontFamily="Gilroy" />
+                </Grid>
+                <Grid Margin="105,50,455,0">
 
-                        <Grid.Background>
-                            <ImageBrush
+                    <Grid.Background>
+                        <ImageBrush
                             Opacity="0.4" 
                             ImageSource="../image/bistro1.png" Stretch="UniformToFill"/>
-                        </Grid.Background>
-                        <ScrollViewer
+                    </Grid.Background>
+                    <ScrollViewer
                         VerticalScrollBarVisibility="Visible">
-                            <WrapPanel x:Name="enviroment">
-                            </WrapPanel>
-                        </ScrollViewer>
-                    </Grid>
+                        <WrapPanel x:Name="enviroment">
+                        </WrapPanel>
+                    </ScrollViewer>
+                </Grid>
 
-                    <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
-                        <Rectangle.Fill>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="#049DBF"/>
-                                <GradientStop Color="#F2CB05" Offset="1"/>
-                                <GradientStop Color="#F2E205" Offset="0.5"/>
-                            </LinearGradientBrush>
-                        </Rectangle.Fill>
-                    </Rectangle>
+                <Rectangle Height ="780" VerticalAlignment="Top" Margin="0,0,1075,0" RadiusY="15" RadiusX="15">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#049DBF"/>
+                            <GradientStop Color="#F2CB05" Offset="1"/>
+                            <GradientStop Color="#F2E205" Offset="0.5"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
                 <Button x:Name="Home" IsEnabled="True" 
                      Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                      HorizontalAlignment="Left"
                      ToolTip="MaterialDesignFloatingActionMiniButton" Height="50" Margin="28,698,0,32" Width="50" Background="#FFF03A3B" BorderBrush="#FFF03A3B"
                             Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource MaintableView}">
-                        <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                         Kind="Home"
                         Height="24"
                         Width="24"  VerticalAlignment="Center"/>
-                    </Button>
-                    <Button x:Name="Exit"
+                </Button>
+                <Button x:Name="Exit"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     Margin="0,10,10,0"
                     ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFEB4343" BorderBrush="#FFEB4343" 
                             Command="{x:Static command:ChangeViewCommand.Command}"
                             CommandParameter="{StaticResource MaintableView}">
-                        <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                         Kind="Close"
                         Height="15"
                         Width="15" VerticalAlignment="Center"/>
-                    </Button>
-                    <Button x:Name="Minimize"
+                </Button>
+                <Button x:Name="Minimize"
                     Style="{StaticResource MaterialDesignFloatingActionMiniButton}"
                     HorizontalAlignment="Right" VerticalAlignment="Top"
                     Margin="0,10,45,0"
                     ToolTip="MaterialDesignFloatingActionMiniButton" Height="25" Width="25" Background="#FFF2CB05" BorderBrush="#FFF2CB05" 
                             Command="{x:Static command:TitleBarCommand.MinimizeWindowCommand}"
                         CommandParameter="{Binding ElementName=_this}">
-                        <materialDesign:PackIcon
+                    <materialDesign:PackIcon
                         Kind="WindowMinimize"
                         Height="15"
                         Width="15" VerticalAlignment="Center"/>
-                    </Button>
-                    <Grid Margin="730,50,0,0">
-                        <materialDesign:PackIcon Kind="ContentPaste" Height="28" Width="28" Margin="11,17,0,0" />
-                        <TextBlock Text="ORDER" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
-                        <ComboBox x:Name="cbAmout"
+                </Button>
+                <Grid Margin="730,50,0,0">
+                    <materialDesign:PackIcon Kind="ContentPaste" Height="28" Width="28" Margin="11,17,0,0" />
+                    <TextBlock Text="Gọi món" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="45,15,0,0" FontSize="24" FontWeight="Black" FontFamily="Gilroy" />
+                    <ComboBox x:Name="cbAmout"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
-                        Margin="309,50,30,634" 
+                        Margin="309,50,30,624" 
                         FontFamily="Gilroy" FontSize="20" 
                         BorderBrush="White" 
                         Background="White" 
                         VerticalAlignment="Center" Opacity="0.8"
                         materialDesign:HintAssist.Hint="Số lượng"
                         IsEditable="True"
-                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="46">
-                            <ComboBox.Effect>
-                                <DropShadowEffect Opacity="0.4"/>
-                            </ComboBox.Effect>
-                            <ComboBoxItem
+                        Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="56">
+                        <ComboBox.Effect>
+                            <DropShadowEffect Opacity="0.4"/>
+                        </ComboBox.Effect>
+                        <ComboBoxItem
                         IsSelected="True" Content=" 1"/>
-                            <ComboBoxItem Content=" 2"/>
-                            <ComboBoxItem Content=" 3"/>
-                            <ComboBoxItem Content=" 4"/>
-                            <ComboBoxItem Content=" 5"/>
-                            <ComboBoxItem Content=" 6"/>
-                            <ComboBoxItem Content=" 7"/>
-                            <ComboBoxItem Content=" 8"/>
-                            <ComboBoxItem Content=" 9"/>
-                            <ComboBoxItem Content=" 10"/>
-                            <ComboBoxItem Content=" 11"/>
-                            <ComboBoxItem Content=" 12"/>
-                            <ComboBoxItem Content=" 13"/>
-                            <ComboBoxItem Content=" 14"/>
-                            <ComboBoxItem Content=" 15"/>
-                        </ComboBox>
-                        <ComboBox x:Name="cbCategory"
+                        <ComboBoxItem Content=" 2"/>
+                        <ComboBoxItem Content=" 3"/>
+                        <ComboBoxItem Content=" 4"/>
+                        <ComboBoxItem Content=" 5"/>
+                        <ComboBoxItem Content=" 6"/>
+                        <ComboBoxItem Content=" 7"/>
+                        <ComboBoxItem Content=" 8"/>
+                        <ComboBoxItem Content=" 9"/>
+                        <ComboBoxItem Content=" 10"/>
+                        <ComboBoxItem Content=" 11"/>
+                        <ComboBoxItem Content=" 12"/>
+                        <ComboBoxItem Content=" 13"/>
+                        <ComboBoxItem Content=" 14"/>
+                        <ComboBoxItem Content=" 15"/>
+                    </ComboBox>
+                    <ComboBox x:Name="cbCategory"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
                         Margin="2,50,0,624" 
                         FontFamily="Gilroy" 
@@ -118,12 +118,12 @@
                         VerticalAlignment="Center" Opacity="0.8"
                         materialDesign:HintAssist.Hint="Danh mục"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="55" IsReadOnly="True" SelectionChanged="cbCategory_SelectionChanged">
-                            <ComboBox.Effect>
-                                <DropShadowEffect Opacity="0.4"/>
-                            </ComboBox.Effect>
+                        <ComboBox.Effect>
+                            <DropShadowEffect Opacity="0.4"/>
+                        </ComboBox.Effect>
 
-                        </ComboBox>
-                        <ComboBox x:Name="cbFood"
+                    </ComboBox>
+                    <ComboBox x:Name="cbFood"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
                         Margin="2,120,0,554" 
                         FontFamily="Gilroy" 
@@ -133,38 +133,41 @@
                         VerticalAlignment="Center" Opacity="0.8"
                         materialDesign:HintAssist.Hint="Món ăn"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="56" IsReadOnly="True">
-                            <ComboBox.Effect>
-                                <DropShadowEffect Opacity="0.4"/>
-                            </ComboBox.Effect>
-                        </ComboBox>
-                        <Button x:Name="btAddfood"
+                        <ComboBox.Effect>
+                            <DropShadowEffect Opacity="0.4"/>
+                        </ComboBox.Effect>
+                    </ComboBox>
+                    <Button x:Name="btAddfood"
+                                FontFamily="Gilroy"
                     Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thêm món"
                     materialDesign:ButtonAssist.CornerRadius="9"
                     ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="290,120,20,574" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
                     FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btAddfood_Click">
-                            <Button.Effect>
-                                <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button x:Name="btCheckout"
+                        <Button.Effect>
+                            <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button x:Name="btCheckout"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Thanh toán"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="290,674,20,20" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
                         FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btCheckout_Click">
-                            <Button.Effect>
-                                <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
-                            </Button.Effect>
-                        </Button>
-                        <Button x:Name="btSwapTable"
+                        <Button.Effect>
+                            <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button x:Name="btSwapTable"
+                                FontFamily="Gilroy"
                         Style="{StaticResource MaterialDesignRaisedAccentButton}" Content="Chuyển bàn"
                         materialDesign:ButtonAssist.CornerRadius="9"
                         ToolTip="Resource name: MaterialDesignRaisedAccentButton" Margin="120,673,190,20" Background="#7025D9" BorderBrush="#7025D9" Foreground="#DDFFFFFF" 
                         FontSize="16" FontWeight="SemiBold" Height="Auto" Click="btSwapTable_Click">
-                            <Button.Effect>
-                                <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
-                            </Button.Effect>
-                        </Button>
-                        <ComboBox x:Name="cbTable"
+                        <Button.Effect>
+                            <DropShadowEffect Color="#7025D9" Opacity="0.3"/>
+                        </Button.Effect>
+                    </Button>
+                    <ComboBox x:Name="cbTable"
                         materialDesign:ComboBoxAssist.ShowSelectedItem="{Binding IsChecked, ElementName=DisplaySelectedItemCheckBox}"
                         Margin="3,663,0,20" 
                         FontFamily="Gilroy" 
@@ -174,53 +177,53 @@
                         VerticalAlignment="Center" Opacity="0.8"
                         materialDesign:HintAssist.Hint="Số bàn"
                         Style="{StaticResource MaterialDesignFloatingHintComboBox}" Height="47" IsReadOnly="True">
-                            <ComboBox.Effect>
-                                <DropShadowEffect Opacity="0.4"/>
-                            </ComboBox.Effect>
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding}">
+                        <ComboBox.Effect>
+                            <DropShadowEffect Opacity="0.4"/>
+                        </ComboBox.Effect>
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}">
 
-                                    </TextBlock>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
+                                </TextBlock>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
 
-                        </ComboBox>
-                        <Rectangle Margin="0,241,0,128" Fill="White" Opacity="0.495"/>
-                        <DataGrid x:Name="lvOrder" Margin="2,182,0,128" BorderBrush="#89000000" FontFamily="Gilroy"
+                    </ComboBox>
+                    <Rectangle Margin="0,241,0,128" Fill="White" Opacity="0.495"/>
+                    <DataGrid x:Name="lvOrder" Margin="2,182,0,128" BorderBrush="#89000000" FontFamily="Gilroy"
                               AutoGenerateColumns="False" IsReadOnly="True">
-                            <DataGrid.Columns>
+                        <DataGrid.Columns>
 
-                                <DataGridTextColumn Width="120"
+                            <DataGridTextColumn Width="120"
                                     Binding="{Binding FOODname1}"
                                     Header="Món ăn" />
-                                <DataGridTextColumn Width="100"
+                            <DataGridTextColumn Width="100"
                                     Binding="{Binding QUATITY1}"
                                     Header="Số lượng" />
-                                <DataGridTextColumn Width="120"
+                            <DataGridTextColumn Width="120"
                                     Binding="{Binding PRICE1}"
                                     Header="Đơn giá" />
-                                <DataGridTextColumn Width="130"
+                            <DataGridTextColumn Width="130"
                                     Binding="{Binding TOTAL1}"
                                     Header="Thành tiền" />
 
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Rectangle Margin="120,607,20,67" Fill="White" Stroke="#FF2AA9C6" RadiusY="15" RadiusX="15" >
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Rectangle Margin="120,607,20,67" Fill="White" Stroke="#FF2AA9C6" RadiusY="15" RadiusX="15" >
 
-                            <Rectangle.Effect>
-                                <DropShadowEffect Opacity="0.4" Color="#FF2AA9C6"/>
-                            </Rectangle.Effect>
-                        </Rectangle>
-                        <TextBox
+                        <Rectangle.Effect>
+                            <DropShadowEffect Opacity="0.4" Color="#FF2AA9C6"/>
+                        </Rectangle.Effect>
+                    </Rectangle>
+                    <TextBox
                         x:Name="tbTotalMoney"
                         materialDesign:TransitionAssist.DisableTransitions="True" 
                         Margin="132,616,30,75" Foreground="#FF0078D7" FontSize="24"
                         IsReadOnly="True"/>
-                        <TextBlock Text="Total:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,625,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
-                    </Grid>
+                    <TextBlock Text="Total:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15,625,0,0" FontSize="24" FontWeight="Medium" FontFamily="Showcard Gothic" />
                 </Grid>
-            </materialDesign:Card>
-        </Grid>
-    
+            </Grid>
+        </materialDesign:Card>
+    </Grid>
+
 </UserControl>

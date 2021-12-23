@@ -160,3 +160,5 @@ C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\bin\Debug\Microsoft.Repor
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\bin\Debug\Microsoft.ReportViewer.WebForms.DLL
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\View\QAreport.g.cs
 C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\View\QAreport.baml
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\View\BillInfo.g.cs
+C:\visual studio\QLQA\DO_AN_QUAN_AN\DO_AN_QUAN_AN\QLQA\obj\Debug\View\BillInfo.baml

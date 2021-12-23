@@ -104,10 +104,6 @@ insert into TABLEQA (ID, NAME, STATUS) values ('12',N'Bàn 12',N'Bàn trống')
 insert into TABLEQA (ID, NAME, STATUS) values ('13',N'Bàn 13',N'Bàn trống')
 insert into TABLEQA (ID, NAME, STATUS) values ('14',N'Bàn 14',N'Bàn trống')
 
-select * from TABLEQA
-DELETE FROM TABLEQA WHERE ID = 14
-select * from ORDER_QA 
-
 create table ORDER_QA
 (
 	ID			integer identity(1,1) primary key,
@@ -139,13 +135,4 @@ create table REVENUE
 	FOREIGN KEY (ORDERid) REFERENCES ORDER_QA(ID)
 )
 go
-
-insert into ORDER_QA(TABLEid,CHECKIN) values ('1','19:30:12 11/09/2020')
-insert into ORDER_QA(TABLEid,CHECKIN) values ('3','8:30:00 11/12/2020')
-
-insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','1','1')
-insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('1','2','1')
-insert into ORDER_FOOD (ORDERid, FOODid, QUANTITY) values ('2','1','1')
-
-drop table ORDER_FOOD
 
